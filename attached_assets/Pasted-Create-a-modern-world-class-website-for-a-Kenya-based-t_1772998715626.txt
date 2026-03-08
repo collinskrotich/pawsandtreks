@@ -1,0 +1,121 @@
+Create a modern, world-class website for a Kenya-based tours and safari company called “Paws & Treks”.
+
+The design should match international tourism standards similar to luxury safari companies. The style should feel adventurous, premium, and nature-inspired with a strong African safari aesthetic.
+
+Tech stack:
+- Next.js with App Router
+- Tailwind CSS
+- shadcn/ui components
+- Fully responsive
+- SEO optimized
+- Smooth animations (Framer Motion)
+
+Brand identity:
+- Name: Paws & Treks
+- Tagline: “Wild Adventures. Unforgettable Safaris.”
+- Theme colors: Safari green, sunset orange, sand beige, and charcoal
+- Design vibe: Luxury safari meets modern travel startup
+
+Navigation bar:
+- Logo (Paws & Treks)
+- Home
+- Safaris
+- Destinations
+- Packages
+- About Us
+- Gallery
+- Blog
+- Contact
+- Book Now CTA button
+
+Hero section:
+- Full-width cinematic safari background (African savannah, elephants, lions, sunset)
+- Large headline: “Discover Kenya’s Wild Beauty”
+- Subtext about unforgettable safari adventures
+- Two CTA buttons: “Explore Safaris” and “Plan Your Adventure”
+
+Sections to include:
+
+1. Featured Safari Experiences
+Cards with images and short descriptions:
+- Masai Mara Big Five Safari
+- Amboseli Elephant Safari
+- Mount Kenya Trekking Adventure
+- Lake Nakuru Flamingo Tour
+- Tsavo Wilderness Safari
+
+Each card should include:
+- Duration
+- Price starting from
+- Learn more button
+
+2. Top Destinations
+Interactive grid featuring:
+- Maasai Mara
+- Amboseli National Park
+- Tsavo East & West
+- Lake Nakuru
+- Samburu
+- Mount Kenya
+
+Include beautiful safari photography style layout.
+
+3. Why Travel With Paws & Treks
+Icon feature section:
+- Expert Local Guides
+- Tailor-Made Safaris
+- Responsible & Eco Tourism
+- Luxury and Budget Options
+- 24/7 Guest Support
+
+4. Safari Packages
+Pricing cards:
+- 3-Day Maasai Mara Safari
+- 5-Day Big Five Safari
+- 7-Day Kenya Explorer
+Include:
+- price
+- highlights
+- CTA "Book Safari"
+
+5. Gallery Section
+Large safari photo grid with wildlife, landscapes, and safari vehicles.
+
+6. Testimonials
+Slider with reviews from international travelers.
+
+7. Blog / Travel Guide
+Recent articles like:
+- Best Time to Visit Maasai Mara
+- What to Pack for a Kenya Safari
+- Top 10 Animals to See on Safari
+
+8. Call To Action
+Large banner:
+“Ready for the Adventure of a Lifetime?”
+Button: “Book Your Safari”
+
+9. Contact Section
+Include:
+- Inquiry form
+- WhatsApp contact
+- Email
+- Nairobi office location
+- Google Maps embed
+
+10. Footer
+- Quick links
+- Safari destinations
+- Social media icons
+- Newsletter signup
+- Copyright © Paws & Treks
+
+Extra features:
+- Sticky navigation
+- Smooth scroll
+- Image hover effects
+- Safari themed icons
+- SEO meta tags
+- Mobile optimized layout
+
+Make the website feel like a premium African safari brand similar to high-end tour operators.
