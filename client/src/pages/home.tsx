@@ -32,7 +32,7 @@ const navLinks = [
   { label: "Home", href: "#home" },
   { label: "Safaris", href: "#safaris" },
   { label: "Destinations", href: "#destinations" },
-  { label: "Packages", href: "#packages" },
+  { label: "Packages", href: "/packages" },
   { label: "Gallery", href: "#gallery" },
   { label: "About", href: "#about" },
   { label: "Blog", href: "#blog" },
@@ -576,7 +576,7 @@ function PackagesSection() {
                     </li>
                   ))}
                 </ul>
-                <a href="#contact">
+                <a href="/packages">
                   <Button
                     className="w-full"
                     variant={pkg.popular ? "default" : "outline"}
@@ -588,6 +588,21 @@ function PackagesSection() {
               </Card>
             </motion.div>
           ))}
+        </motion.div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          className="text-center mt-10"
+        >
+          <a href="/packages">
+            <Button variant="outline" size="lg" data-testid="button-view-all-packages">
+              View All Packages & Full Itineraries
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </a>
         </motion.div>
       </div>
     </section>
@@ -1100,14 +1115,22 @@ function Footer() {
           <div>
             <h4 className="font-serif font-bold text-lg mb-4">Quick Links</h4>
             <ul className="space-y-2.5">
-              {["Home", "Safaris", "Destinations", "Packages", "Gallery", "Blog", "Contact"].map((link) => (
-                <li key={link}>
+              {[
+                { label: "Home", href: "#home" },
+                { label: "Safaris", href: "#safaris" },
+                { label: "Destinations", href: "#destinations" },
+                { label: "Packages", href: "/packages" },
+                { label: "Gallery", href: "#gallery" },
+                { label: "Blog", href: "#blog" },
+                { label: "Contact", href: "#contact" },
+              ].map((link) => (
+                <li key={link.label}>
                   <a
-                    href={`#${link.toLowerCase()}`}
-                    className="text-background/60 text-sm hover:text-background transition-colors"
-                    data-testid={`link-footer-${link.toLowerCase()}`}
+                    href={link.href}
+                    className="text-background/60 text-sm transition-colors"
+                    data-testid={`link-footer-${link.label.toLowerCase()}`}
                   >
-                    {link}
+                    {link.label}
                   </a>
                 </li>
               ))}
