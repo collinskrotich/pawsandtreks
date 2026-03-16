@@ -933,7 +933,7 @@ function ContactSection() {
                         <FormItem>
                           <FormLabel>Phone (Optional)</FormLabel>
                           <FormControl>
-                            <Input placeholder="+254 700 000 000" {...field} data-testid="input-phone" />
+                            <Input placeholder="+254-728-719-053" {...field} data-testid="input-phone" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -1022,7 +1022,7 @@ function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-bold mb-1">Call Us</h4>
-                  <p className="text-muted-foreground text-sm">+254 700 000 000</p>
+                  <a href="tel:+254728719053" className="block text-sm text-primary font-medium" data-testid="link-phone">+254-728-719-053</a>
                   <p className="text-muted-foreground text-sm">Mon-Sat: 8am - 6pm EAT</p>
                 </div>
               </div>
@@ -1033,8 +1033,8 @@ function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-bold mb-1">Email Us</h4>
-                  <p className="text-muted-foreground text-sm">info@pawsandtreks.com</p>
-                  <p className="text-muted-foreground text-sm">bookings@pawsandtreks.com</p>
+                  <a href="mailto:pawsandtreks@gmail.com" className="block text-sm text-primary font-medium" data-testid="link-email-primary">pawsandtreks@gmail.com</a>
+                  <a href="mailto:richtabi7777@gmail.com" className="block text-sm text-muted-foreground" data-testid="link-email-secondary">richtabi7777@gmail.com</a>
                 </div>
               </div>
 
@@ -1044,7 +1044,7 @@ function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-bold mb-1">WhatsApp</h4>
-                  <p className="text-muted-foreground text-sm">+254 700 000 000</p>
+                  <a href="https://wa.me/254769784190" target="_blank" rel="noopener noreferrer" className="text-primary text-sm font-medium" data-testid="link-whatsapp">+254-769-784-190</a>
                   <p className="text-muted-foreground text-sm">Quick responses, 24/7</p>
                 </div>
               </div>
@@ -1149,7 +1149,7 @@ function Footer() {
 
         <div className="border-t border-background/10 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-background/40 text-sm" data-testid="text-copyright">
-            &copy; {new Date().getFullYear()} Paws & Treks. All rights reserved.
+            &copy; {new Date().getFullYear()} Paws and Treks Tours and Travel. All rights reserved.
           </p>
           <div className="flex gap-6 text-background/40 text-sm">
             <a href="#" className="transition-colors" data-testid="link-privacy-policy">Privacy Policy</a>
