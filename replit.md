@@ -14,7 +14,9 @@ A modern, premium website for "Paws & Treks", a Kenya-based tours and safari com
 
 ## Architecture
 - `client/src/pages/home.tsx` - Main landing page with all sections (Hero, Safaris, Destinations, Packages, Gallery, Testimonials, Blog, CTA, Contact, Footer)
-- `client/src/pages/packages.tsx` - Dedicated packages page with full day-by-day itineraries, inclusions/exclusions tabs, and booking CTAs
+- `client/src/pages/packages.tsx` - Dedicated packages page with 4 categories: Best Safari Deals, Top Private Safaris, Exciting Adventures, Kenya Camping
+- `client/src/pages/blog.tsx` - Dedicated blog page with 3 expandable articles
+- `client/src/pages/terms.tsx` - Booking Terms & Travel Information page (payments, cancellations, visas, weather, health, security, etc.)
 - `client/src/App.tsx` - Router setup
 - `server/routes.ts` - API routes (POST/GET /api/inquiries)
 - `server/storage.ts` - In-memory storage for contact inquiries

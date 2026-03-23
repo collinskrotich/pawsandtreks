@@ -490,8 +490,8 @@ function WhyUsSection() {
           <motion.h2 variants={fadeInUp} className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             Why Travel With Paws & Treks
           </motion.h2>
-          <motion.p variants={fadeInUp} className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            We go above and beyond to create safari experiences that are safe, sustainable, and truly unforgettable.
+          <motion.p variants={fadeInUp} className="text-muted-foreground max-w-3xl mx-auto text-lg">
+            We are dedicated to designing personalised, memorable and affordable adventures tailored specifically to each traveller's interests, preferences, and dreams. With our expert guides, from world-famous parks like the Maasai Mara, Amboseli, Tsavo, and Lake Nakuru to cultural encounters and historic sites — every journey is crafted to inspire and delight, creating lasting memories.
           </motion.p>
         </motion.div>
 
@@ -1175,8 +1175,8 @@ function Footer() {
             &copy; {new Date().getFullYear()} Paws and Treks Tours and Travel. All rights reserved.
           </p>
           <div className="flex gap-6 text-background/40 text-sm">
-            <a href="#" className="transition-colors" data-testid="link-privacy-policy">Privacy Policy</a>
-            <a href="#" className="transition-colors" data-testid="link-terms-of-service">Terms of Service</a>
+            <a href="/terms" className="transition-colors" data-testid="link-booking-terms">Booking Terms</a>
+            <a href="/terms#travel-info-section" className="transition-colors" data-testid="link-travel-info">Travel Information</a>
           </div>
         </div>
       </div>

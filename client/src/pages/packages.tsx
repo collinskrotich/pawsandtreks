@@ -578,6 +578,139 @@ const excitingAdventures: SafariPackage[] = [
   },
 ];
 
+const kenyaCamping: SafariPackage[] = [
+  {
+    id: "gatamaiyu-bush-camp",
+    title: "The All Natural Gatamaiyu Bush Camp",
+    duration: "1–2 Days",
+    days: 1,
+    image: "/images/mount_kenya.jpg",
+    tag: "Nature Escape",
+    overview:
+      "Nature lovers meet raw experience. For nature lovers, this is the closest you could be. Camp in the heart of Gatamaiyu forest, explore the falls, discover your own nature trail, enjoy bird photography, and experience the unforgettable thrill of true bush camping.",
+    itinerary: [
+      {
+        day: 1,
+        title: "Nairobi / Gatamaiyu Bush Camp",
+        description:
+          "Leave Nairobi and arrive in the afternoon for nature walks, fishing, and photography. Dinner and tent self-set up for the night stay in the camp. Experience evening bonfires under the stars in this pristine forest setting.",
+      },
+      {
+        day: "Camp Experience",
+        title: "The Camping Experience",
+        description:
+          "Experience the unforgettable camping in Gatamaiyu forest — the falls, beautiful nature walks, the chance to discover your own nature trail, treks, and lots of photography. Return to Nairobi at your preferred time.",
+      },
+    ],
+    inclusions: [
+      "Private transport to and from",
+      "Camping ground with optional tents",
+      "Evening bonfires",
+      "Services of a qualified guide",
+    ],
+    exclusions: ["Bring your own food and drinks", "Any other item not mentioned above"],
+    highlights: ["Gatamaiyu forest", "Nature walks & waterfalls", "Fishing", "Photography", "Self-set bonfire camping"],
+  },
+  {
+    id: "ole-tepesi-lodge",
+    title: "The Stone House Ole-Tepesi Lodge and Camp",
+    duration: "1–2 Days",
+    days: 2,
+    image: "/images/samburu.jpg",
+    tag: "Hidden Gem",
+    overview:
+      "Explore the hidden gem in Ol-Tepesi, Kajiado County — a stunning retreat through the scenic and peaceful landscapes of the southern Rift Valley. Ideal for a short break from the city, with activities from hiking and archery to Maasai community visits and wildlife viewing.",
+    itinerary: [
+      {
+        day: 1,
+        title: "Nairobi / Ole-Tepesi",
+        description:
+          "Travel from Nairobi through the scenic and peaceful landscapes of the southern part of the Rift Valley to the Stone House. Arrive for a splendid evening stay at the cottages or set up your own tent. Dinner served and overnight stay.",
+      },
+      {
+        day: 2,
+        title: "Activities & Return",
+        description:
+          "Pick activities to engage with — hiking and trekking, archery, swimming, evening bonfires, board games, Maasai community visits, and wildlife and bird viewing. Trip back to Nairobi with an option of a second overnight stay at the camp.",
+      },
+    ],
+    inclusions: [
+      "Private transport to and from",
+      "Camping ground with optional tents",
+      "Evening bonfires",
+      "Services of a qualified guide",
+    ],
+    exclusions: ["Bring your own food and drinks", "Any other item not mentioned above"],
+    highlights: ["Southern Rift Valley scenery", "Hiking & trekking", "Archery & swimming", "Maasai community visits", "Evening bonfires", "Wildlife & bird viewing"],
+  },
+  {
+    id: "aberdares-tented-camp",
+    title: "The Aberdares Tented Bush Camp",
+    duration: "2 Days / 1 Night",
+    days: 2,
+    image: "/images/mount_kenya.jpg",
+    tag: "Highland Camp",
+    overview:
+      "Camp at the foothills of the great Aberdares — a highland escape offering a rich blend of activities from tea factory visits and fly fishing to cycling tours and boat rides, all set within one of Kenya's most spectacular mountain ranges.",
+    itinerary: [
+      {
+        day: 1,
+        title: "Nairobi / Aberdares",
+        description:
+          "Travel from Nairobi to the Aberdares. Arrive in the evening for dinner and tent or lodge set-up for the night stay. Settle into the tranquil highland atmosphere with bonfires and fresh mountain air.",
+      },
+      {
+        day: 2,
+        title: "Aberdares Activities & Return",
+        description:
+          "Choose from a full menu of activities: tea factory visits, boat riding, fly fishing, cycling tours, hiking tours, photography, and sightseeing. Optional second-night camping available. Travel back to Nairobi.",
+      },
+    ],
+    inclusions: [
+      "Meals and drinks at the Camp",
+      "Private transport to and from",
+      "Accommodation in the tented camp/Lodge",
+      "Evening bonfires",
+      "Services of a qualified guide",
+    ],
+    exclusions: ["Any other item not mentioned above"],
+    highlights: ["Aberdares foothills", "Tea factory visits", "Fly fishing & boat riding", "Cycling & hiking tours", "Photography & sightseeing"],
+  },
+  {
+    id: "jangwani-sagana-camp",
+    title: "Jangwani Sagana Lodge and Tented Camp",
+    duration: "2 Days / 1 Night",
+    days: 2,
+    image: "/images/amboseli.jpg",
+    tag: "River Adventure",
+    overview:
+      "Head to Sagana in Nyeri County for a riverside adventure combining white-water rafting, photography, sightseeing, and a cosy overnight camp stay with music and storytelling around the bonfire.",
+    itinerary: [
+      {
+        day: 1,
+        title: "Nairobi / Sagana",
+        description:
+          "Head to Sagana in Nyeri County. Arrive in the late afternoon for meals and drinks. Set up tents for the overnight camp stay, with music and storytelling by the fire as the Sagana River rushes nearby.",
+      },
+      {
+        day: 2,
+        title: "Sagana / Nairobi",
+        description:
+          "Breakfast followed by white-water rafting sessions on the Sagana River, photography, and sightseeing along the river banks. Lunch at the camp before travelling back to Nairobi.",
+      },
+    ],
+    inclusions: [
+      "Meals and drinks at the Camp (or self-catered meals/drinks)",
+      "Private transport to and from",
+      "Accommodation in the tented camp/Lodge",
+      "Evening bonfires",
+      "Services of a qualified guide",
+    ],
+    exclusions: ["Any other item not mentioned above"],
+    highlights: ["Sagana River white-water rafting", "Tented river-side camp", "Music & storytelling", "Photography & sightseeing", "Nyeri County scenery"],
+  },
+];
+
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Safaris", href: "/#safaris" },
@@ -965,6 +1098,7 @@ export default function Packages() {
               { id: "best-safari-deals", label: "Best Safari Deals" },
               { id: "top-private-safaris", label: "Top Private Safaris" },
               { id: "exciting-adventures", label: "Exciting Adventures" },
+              { id: "kenya-camping", label: "Kenya Camping" },
             ].map((cat) => (
               <a
                 key={cat.id}
@@ -1007,6 +1141,16 @@ export default function Packages() {
         subtitle="Beyond the classic game drive — specialist safari experiences for photography enthusiasts, balloon flight seekers, and dedicated bird watchers."
         packages={excitingAdventures}
         bgClass="bg-background"
+      />
+
+      <CategorySection
+        id="kenya-camping"
+        icon={<Wind className="w-5 h-5" />}
+        label="Nature & Camping"
+        title="Kenya Camping"
+        subtitle="Escape the city and reconnect with nature — forest camps, riverside retreats, and highland hideaways within easy reach of Nairobi. Perfect for weekend getaways."
+        packages={kenyaCamping}
+        bgClass="bg-card"
       />
 
       {/* Bottom CTA */}
