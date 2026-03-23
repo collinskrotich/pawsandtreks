@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
 import {
   ChevronDown, ChevronUp, Clock, CheckCircle2, XCircle,
-  MapPin, ArrowRight, Menu, X, CalendarDays, Users,
-  Star, Binoculars, Tent, Phone, MessageCircle
+  MapPin, ArrowRight, Menu, X, CalendarDays,
+  Star, Binoculars, Phone, MessageCircle, Camera, Wind
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -16,11 +16,11 @@ const fadeInUp = {
 };
 
 const stagger = {
-  visible: { transition: { staggerChildren: 0.12 } }
+  visible: { transition: { staggerChildren: 0.1 } }
 };
 
 interface DayItinerary {
-  day: number;
+  day: number | string;
   title: string;
   description: string;
 }
@@ -39,7 +39,7 @@ interface SafariPackage {
   highlights: string[];
 }
 
-const packages: SafariPackage[] = [
+const bestSafariDeals: SafariPackage[] = [
   {
     id: "masai-mara-3d",
     title: "3-Days Masai Mara Camping",
@@ -60,7 +60,7 @@ const packages: SafariPackage[] = [
         day: 2,
         title: "Masai Mara Full Day",
         description:
-          "Full day in the park in search of the Big Five. Experience the breathtaking plains teeming with wildebeest, zebras, lions, elephants and much more. Meals and overnight at the campsite. Optional visit to the Maasai Village in the afternoon to experience the local culture.",
+          "Full day in the park in search of the Big Five. Experience the breathtaking plains teeming with wildebeest, zebras, lions, elephants and much more. Meals and overnight at the campsite. Optional visit to the Maasai Village in the afternoon.",
       },
       {
         day: 3,
@@ -112,7 +112,7 @@ const packages: SafariPackage[] = [
         day: 4,
         title: "Lake Nakuru / Nairobi",
         description:
-          "Early breakfast, then proceed for a game drive to Lake Nakuru — world renowned for its masses of flamingoes, often referred to as the 'Pink Lake'. Spot small game including Water Buck, Impala, Rhino and Buffalo. After lunch depart to Nairobi arriving around 4–5 pm.",
+          "Early breakfast, then proceed for a game drive to Lake Nakuru — world renowned for its masses of flamingoes, often referred to as the 'Pink Lake'. Spot Water Buck, Impala, Rhino and Buffalo. After lunch depart to Nairobi arriving around 4–5 pm.",
       },
     ],
     inclusions: [
@@ -240,7 +240,341 @@ const packages: SafariPackage[] = [
       "Services of a qualified driver guide",
     ],
     exclusions: ["Any other item not mentioned above"],
-    highlights: ["Masai Mara, Nakuru & Amboseli", "Big Five sighting", "Kilimanjaro backdrop in Amboseli", "Flamingos at Lake Nakuru", "Optional hot-air balloon"],
+    highlights: ["Masai Mara, Nakuru & Amboseli", "Big Five sighting", "Kilimanjaro backdrop", "Flamingos at Lake Nakuru", "Optional hot-air balloon"],
+  },
+];
+
+const privateSafaris: SafariPackage[] = [
+  {
+    id: "private-mara-3d",
+    title: "3-Days Masai Mara 4×4 Private Camping / Lodge Safari",
+    duration: "3 Days / 2 Nights",
+    days: 3,
+    image: "/images/safari_vehicle.jpg",
+    tag: "Private Safari",
+    overview:
+      "A fully private 3-day safari to Masai Mara National Reserve in a dedicated 4×4 Land Cruiser. Enjoy personalised game drives, the chance to see the Big Five, and the flexibility to customise your experience including optional cultural visits to the Maasai village.",
+    itinerary: [
+      {
+        day: 1,
+        title: "Nairobi – Masai Mara",
+        description:
+          "Depart from Nairobi in the morning for a journey south through the floor of the Great Rift Valley. Picnic lunch at Narok. Arrive at Masai Mara for late afternoon game viewing en route. Early evening game drive. Dinner and overnight at the Lodge/tented camp.",
+      },
+      {
+        day: 2,
+        title: "Masai Mara Full Day",
+        description:
+          "Full day in the park in search of the Big Five. Meals and overnight at budget Lodge/tented camp. Optional visit to the Maasai Village in the afternoon or continue with the game drive.",
+      },
+      {
+        day: 3,
+        title: "Masai Mara – Nairobi",
+        description:
+          "Early morning breakfast with optional Maasai village visit. Then check out and drive back to Nairobi via Narok town for lunch. Arrive in Nairobi in the evening.",
+      },
+    ],
+    inclusions: [
+      "Park entrance fees",
+      "Drinking water",
+      "Transport in private 4×4 Land Cruiser",
+      "Accommodation in budget Lodge/tented camp",
+      "Three meals a day (except first breakfast and last dinner)",
+      "Services of a qualified driver guide",
+    ],
+    exclusions: ["Any other item not mentioned above"],
+    highlights: ["Fully private vehicle", "Big Five sighting", "Flexible itinerary", "Maasai village option"],
+  },
+  {
+    id: "private-nakuru-naivasha-mara-5d",
+    title: "5-Days Nakuru / Naivasha / Masai Mara Private 4×4 Safari",
+    duration: "5 Days / 4 Nights",
+    days: 5,
+    image: "/images/lake_nakuru.jpg",
+    tag: "Luxury Private",
+    overview:
+      "Absolute luxury adventure to Kenya's best game reserve Masai Mara National Reserve, down the Great Rift Valley to Lake Nakuru National Park — home to the rare white rhino species and bird paradise with the famous flamingos. Move next to neighbouring Lake Naivasha for a boat ride, hippo viewing, and a visit to Hell's Gate National Park and Crescent Island.",
+    itinerary: [
+      {
+        day: 1,
+        title: "Nairobi / Lake Nakuru",
+        description:
+          "Depart from Nairobi for a drive into the Rift Valley and onto Lake Nakuru National Park, internationally famous as an animal sanctuary for both black and white Rhinos. Check in at Lake Nakuru Lodge for lunch. Evening game drive including a walk by the shores of the lake. Dinner and overnight stay at the Lodge.",
+      },
+      {
+        day: 2,
+        title: "Nakuru / Naivasha",
+        description:
+          "Leisurely breakfast at the lodge, further game drive in the park and depart late morning for Lake Naivasha. Check in at a lodge and lunch. Late afternoon, visit the Crescent Island for more wildlife and bird viewing. Dinner and overnight stay at the Lodge.",
+      },
+      {
+        day: 3,
+        title: "Naivasha / Masai Mara",
+        description:
+          "Early breakfast and drive to the Masai Mara. Arrive for lunch at the lodge. Enjoy an afternoon game drive tracking the Big Five. Dinner and overnight stay at the lodge.",
+      },
+      {
+        day: 4,
+        title: "Masai Mara Full Day",
+        description:
+          "Early morning breakfast, proceed for a full day game drive with picnic lunch in the bush. The Mara offers unparalleled game viewing with the Big Five and the great wildebeest herds. Dinner and overnight stay at the Lodge.",
+      },
+      {
+        day: 5,
+        title: "Masai Mara / Nairobi",
+        description:
+          "Early breakfast with optional Maasai village visit. Drive back to Nairobi via Narok town for lunch. Arrive in Nairobi in the late afternoon.",
+      },
+    ],
+    inclusions: [
+      "Transport on 4×4 Land Cruiser",
+      "Full board accommodation whilst on safari",
+      "All park entrance fees",
+      "Service of an English-speaking professional driver/guide",
+      "Bottled water whilst on safari",
+      "Start and end in Nairobi",
+      "Personalised service",
+    ],
+    exclusions: ["Any other item not mentioned above"],
+    highlights: ["Lake Nakuru rhinos & flamingos", "Naivasha boat ride", "Hell's Gate & Crescent Island", "Masai Mara Big Five", "Full board accommodation"],
+  },
+  {
+    id: "private-mara-nakuru-4d",
+    title: "4-Days Masai Mara & Nakuru 4×4 Private Camping Safari",
+    duration: "4 Days / 3 Nights",
+    days: 4,
+    image: "/images/samburu.jpg",
+    tag: "Private Safari",
+    overview:
+      "Discover the Masai Mara National Reserve and Lake Nakuru on a fully private 4×4 Land Cruiser Camping Safari. See the park's stunning Great Migration, enjoy bird watching, and take an optional visit to the Maasai village or a balloon safari.",
+    itinerary: [
+      {
+        day: 1,
+        title: "Nairobi / Masai Mara",
+        description:
+          "Leave Nairobi at 8:00 am to Maasai Mara Game Reserve with a stopover at the Great Rift Valley viewpoint. Arrive Masai Mara late afternoon and proceed for a game drive, dinner and overnight at your lodge/camp.",
+      },
+      {
+        day: 2,
+        title: "Masai Mara Full Day",
+        description:
+          "After breakfast with picnic lunch, spend the full day exploring this unique park which really forms the northern part of the famous Serengeti National Park. Meals and overnight at your Lodge/camp.",
+      },
+      {
+        day: 3,
+        title: "Masai Mara / Lake Nakuru",
+        description:
+          "Early breakfast with optional Maasai village visit. Depart for Lake Nakuru with game drive en route and picnic lunch. Arrive in Nakuru early evening for dinner and overnight at your lodge/camp.",
+      },
+      {
+        day: 4,
+        title: "Lake Nakuru / Nairobi",
+        description:
+          "After breakfast proceed for a game drive to Lake Nakuru — world renowned for its masses of flamingoes and often referred to as the 'Pink Lake'. Spot Water Buck, Impala, Rhino and Buffalo in the gardens surrounding. After lunch depart to Nairobi arriving around 4–5 pm.",
+      },
+    ],
+    inclusions: [
+      "Park entrance fees",
+      "Drinking water",
+      "Transport in private 4×4 Land Cruiser",
+      "Accommodation in budget Lodge/tented camp",
+      "Three meals a day (except first breakfast and last dinner)",
+      "Services of a qualified driver guide",
+    ],
+    exclusions: ["Any other item not mentioned above"],
+    highlights: ["Fully private 4×4", "Great Migration viewing", "Bird watching", "Optional balloon safari", "Optional Maasai village"],
+  },
+];
+
+const excitingAdventures: SafariPackage[] = [
+  {
+    id: "photographic-safari-10d",
+    title: "Photographic Safari",
+    duration: "10 Days / 9 Nights",
+    days: 10,
+    image: "/images/gallery_leopard.jpg",
+    tag: "Photography",
+    overview:
+      "A dedicated 10-day photography safari through Kenya's finest wildlife reserves — Masai Mara, Lake Nakuru, and Samburu. Ideal for professional and amateur photographers alike, this tour gives you maximum time in each park with optimal lighting conditions at sunrise and golden hour.",
+    itinerary: [
+      {
+        day: 1,
+        title: "Nairobi / Masai Mara",
+        description:
+          "Depart Nairobi towards south along the floor of Rift Valley past Narok to reach Masai Mara by lunchtime. After photography, spend the afternoon at leisure. All meals and overnight at a lodge/hotel.",
+      },
+      {
+        day: 2,
+        title: "Masai Mara – Photography Day",
+        description:
+          "This day is dedicated to photography — sunrise game drives for the best golden light, midday sessions, and evening shoots. All meals and overnight at a lodge/campsite.",
+      },
+      {
+        day: 3,
+        title: "Masai Mara – Photography Day",
+        description:
+          "Spent the day taking photographs in the park — tracking the Big Five, capturing the wildebeest herds and dramatic big-sky landscapes. All meals and overnight at a lodge/campsite.",
+      },
+      {
+        day: 4,
+        title: "Masai Mara – Full Day Photography",
+        description:
+          "Full day photography session. Capture river crossings, predator action, and sweeping savannah vistas. All meals and overnight at a lodge/campsite.",
+      },
+      {
+        day: 5,
+        title: "Masai Mara / Lake Nakuru",
+        description:
+          "After breakfast leave Masai Mara for lunch at Lake Nakuru. The lake is known for its large variety of flamingoes and many tropical birds. Dinner and overnight at a lodge.",
+      },
+      {
+        day: 6,
+        title: "Lake Nakuru – Photography Day",
+        description:
+          "Spectacular photography in the park — flamingoes, rhinos, Rothschild giraffes and prolific birdlife await your lens. All meals and overnight at a lodge/campsite.",
+      },
+      {
+        day: 7,
+        title: "Lake Nakuru / Samburu",
+        description:
+          "Depart Lake Nakuru for Samburu National Reserve. Afternoon game drive and photographing the Samburu Special Five — Grevy's zebra, reticulated giraffe, Beisa oryx, Somali ostrich and gerenuk. Dinner and overnight at a Lodge/Campsite.",
+      },
+      {
+        day: 8,
+        title: "Samburu – Photography Day",
+        description:
+          "Get the best shots in Samburu — a remote wilderness with dramatic landscapes and unique northern Kenya wildlife. All meals and overnight at a lodge/campsite.",
+      },
+      {
+        day: 9,
+        title: "Samburu – Final Photography Day",
+        description:
+          "This is the final day to capture those shots you might have missed. Memorable meals and overnight at a lodge/campsite.",
+      },
+      {
+        day: 10,
+        title: "Samburu / Nairobi",
+        description:
+          "After breakfast depart for Nairobi for your next destination, taking home a treasure trove of wildlife photographs.",
+      },
+    ],
+    inclusions: [
+      "Park entrance fees",
+      "Drinking water",
+      "Transport in private 4×4 Land Cruiser",
+      "Accommodation in budget Lodge/tented camp",
+      "Three meals a day (except first breakfast and last dinner)",
+      "Services of a qualified driver guide",
+    ],
+    exclusions: ["Any other item not mentioned above"],
+    highlights: ["Masai Mara, Nakuru & Samburu", "Optimal photography lighting", "Big Five & Samburu Special Five", "Flamingoes & rare birds", "Sunrise game drives"],
+  },
+  {
+    id: "balloon-safari",
+    title: "Masai Mara Balloon Safari",
+    duration: "1 Hour Flight",
+    days: 1,
+    image: "/images/gallery_balloon.jpg",
+    tag: "Bucket List",
+    overview:
+      "No visit to the Maasai Mara can be complete without a trip in a hot-air balloon. Taking off in the beautiful early morning light, you drift above the browsing game and have tremendous opportunities for unusual photography. At the end of the flight, land on the plains where a champagne-style breakfast is served before driving back to your lodge or camp.",
+    itinerary: [
+      {
+        day: "1 Hour",
+        title: "The Fabulous Mara Balloon Safari",
+        description:
+          "Balloons lift off at sunrise when the plains are calm and wildlife is most active. The silent flight glides over the Maasai Mara, offering breathtaking views of the landscape and wildlife as the pilot adjusts altitude for close-up or elevated scenery. After landing, guests enjoy a full champagne breakfast followed by a game drive that may reveal the same animals seen from the air. Many travelers even spot four of the Big Five during the flight — an experience like no other on earth.",
+      },
+    ],
+    inclusions: [
+      "Park entrance fees",
+      "Drinking water",
+      "Transport in private 4×4 Land Cruiser",
+    ],
+    exclusions: ["Any other item not mentioned above"],
+    highlights: ["Sunrise balloon flight", "Champagne breakfast on the plains", "Bird's-eye wildlife views", "Optional follow-up game drive", "Perfect for honeymooners"],
+  },
+  {
+    id: "birdwatching-10d",
+    title: "Bird Watching Safari – Customisable to Preference",
+    duration: "10 Days / 9 Nights",
+    days: 10,
+    image: "/images/lake_nakuru.jpg",
+    tag: "Birdwatching",
+    overview:
+      "A specialist bird watching safari through Kenya's most diverse avian habitats — Meru National Park, Samburu National Reserve, Lake Nakuru, Lake Baringo, and Lake Naivasha. Kenya is home to over 1,100 bird species, and this itinerary has been crafted to maximise sightings of the rarest and most spectacular. Fully customisable to your preferences.",
+    itinerary: [
+      {
+        day: 1,
+        title: "Nairobi / Meru National Park",
+        description:
+          "Depart Nairobi past the Central Highlands to Meru National Park. Afternoon bird watching in this beautiful and less-visited park. Dinner and overnight at a lodge or campsite.",
+      },
+      {
+        day: 2,
+        title: "Meru National Park – Bird Watching Day",
+        description:
+          "Spend the full day bird watching in Meru — home to over 400 species including the palm-nut vulture, African finfoot and many more. All meals and overnight at a lodge or campsite.",
+      },
+      {
+        day: 3,
+        title: "Meru / Samburu National Reserve",
+        description:
+          "Depart Meru National Park for Samburu arriving in time for lunch. Afternoon bird watching — look out for the Somali ostrich, Vulturine guineafowl and northern specials. Dinner and overnight at a lodge or campsite.",
+      },
+      {
+        day: 4,
+        title: "Samburu – Bird Watching Day",
+        description:
+          "Spend the day bird watching in Samburu. All meals and overnight at a lodge or campsite.",
+      },
+      {
+        day: 5,
+        title: "Samburu / Lake Nakuru",
+        description:
+          "Depart Samburu after breakfast for Lake Nakuru National Park. After lunch, spend the afternoon bird watching around the lake's shores, famous for its masses of flamingoes.",
+      },
+      {
+        day: 6,
+        title: "Lake Nakuru / Lake Baringo",
+        description:
+          "Early morning bird watching at Lake Nakuru before departing for Lake Baringo in the afternoon — one of Africa's finest birding sites with over 470 recorded species. Dinner and overnight at a lodge or campsite.",
+      },
+      {
+        day: 7,
+        title: "Lake Baringo – Bird Watching Day",
+        description:
+          "Spend the full day bird watching at Lake Baringo, including boat trips on the lake for waterbirds and raptors. All meals and overnight at a lodge or campsite.",
+      },
+      {
+        day: 8,
+        title: "Lake Baringo / Lake Naivasha",
+        description:
+          "After breakfast at Lake Baringo, depart for Lake Naivasha to arrive in time for lunch. Spend the afternoon bird watching in this stunning freshwater lake ringed by yellow fever trees. Dinner and overnight at a lodge or campsite.",
+      },
+      {
+        day: 9,
+        title: "Lake Naivasha – Bird Watching Day",
+        description:
+          "This day is dedicated to bird watching at Lake Naivasha — kingfishers, fish eagles, herons, African jacanas and hundreds more await. All meals and overnight at a lodge or campsite.",
+      },
+      {
+        day: 10,
+        title: "Lake Naivasha / Nairobi",
+        description:
+          "After breakfast, return to Nairobi with a lifetime of birding memories and a magnificent checklist.",
+      },
+    ],
+    inclusions: [
+      "Park entrance fees",
+      "Drinking water",
+      "Transport in private 4×4 Land Cruiser",
+      "Accommodation in budget Lodge/tented camp",
+      "Three meals a day (except first breakfast and last dinner)",
+      "Services of a qualified driver guide",
+    ],
+    exclusions: ["Any other item not mentioned above"],
+    highlights: ["1,100+ species in Kenya", "Meru, Samburu, Nakuru, Baringo & Naivasha", "Flamingoes at Lake Nakuru", "Boat trips at Lake Baringo", "Fully customisable route"],
   },
 ];
 
@@ -251,7 +585,7 @@ const navLinks = [
   { label: "Packages", href: "/packages" },
   { label: "Gallery", href: "/#gallery" },
   { label: "About", href: "/#about" },
-  { label: "Blog", href: "/#blog" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -276,9 +610,7 @@ function Navbar() {
         <div className="flex items-center justify-between gap-4 h-16 sm:h-20">
           <Link href="/" className="flex items-center gap-2 shrink-0" data-testid="link-logo-packages">
             <img src="/images/logo.png" alt="Paws & Treks" className="h-10 sm:h-12 w-auto" />
-            <span className="hidden sm:block font-serif text-lg font-bold text-foreground">
-              Paws & Treks
-            </span>
+            <span className="hidden sm:block font-serif text-lg font-bold text-foreground">Paws & Treks</span>
           </Link>
 
           <div className="hidden lg:flex items-center gap-1">
@@ -286,8 +618,8 @@ function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                className={`px-3 py-2 text-sm font-medium rounded-md transition-colors hover-elevate text-foreground/70 ${
-                  link.label === "Packages" ? "text-primary font-semibold" : ""
+                className={`px-3 py-2 text-sm font-medium rounded-md transition-colors hover-elevate ${
+                  link.label === "Packages" ? "text-primary font-semibold" : "text-foreground/70"
                 }`}
                 data-testid={`link-nav-pkg-${link.label.toLowerCase()}`}
               >
@@ -298,9 +630,7 @@ function Navbar() {
 
           <div className="flex items-center gap-3">
             <Link href="/#contact">
-              <Button size="sm" data-testid="button-book-now-packages">
-                Book Now
-              </Button>
+              <Button size="sm" data-testid="button-book-now-packages">Book Now</Button>
             </Link>
             <button
               className="lg:hidden p-2 rounded-md text-foreground"
@@ -340,7 +670,7 @@ function Navbar() {
   );
 }
 
-function PackageCard({ pkg, index }: { pkg: SafariPackage; index: number }) {
+function PackageCard({ pkg }: { pkg: SafariPackage }) {
   const [expanded, setExpanded] = useState(false);
   const [activeTab, setActiveTab] = useState<"itinerary" | "inclusions">("itinerary");
 
@@ -348,15 +678,10 @@ function PackageCard({ pkg, index }: { pkg: SafariPackage; index: number }) {
     <motion.div variants={fadeInUp} id={pkg.id}>
       <Card className="border-card-border overflow-visible" data-testid={`card-package-${pkg.id}`}>
         <div className="grid grid-cols-1 lg:grid-cols-5">
-          {/* Image */}
           <div className="lg:col-span-2 relative">
             <div className="relative h-56 lg:h-full min-h-[280px] overflow-hidden rounded-t-lg lg:rounded-l-lg lg:rounded-tr-none">
-              <img
-                src={pkg.image}
-                alt={pkg.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-black/10" />
+              <img src={pkg.image} alt={pkg.title} className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute top-4 left-4">
                 <Badge data-testid={`badge-tag-${pkg.id}`}>{pkg.tag}</Badge>
               </div>
@@ -366,9 +691,7 @@ function PackageCard({ pkg, index }: { pkg: SafariPackage; index: number }) {
             </div>
           </div>
 
-          {/* Content */}
           <div className="lg:col-span-3 p-6 sm:p-8 flex flex-col gap-5">
-            {/* Header */}
             <div>
               <h2 className="hidden lg:block font-serif text-2xl font-bold mb-2" data-testid={`text-package-title-${pkg.id}`}>
                 {pkg.title}
@@ -380,17 +703,16 @@ function PackageCard({ pkg, index }: { pkg: SafariPackage; index: number }) {
                 </span>
                 <span className="flex items-center gap-1.5">
                   <CalendarDays className="w-4 h-4 text-primary" />
-                  {pkg.days} Days
+                  {pkg.days} {pkg.days === 1 ? "Day" : "Days"}
                 </span>
                 <span className="flex items-center gap-1.5">
                   <Binoculars className="w-4 h-4 text-primary" />
-                  Game Drives Daily
+                  Game Drives Included
                 </span>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed">{pkg.overview}</p>
             </div>
 
-            {/* Highlights */}
             <div className="flex flex-wrap gap-2">
               {pkg.highlights.map((h, i) => (
                 <span
@@ -404,18 +726,13 @@ function PackageCard({ pkg, index }: { pkg: SafariPackage; index: number }) {
               ))}
             </div>
 
-            {/* CTA row */}
             <div className="flex flex-wrap items-center gap-3 pt-1">
               <button
                 className="flex items-center gap-2 text-sm font-semibold text-primary"
                 onClick={() => setExpanded(!expanded)}
                 data-testid={`button-expand-${pkg.id}`}
               >
-                {expanded ? (
-                  <>Hide Details <ChevronUp className="w-4 h-4" /></>
-                ) : (
-                  <>View Full Itinerary <ChevronDown className="w-4 h-4" /></>
-                )}
+                {expanded ? <>Hide Details <ChevronUp className="w-4 h-4" /></> : <>View Full Itinerary <ChevronDown className="w-4 h-4" /></>}
               </button>
               <div className="ml-auto flex gap-2">
                 <a href="https://wa.me/254769784190" target="_blank" rel="noopener noreferrer">
@@ -425,7 +742,7 @@ function PackageCard({ pkg, index }: { pkg: SafariPackage; index: number }) {
                 </a>
                 <Link href="/#contact">
                   <Button size="sm" data-testid={`button-book-${pkg.id}`}>
-                    Book This Safari <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                    Book Safari <ArrowRight className="w-3.5 h-3.5 ml-1" />
                   </Button>
                 </Link>
               </div>
@@ -433,7 +750,6 @@ function PackageCard({ pkg, index }: { pkg: SafariPackage; index: number }) {
           </div>
         </div>
 
-        {/* Expanded Detail */}
         <AnimatePresence>
           {expanded && (
             <motion.div
@@ -444,25 +760,16 @@ function PackageCard({ pkg, index }: { pkg: SafariPackage; index: number }) {
               className="border-t border-card-border overflow-hidden"
             >
               <div className="p-6 sm:p-8">
-                {/* Tabs */}
                 <div className="flex gap-1 mb-6 bg-muted p-1 rounded-md w-fit">
                   <button
-                    className={`px-4 py-1.5 rounded text-sm font-medium transition-colors ${
-                      activeTab === "itinerary"
-                        ? "bg-background text-foreground shadow-sm"
-                        : "text-muted-foreground"
-                    }`}
+                    className={`px-4 py-1.5 rounded text-sm font-medium transition-colors ${activeTab === "itinerary" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground"}`}
                     onClick={() => setActiveTab("itinerary")}
                     data-testid={`tab-itinerary-${pkg.id}`}
                   >
                     Day-by-Day Itinerary
                   </button>
                   <button
-                    className={`px-4 py-1.5 rounded text-sm font-medium transition-colors ${
-                      activeTab === "inclusions"
-                        ? "bg-background text-foreground shadow-sm"
-                        : "text-muted-foreground"
-                    }`}
+                    className={`px-4 py-1.5 rounded text-sm font-medium transition-colors ${activeTab === "inclusions" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground"}`}
                     onClick={() => setActiveTab("inclusions")}
                     data-testid={`tab-inclusions-${pkg.id}`}
                   >
@@ -480,19 +787,16 @@ function PackageCard({ pkg, index }: { pkg: SafariPackage; index: number }) {
                       transition={{ duration: 0.2 }}
                     >
                       <div className="relative">
-                        {/* Vertical line */}
                         <div className="absolute left-5 top-0 bottom-0 w-px bg-border hidden sm:block" />
-
                         <div className="space-y-6">
                           {pkg.itinerary.map((day, i) => (
-                            <div key={i} className="sm:pl-16 relative" data-testid={`day-${pkg.id}-${day.day}`}>
-                              {/* Day bubble */}
-                              <div className="hidden sm:flex absolute left-0 top-0 w-10 h-10 rounded-full bg-primary text-primary-foreground items-center justify-center text-sm font-bold shrink-0">
-                                {day.day}
+                            <div key={i} className="sm:pl-16 relative" data-testid={`day-${pkg.id}-${i + 1}`}>
+                              <div className="hidden sm:flex absolute left-0 top-0 w-10 h-10 rounded-full bg-primary text-primary-foreground items-center justify-center text-xs font-bold shrink-0 text-center leading-tight">
+                                {typeof day.day === "number" ? day.day : "★"}
                               </div>
                               <div className="sm:hidden flex items-center gap-2 mb-2">
                                 <div className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold shrink-0">
-                                  {day.day}
+                                  {typeof day.day === "number" ? day.day : "★"}
                                 </div>
                                 <h4 className="font-serif font-bold text-base">{day.title}</h4>
                               </div>
@@ -518,8 +822,7 @@ function PackageCard({ pkg, index }: { pkg: SafariPackage; index: number }) {
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                         <div>
                           <h4 className="font-serif font-bold text-base mb-4 flex items-center gap-2 text-green-700 dark:text-green-400">
-                            <CheckCircle2 className="w-5 h-5" />
-                            What's Included
+                            <CheckCircle2 className="w-5 h-5" /> What's Included
                           </h4>
                           <ul className="space-y-3">
                             {pkg.inclusions.map((item, i) => (
@@ -532,34 +835,24 @@ function PackageCard({ pkg, index }: { pkg: SafariPackage; index: number }) {
                         </div>
                         <div>
                           <h4 className="font-serif font-bold text-base mb-4 flex items-center gap-2 text-destructive">
-                            <XCircle className="w-5 h-5" />
-                            Not Included
+                            <XCircle className="w-5 h-5" /> Not Included
                           </h4>
                           <ul className="space-y-3">
                             {pkg.exclusions.map((item, i) => (
-                              <li key={i} className="flex items-start gap-3 text-sm" data-testid={`exclusion-${pkg.id}-${i}`}>
+                              <li key={i} className="flex items-start gap-3 text-sm">
                                 <XCircle className="w-4 h-4 text-destructive shrink-0 mt-0.5" />
                                 <span>{item}</span>
                               </li>
                             ))}
                           </ul>
-
                           <div className="mt-8 p-4 bg-primary/5 rounded-md border border-primary/10">
                             <p className="text-sm font-semibold mb-2">Ready to book?</p>
                             <p className="text-xs text-muted-foreground mb-3">Contact us for pricing and availability.</p>
                             <div className="flex flex-col gap-2">
-                              <a
-                                href="tel:+254728719053"
-                                className="flex items-center gap-2 text-xs text-primary font-medium"
-                                data-testid={`link-phone-${pkg.id}`}
-                              >
+                              <a href="tel:+254728719053" className="flex items-center gap-2 text-xs text-primary font-medium" data-testid={`link-phone-${pkg.id}`}>
                                 <Phone className="w-3.5 h-3.5" /> +254-728-719-053
                               </a>
-                              <a
-                                href="mailto:pawsandtreks@gmail.com"
-                                className="flex items-center gap-2 text-xs text-primary font-medium"
-                                data-testid={`link-email-${pkg.id}`}
-                              >
+                              <a href="mailto:pawsandtreks@gmail.com" className="flex items-center gap-2 text-xs text-primary font-medium" data-testid={`link-email-${pkg.id}`}>
                                 <MapPin className="w-3.5 h-3.5" /> pawsandtreks@gmail.com
                               </a>
                             </div>
@@ -578,10 +871,57 @@ function PackageCard({ pkg, index }: { pkg: SafariPackage; index: number }) {
   );
 }
 
+interface CategorySectionProps {
+  id: string;
+  icon: React.ReactNode;
+  label: string;
+  title: string;
+  subtitle: string;
+  packages: SafariPackage[];
+  bgClass: string;
+}
+
+function CategorySection({ id, icon, label, title, subtitle, packages: pkgs, bgClass }: CategorySectionProps) {
+  return (
+    <section id={id} className={`py-16 sm:py-20 ${bgClass}`} data-testid={`section-${id}`}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={stagger}
+          className="mb-12"
+        >
+          <motion.div variants={fadeInUp} className="flex items-center gap-3 mb-3">
+            <div className="w-10 h-10 bg-primary/10 rounded-md flex items-center justify-center text-primary">
+              {icon}
+            </div>
+            <p className="text-primary font-medium tracking-widest uppercase text-sm">{label}</p>
+          </motion.div>
+          <motion.h2 variants={fadeInUp} className="font-serif text-3xl sm:text-4xl font-bold mb-3">{title}</motion.h2>
+          <motion.p variants={fadeInUp} className="text-muted-foreground max-w-2xl text-base">{subtitle}</motion.p>
+        </motion.div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={stagger}
+          className="space-y-8"
+        >
+          {pkgs.map((pkg) => (
+            <PackageCard key={pkg.id} pkg={pkg} />
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 export default function Packages() {
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = "Safari Packages - Paws & Treks";
+    document.title = "Safari Packages – Paws & Treks";
   }, []);
 
   return (
@@ -591,91 +931,92 @@ export default function Packages() {
       {/* Hero */}
       <section className="relative pt-20" data-testid="section-packages-hero">
         <div className="relative h-64 sm:h-80 overflow-hidden">
-          <img
-            src="/images/safari_vehicle.jpg"
-            alt="Safari packages"
-            className="w-full h-full object-cover"
-          />
+          <img src="/images/safari_vehicle.jpg" alt="Safari packages" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
               className="text-amber-400 font-medium tracking-widest uppercase text-sm mb-3"
             >
               Choose Your Adventure
             </motion.p>
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
               className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
               data-testid="heading-packages-page"
             >
               Safari Packages
             </motion.h1>
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
               className="text-white/80 max-w-xl text-sm sm:text-base"
             >
-              Carefully crafted itineraries for every type of traveler — from weekend getaways to epic multi-park adventures.
+              From budget camping to luxury private safaris and specialist adventures — there's a perfect package for every traveler.
             </motion.p>
           </div>
         </div>
       </section>
 
-      {/* Quick filter badges */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" data-testid="section-filter">
-        <div className="flex flex-wrap items-center gap-3">
-          <span className="text-sm font-medium text-muted-foreground">Quick jump:</span>
-          {packages.map((pkg) => (
-            <a
-              key={pkg.id}
-              href={`#${pkg.id}`}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-card border border-card-border rounded-md text-sm font-medium hover-elevate"
-              data-testid={`link-jump-${pkg.id}`}
-            >
-              <Clock className="w-3.5 h-3.5 text-primary" />
-              {pkg.days} Days
-            </a>
-          ))}
+      {/* Category quick nav */}
+      <section className="bg-card border-b sticky top-16 sm:top-20 z-40" data-testid="section-category-nav">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex gap-1 overflow-x-auto py-3 scrollbar-hide">
+            {[
+              { id: "best-safari-deals", label: "Best Safari Deals" },
+              { id: "top-private-safaris", label: "Top Private Safaris" },
+              { id: "exciting-adventures", label: "Exciting Adventures" },
+            ].map((cat) => (
+              <a
+                key={cat.id}
+                href={`#${cat.id}`}
+                className="shrink-0 px-4 py-2 rounded-md text-sm font-medium text-foreground/70 hover-elevate transition-colors"
+                data-testid={`link-cat-${cat.id}`}
+              >
+                {cat.label}
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Packages List */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20" data-testid="section-packages-list">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={stagger}
-          className="space-y-8"
-        >
-          {packages.map((pkg, i) => (
-            <PackageCard key={pkg.id} pkg={pkg} index={i} />
-          ))}
-        </motion.div>
-      </section>
+      <CategorySection
+        id="best-safari-deals"
+        icon={<Star className="w-5 h-5" />}
+        label="Budget-Friendly"
+        title="Best Safari Deals"
+        subtitle="Affordable group safari adventures starting daily from Nairobi — perfect for first-time visitors and budget-conscious travelers who want to experience Kenya's finest wildlife."
+        packages={bestSafariDeals}
+        bgClass="bg-background"
+      />
+
+      <CategorySection
+        id="top-private-safaris"
+        icon={<Binoculars className="w-5 h-5" />}
+        label="Exclusive Experiences"
+        title="Top Private Safaris"
+        subtitle="Fully private 4×4 Land Cruiser safaris tailored entirely to your group — your vehicle, your pace, your experience. Ideal for families, couples, and groups seeking a personalised adventure."
+        packages={privateSafaris}
+        bgClass="bg-card"
+      />
+
+      <CategorySection
+        id="exciting-adventures"
+        icon={<Camera className="w-5 h-5" />}
+        label="Specialist Experiences"
+        title="Exciting Adventures"
+        subtitle="Beyond the classic game drive — specialist safari experiences for photography enthusiasts, balloon flight seekers, and dedicated bird watchers."
+        packages={excitingAdventures}
+        bgClass="bg-background"
+      />
 
       {/* Bottom CTA */}
       <section className="relative py-20" data-testid="section-packages-cta">
         <div className="absolute inset-0">
-          <img
-            src="/images/amboseli.jpg"
-            alt="Plan your safari"
-            className="w-full h-full object-cover"
-          />
+          <img src="/images/amboseli.jpg" alt="Plan your safari" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-black/60" />
         </div>
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={stagger}
-          >
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
             <motion.h2 variants={fadeInUp} className="font-serif text-3xl sm:text-4xl font-bold text-white mb-4">
               Can't Find the Right Package?
             </motion.h2>
@@ -698,7 +1039,6 @@ export default function Packages() {
         </div>
       </section>
 
-      {/* Footer strip */}
       <div className="bg-foreground text-background/60 text-center text-xs py-5" data-testid="footer-packages">
         <p>&copy; {new Date().getFullYear()} Paws and Treks Tours and Travel. All rights reserved.</p>
       </div>

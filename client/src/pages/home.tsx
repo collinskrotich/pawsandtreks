@@ -35,7 +35,7 @@ const navLinks = [
   { label: "Packages", href: "/packages" },
   { label: "Gallery", href: "#gallery" },
   { label: "About", href: "#about" },
-  { label: "Blog", href: "#blog" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -1121,7 +1121,7 @@ function Footer() {
                 { label: "Destinations", href: "#destinations" },
                 { label: "Packages", href: "/packages" },
                 { label: "Gallery", href: "#gallery" },
-                { label: "Blog", href: "#blog" },
+                { label: "Blog", href: "/blog" },
                 { label: "Contact", href: "#contact" },
               ].map((link) => (
                 <li key={link.label}>
