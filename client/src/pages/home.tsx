@@ -33,7 +33,7 @@ const navLinks = [
   { label: "Safaris", href: "#safaris" },
   { label: "Destinations", href: "#destinations" },
   { label: "Packages", href: "/packages" },
-  { label: "Gallery", href: "#gallery" },
+  { label: "Gallery", href: "/gallery" },
   { label: "About", href: "#about" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "#contact" },
@@ -94,24 +94,34 @@ const whyUs = [
   { icon: Shield, title: "24/7 Guest Support", desc: "Round-the-clock support throughout your safari for complete peace of mind." },
 ];
 
-const packages = [
+const packageCategories = [
   {
-    name: "3-Day Maasai Mara Safari",
-    price: "$850",
-    popular: false,
-    highlights: ["Game drives in Masai Mara", "Big Five wildlife sighting", "Maasai village visit", "Full board accommodation", "Airport transfers"]
+    name: "Best Safari Deals",
+    tag: "Great Value",
+    color: "primary",
+    anchor: "#best-safari-deals",
+    highlights: ["3 & 4-day Masai Mara itineraries", "Big Five wildlife sightings", "Maasai village cultural visit", "Full board accommodation", "Airport transfers included"],
   },
   {
-    name: "5-Day Big Five Safari",
-    price: "$1,800",
-    popular: true,
-    highlights: ["Masai Mara & Amboseli", "Big Five guaranteed", "Luxury lodge stays", "Sunset bush dinner", "Hot air balloon option", "Professional photography tips"]
+    name: "Top Private Safaris",
+    tag: "Exclusive",
+    color: "jungle-green",
+    anchor: "#top-private-safaris",
+    highlights: ["Private vehicle — just your group", "Flexible departure times", "Photographic & bird watching safaris", "Premium lodge stays", "Expert specialist guides"],
   },
   {
-    name: "7-Day Kenya Explorer",
-    price: "$2,900",
-    popular: false,
-    highlights: ["5 National Parks", "Great Migration viewing", "Lake Nakuru flamingos", "Mount Kenya foothills", "Samburu special five", "Cultural experiences", "All meals included"]
+    name: "Exciting Adventures",
+    tag: "Thrilling",
+    color: "primary",
+    anchor: "#exciting-adventures",
+    highlights: ["Hot air balloon safari over the Mara", "Bush dinner under the stars", "10-day photographic expedition", "Birdwatching across Kenya", "Cultural encounters & historic sites"],
+  },
+  {
+    name: "Kenya Camping",
+    tag: "Nature Escapes",
+    color: "jungle-green",
+    anchor: "#kenya-camping",
+    highlights: ["Riverside & forest bush camps", "White-water rafting at Sagana", "Aberdares tea country cycling", "Maasai archery & village visits", "Bring your own food & drinks"],
   },
 ];
 
@@ -222,9 +232,9 @@ function Navbar() {
           </div>
 
           <div className="flex items-center gap-3">
-            <a href="#contact">
+            <a href="/book">
               <Button size="sm" data-testid="button-book-now-nav">
-                Book Now
+                Request a Quote
               </Button>
             </a>
             <button
@@ -289,22 +299,20 @@ function HeroSection() {
             variants={fadeInUp}
             className="text-amber-400 font-medium tracking-widest uppercase text-sm mb-4"
           >
-            Wild Adventures. Unforgettable Safaris.
+            Unforgettable Safaris.
           </motion.p>
           <motion.h1
             variants={fadeInUp}
             className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6"
           >
-            Discover Kenya's
-            <span className="block text-amber-400">Wild Beauty</span>
+            Discover Kenya's Wild Beauty
           </motion.h1>
           <motion.p
             variants={fadeInUp}
             className="text-lg sm:text-xl text-white/80 mb-8 leading-relaxed max-w-lg"
           >
-            Embark on unforgettable safari adventures through Kenya's most stunning
-            landscapes. From the Great Migration to the Big Five, experience Africa
-            like never before.
+            Embark on unforgettable safari adventures through Kenya's most stunning landscapes.<br className="hidden sm:block" />
+            From the Great Migration to the Big Five, experience Africa like never before.
           </motion.p>
           <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
             <a href="#safaris">
@@ -313,7 +321,7 @@ function HeroSection() {
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </a>
-            <a href="#contact">
+            <a href="/book">
               <Button size="lg" variant="outline" className="backdrop-blur-sm bg-white/10 text-white border-white/30" data-testid="button-plan-adventure">
                 Plan Your Adventure
               </Button>
@@ -388,8 +396,8 @@ function SafarisSection() {
                     alt={safari.title}
                     className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute top-4 right-4 bg-primary text-primary-foreground text-xs font-bold px-3 py-1.5 rounded-md">
-                    From {safari.price}
+                  <div className="absolute top-4 right-4 bg-jungle-green text-jungle-green-foreground text-xs font-bold px-3 py-1.5 rounded-md">
+                    Request a Quote
                   </div>
                 </div>
                 <div className="p-5">
@@ -399,11 +407,18 @@ function SafarisSection() {
                     <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
                       <Clock className="w-4 h-4" /> {safari.duration}
                     </span>
-                    <a href="#contact">
-                      <Button variant="outline" size="sm" data-testid={`button-learn-more-${i}`}>
-                        Learn More <ChevronRight className="w-3 h-3 ml-1" />
-                      </Button>
-                    </a>
+                    <div className="flex items-center gap-2">
+                      <a href="/packages">
+                        <Button variant="outline" size="sm" data-testid={`button-learn-more-${i}`}>
+                          Learn More <ChevronRight className="w-3 h-3 ml-1" />
+                        </Button>
+                      </a>
+                      <a href="/book">
+                        <Button size="sm" data-testid={`button-book-safari-${i}`}>
+                          Book Safari
+                        </Button>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </Card>
@@ -490,9 +505,6 @@ function WhyUsSection() {
           <motion.h2 variants={fadeInUp} className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
             Why Travel With Paws & Treks
           </motion.h2>
-          <motion.p variants={fadeInUp} className="text-muted-foreground max-w-3xl mx-auto text-lg">
-            We are dedicated to designing personalised, memorable and affordable adventures tailored specifically to each traveller's interests, preferences, and dreams. With our expert guides, from world-famous parks like the Maasai Mara, Amboseli, Tsavo, and Lake Nakuru to cultural encounters and historic sites — every journey is crafted to inspire and delight, creating lasting memories.
-          </motion.p>
         </motion.div>
 
         <motion.div
@@ -537,7 +549,7 @@ function PackagesSection() {
             Safari Packages
           </motion.h2>
           <motion.p variants={fadeInUp} className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Choose the perfect safari package for your adventure. All packages include expert guides and comfortable accommodations.
+            Choose from four distinct safari collections — each tailored to a different style of adventure. All packages include expert guides and personalised service.
           </motion.p>
         </motion.div>
 
@@ -546,45 +558,37 @@ function PackagesSection() {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={stagger}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
         >
-          {packages.map((pkg, i) => (
+          {packageCategories.map((cat, i) => (
             <motion.div key={i} variants={fadeInUp}>
-              <Card
-                className={`relative p-6 border-card-border h-full flex flex-col ${
-                  pkg.popular ? "ring-2 ring-primary" : ""
-                }`}
-                data-testid={`card-package-${i}`}
-              >
-                {pkg.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-bold px-4 py-1 rounded-md">
-                    Most Popular
-                  </div>
-                )}
-                <div className="text-center mb-6">
-                  <h3 className="font-serif text-xl font-bold mb-2">{pkg.name}</h3>
-                  <div className="flex items-baseline justify-center gap-1">
-                    <span className="text-3xl font-bold text-primary">{pkg.price}</span>
-                    <span className="text-muted-foreground text-sm">/person</span>
-                  </div>
+              <Card className="p-6 border-card-border h-full flex flex-col" data-testid={`card-package-cat-${i}`}>
+                <div className="mb-4">
+                  <span className={`inline-block text-xs font-bold px-2.5 py-1 rounded-md mb-3 ${cat.color === "jungle-green" ? "bg-jungle-green/10 text-jungle-green" : "bg-primary/10 text-primary"}`}>
+                    {cat.tag}
+                  </span>
+                  <h3 className="font-serif text-lg font-bold">{cat.name}</h3>
                 </div>
-                <ul className="space-y-3 mb-8 flex-1">
-                  {pkg.highlights.map((h, j) => (
+                <ul className="space-y-2.5 mb-6 flex-1">
+                  {cat.highlights.map((h, j) => (
                     <li key={j} className="flex items-start gap-2 text-sm">
-                      <Star className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
-                      <span>{h}</span>
+                      <Star className={`w-3.5 h-3.5 shrink-0 mt-0.5 ${cat.color === "jungle-green" ? "text-jungle-green" : "text-amber-500"}`} />
+                      <span className="text-muted-foreground">{h}</span>
                     </li>
                   ))}
                 </ul>
-                <a href="/packages">
-                  <Button
-                    className="w-full"
-                    variant={pkg.popular ? "default" : "outline"}
-                    data-testid={`button-book-package-${i}`}
-                  >
-                    Book Safari
-                  </Button>
-                </a>
+                <div className="flex flex-col gap-2">
+                  <a href={`/packages${cat.anchor}`}>
+                    <Button variant="outline" size="sm" className="w-full" data-testid={`button-view-cat-${i}`}>
+                      View Packages <ChevronRight className="w-3 h-3 ml-1" />
+                    </Button>
+                  </a>
+                  <a href="/book">
+                    <Button size="sm" className="w-full" data-testid={`button-book-cat-${i}`}>
+                      Request a Quote
+                    </Button>
+                  </a>
+                </div>
               </Card>
             </motion.div>
           ))}
@@ -659,6 +663,21 @@ function GallerySection() {
               </div>
             </motion.div>
           ))}
+        </motion.div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          className="text-center mt-10"
+        >
+          <a href="/gallery">
+            <Button variant="outline" size="lg" data-testid="button-view-full-gallery">
+              View Full Gallery
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </a>
         </motion.div>
       </div>
     </section>
@@ -778,22 +797,24 @@ function BlogSection() {
         >
           {blogPosts.map((post, i) => (
             <motion.div key={i} variants={fadeInUp}>
-              <Card className="group cursor-pointer border-card-border" data-testid={`card-blog-${i}`}>
-                <div className="relative overflow-hidden rounded-t-md">
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <div className="p-5">
-                  <p className="text-primary text-xs font-medium mb-2">{post.date}</p>
-                  <h3 className="font-serif text-lg font-bold mb-2 group-hover:text-primary transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{post.excerpt}</p>
-                </div>
-              </Card>
+              <a href="/blog" className="block" data-testid={`link-blog-${i}`}>
+                <Card className="group cursor-pointer border-card-border h-full" data-testid={`card-blog-${i}`}>
+                  <div className="relative overflow-hidden rounded-t-md">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-5">
+                    <p className="text-primary text-xs font-medium mb-2">{post.date}</p>
+                    <h3 className="font-serif text-lg font-bold mb-2 group-hover:text-primary transition-colors">
+                      {post.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{post.excerpt}</p>
+                  </div>
+                </Card>
+              </a>
             </motion.div>
           ))}
         </motion.div>
@@ -830,9 +851,9 @@ function CTASection() {
             Let us craft the perfect safari experience for you. Contact our team today and start planning your dream African adventure.
           </motion.p>
           <motion.div variants={fadeInUp}>
-            <a href="#contact">
+            <a href="/book">
               <Button size="lg" data-testid="button-cta-book">
-                Book Your Safari
+                Request a Quote
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </a>
@@ -948,7 +969,7 @@ function ContactSection() {
                         <FormItem>
                           <FormLabel>Phone (Optional)</FormLabel>
                           <FormControl>
-                            <Input placeholder="+254-728-719-053" {...field} data-testid="input-phone" />
+                            <Input placeholder="+254-769-784-190" {...field} data-testid="input-phone" />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -1037,7 +1058,7 @@ function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-bold mb-1">Call Us</h4>
-                  <a href="tel:+254728719053" className="block text-sm text-primary font-medium" data-testid="link-phone">+254-728-719-053</a>
+                  <a href="tel:+254769784190" className="block text-sm text-primary font-medium" data-testid="link-phone">+254-769-784-190</a>
                   <p className="text-muted-foreground text-sm">Mon-Sat: 8am - 6pm EAT</p>
                 </div>
               </div>
@@ -1120,7 +1141,7 @@ function Footer() {
                 { label: "Safaris", href: "#safaris" },
                 { label: "Destinations", href: "#destinations" },
                 { label: "Packages", href: "/packages" },
-                { label: "Gallery", href: "#gallery" },
+                { label: "Gallery", href: "/gallery" },
                 { label: "Blog", href: "/blog" },
                 { label: "Contact", href: "#contact" },
               ].map((link) => (

@@ -7,6 +7,8 @@ import Home from "@/pages/home";
 import Packages from "@/pages/packages";
 import Blog from "@/pages/blog";
 import Terms from "@/pages/terms";
+import Book from "@/pages/book";
+import Gallery from "@/pages/gallery";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -16,6 +18,8 @@ function Router() {
       <Route path="/packages" component={Packages} />
       <Route path="/blog" component={Blog} />
       <Route path="/terms" component={Terms} />
+      <Route path="/book" component={Book} />
+      <Route path="/gallery" component={Gallery} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -13,18 +13,29 @@ A modern, premium website for "Paws & Treks", a Kenya-based tours and safari com
 - **Forms**: react-hook-form + zod validation
 
 ## Architecture
-- `client/src/pages/home.tsx` - Main landing page with all sections (Hero, Safaris, Destinations, Packages, Gallery, Testimonials, Blog, CTA, Contact, Footer)
-- `client/src/pages/packages.tsx` - Dedicated packages page with 4 categories: Best Safari Deals, Top Private Safaris, Exciting Adventures, Kenya Camping
-- `client/src/pages/blog.tsx` - Dedicated blog page with 3 expandable articles
-- `client/src/pages/terms.tsx` - Booking Terms & Travel Information page (payments, cancellations, visas, weather, health, security, etc.)
-- `client/src/App.tsx` - Router setup
-- `server/routes.ts` - API routes (POST/GET /api/inquiries)
-- `server/storage.ts` - In-memory storage for contact inquiries
-- `shared/schema.ts` - Data models (users, inquiries) with Zod validation
+- `client/src/pages/home.tsx` - Main landing page: Hero, Safaris, Destinations, Packages (4 categories), Gallery, Testimonials, Blog, CTA, Contact, Footer
+- `client/src/pages/packages.tsx` - Full packages page with 4 category sections and star bullet-list highlights
+- `client/src/pages/book.tsx` - Booking / "Request a Quote" page at /book (name, email, phone, safari select, dates, adults/children counter, message)
+- `client/src/pages/gallery.tsx` - Gallery page at /gallery with category tabs (Masai Mara, Amboseli, Tsavo, etc.) and lightbox
+- `client/src/pages/blog.tsx` - Blog page with 3 expandable articles
+- `client/src/pages/terms.tsx` - Booking Terms & Travel Information page
+- `client/src/App.tsx` - Router: /, /packages, /blog, /terms, /book, /gallery
+- `server/routes.ts` - API routes: POST/GET /api/inquiries, POST/GET /api/bookings
+- `server/storage.ts` - In-memory storage for inquiries and bookings
+- `shared/schema.ts` - Data models (users, inquiries, bookings) with Zod validation
+
+## Design Tokens
+- Primary: amber/orange hsl(28 85% 45%)
+- Jungle Green: hsl(145 52% 28%) — accent color for "Request a Quote" badges, camping category labels, WhatsApp card
+- Fonts: Playfair Display (serif headings), Plus Jakarta Sans (body)
+
+## Contact Details
+- Phone/WhatsApp: +254-769-784-190
+- Email: pawsandtreks@gmail.com, richtabi7777@gmail.com
 
 ## Brand Identity
 - **Name**: Paws & Treks
-- **Tagline**: "Wild Adventures. Unforgettable Safaris."
+- **Tagline**: "Unforgettable Safaris."
 - **Theme**: Safari green, sunset orange/amber, sand beige, charcoal
 - **Fonts**: Playfair Display (headings), Plus Jakarta Sans (body)
 

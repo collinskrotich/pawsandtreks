@@ -846,18 +846,14 @@ function PackageCard({ pkg }: { pkg: SafariPackage }) {
               <p className="text-sm text-muted-foreground leading-relaxed">{pkg.overview}</p>
             </div>
 
-            <div className="flex flex-wrap gap-2">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {pkg.highlights.map((h, i) => (
-                <span
-                  key={i}
-                  className="inline-flex items-center gap-1 bg-primary/10 text-primary text-xs font-medium px-2.5 py-1 rounded-md"
-                  data-testid={`tag-highlight-${pkg.id}-${i}`}
-                >
-                  <Star className="w-3 h-3" />
-                  {h}
-                </span>
+                <li key={i} className="flex items-start gap-2 text-sm" data-testid={`highlight-${pkg.id}-${i}`}>
+                  <Star className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
+                  <span className="text-muted-foreground">{h}</span>
+                </li>
               ))}
-            </div>
+            </ul>
 
             <div className="flex flex-wrap items-center gap-3 pt-1">
               <button
@@ -982,8 +978,8 @@ function PackageCard({ pkg }: { pkg: SafariPackage }) {
                             <p className="text-sm font-semibold mb-2">Ready to book?</p>
                             <p className="text-xs text-muted-foreground mb-3">Contact us for pricing and availability.</p>
                             <div className="flex flex-col gap-2">
-                              <a href="tel:+254728719053" className="flex items-center gap-2 text-xs text-primary font-medium" data-testid={`link-phone-${pkg.id}`}>
-                                <Phone className="w-3.5 h-3.5" /> +254-728-719-053
+                              <a href="tel:+254769784190" className="flex items-center gap-2 text-xs text-primary font-medium" data-testid={`link-phone-${pkg.id}`}>
+                                <Phone className="w-3.5 h-3.5" /> +254-769-784-190
                               </a>
                               <a href="mailto:pawsandtreks@gmail.com" className="flex items-center gap-2 text-xs text-primary font-medium" data-testid={`link-email-${pkg.id}`}>
                                 <MapPin className="w-3.5 h-3.5" /> pawsandtreks@gmail.com

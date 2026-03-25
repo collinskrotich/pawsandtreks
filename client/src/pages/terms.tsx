@@ -532,9 +532,9 @@ export default function Terms() {
               Our team is happy to clarify any aspect of the booking terms or travel information. Get in touch before you book.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <a href="tel:+254728719053">
+              <a href="tel:+254769784190">
                 <Button variant="outline" data-testid="button-terms-call">
-                  <Phone className="w-4 h-4 mr-2" /> +254-728-719-053
+                  <Phone className="w-4 h-4 mr-2" /> +254-769-784-190
                 </Button>
               </a>
               <a href="https://wa.me/254769784190" target="_blank" rel="noopener noreferrer">

@@ -26,6 +26,8 @@
   --popover: 40 8% 92%;
   --popover-foreground: 40 12% 20%;
   --popover-border: 40 8% 86%;
+  --jungle-green: 145 52% 28%;
+  --jungle-green-foreground: 145 10% 98%;
   --primary: 28 85% 45%;
   --primary-foreground: 28 10% 98%;
   --secondary: 40 10% 86%;
@@ -110,6 +112,8 @@
   --popover: 40 5% 14%;
   --popover-foreground: 40 8% 88%;
   --popover-border: 40 5% 18%;
+  --jungle-green: 145 52% 38%;
+  --jungle-green-foreground: 145 10% 98%;
   --primary: 28 85% 48%;
   --primary-foreground: 28 10% 98%;
   --secondary: 40 8% 18%;
