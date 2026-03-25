@@ -762,8 +762,8 @@ function Navbar() {
           </div>
 
           <div className="flex items-center gap-3">
-            <Link href="/#contact">
-              <Button size="sm" data-testid="button-book-now-packages">Book Now</Button>
+            <Link href="/book">
+              <Button size="sm" data-testid="button-book-now-packages">Request a Quote</Button>
             </Link>
             <button
               className="lg:hidden p-2 rounded-md text-foreground"
@@ -869,7 +869,7 @@ function PackageCard({ pkg }: { pkg: SafariPackage }) {
                     <MessageCircle className="w-4 h-4 mr-1" /> WhatsApp
                   </Button>
                 </a>
-                <Link href="/#contact">
+                <Link href="/book">
                   <Button size="sm" data-testid={`button-book-${pkg.id}`}>
                     Book Safari <ArrowRight className="w-3.5 h-3.5 ml-1" />
                   </Button>
