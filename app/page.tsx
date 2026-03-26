@@ -78,6 +78,13 @@ const safariExperiences = [
     price: "$750",
     description: "Explore Kenya's largest national park, home to the legendary red elephants and vast wilderness."
   },
+  {
+    title: "Nairobi National Park Tour",
+    image: "/safari/safari-25.jpeg",
+    duration: "1 Day",
+    price: "$200",
+    description: "Experience Kenya's wildlife close to the city with lions, giraffes, zebras, and rhinos in their natural habitat."
+  },
 ];
 
 const destinations = [
