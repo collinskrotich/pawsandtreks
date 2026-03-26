@@ -50,19 +50,19 @@ const allImages: GalleryImage[] = [
   { src: "/safari/jangwani-sagana.jpeg", alt: "Jangwani Sagana scenic area", location: "Jangwani-Sagana" },
   { src: "/safari/jangwani-sagana-2.jpeg", alt: "Jangwani Sagana scenic area", location: "Jangwani-Sagana" },
   // Mara
-  { src: "/safari/mara.jpeg", alt: "Mara wildlife safari", location: "Mara" },
-  { src: "/safari/mara-2.jpeg", alt: "Mara wildlife safari", location: "Mara" },
-  { src: "/safari/mara-3.jpeg", alt: "Mara wildlife safari", location: "Mara" },
-  { src: "/safari/mara-4.jpeg", alt: "Mara wildlife safari", location: "Mara" },
-  { src: "/safari/mara-5.jpeg", alt: "Mara wildlife safari", location: "Mara" },
+  { src: "/safari/mara.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
+  { src: "/safari/mara-2.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
+  { src: "/safari/mara-3.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
+  { src: "/safari/mara-4.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
+  { src: "/safari/mara-5.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
   // Nairobi
   { src: "/safari/nairobi.jpeg", alt: "Nairobi national park", location: "Nairobi" },
   { src: "/safari/nairobi-2.jpeg", alt: "Nairobi national park", location: "Nairobi" },
   { src: "/safari/nairobi-3.jpeg", alt: "Nairobi national park", location: "Nairobi" },
   // Nakuru
-  { src: "/safari/nakuru.jpeg", alt: "Lake Nakuru area", location: "Nakuru" },
-  { src: "/safari/nakuru-2.jpeg", alt: "Lake Nakuru area", location: "Nakuru" },
-  { src: "/safari/nakuru-3.jpeg", alt: "Lake Nakuru area", location: "Nakuru" },
+  { src: "/safari/nakuru.jpeg", alt: "Lake Nakuru area", location: "Lake Nakuru" },
+  { src: "/safari/nakuru-2.jpeg", alt: "Lake Nakuru area", location: "Lake Nakuru" },
+  { src: "/safari/nakuru-3.jpeg", alt: "Lake Nakuru area", location: "Lake Nakuru" },
   // The Stone House
   { src: "/safari/the-stone-house.jpeg", alt: "The Stone House accommodation", location: "The Stone House" },
   { src: "/safari/the-stone-house-2.jpeg", alt: "The Stone House accommodation", location: "The Stone House" },
@@ -90,7 +90,7 @@ const allImages: GalleryImage[] = [
   { src: "/safari/safari-26.jpeg", alt: "Safari experience", location: "More Photos" },
 ];
 
-const categories = ["All", "Masai Mara", "Lake Nakuru", "Amboseli", "Tsavo", "Samburu", "Mount Kenya", "Gatamaiyu", "Aberdares", "Jangwani-Sagana", "Mara", "Nairobi", "Nakuru", "The Stone House", "More Photos"];
+const categories = ["All", "Masai Mara", "Lake Nakuru", "Amboseli", "Tsavo", "Samburu", "Mount Kenya", "Gatamaiyu", "Aberdares", "Jangwani-Sagana", "Nairobi", "The Stone House", "More Photos"];
 
 const navLinks = [
   { label: "Home", href: "/" },
