@@ -110,6 +110,7 @@ const packageCategories = [
     tag: "Great Value",
     color: "primary",
     anchor: "#best-safari-deals",
+    image: "/images/masai_mara.jpg",
     highlights: ["3 & 4-day Masai Mara itineraries", "Big Five wildlife sightings", "Maasai village cultural visit", "Full board accommodation", "Airport transfers included"],
   },
   {
@@ -117,6 +118,7 @@ const packageCategories = [
     tag: "Exclusive",
     color: "jungle-green",
     anchor: "#top-private-safaris",
+    image: "/safari/safari-25.jpeg",
     highlights: ["Private vehicle — just your group", "Flexible departure times", "Photographic & bird watching safaris", "Premium lodge stays", "Expert specialist guides"],
   },
   {
@@ -124,6 +126,7 @@ const packageCategories = [
     tag: "Thrilling",
     color: "primary",
     anchor: "#exciting-adventures",
+    image: "/images/gallery_balloon.jpg",
     highlights: ["Hot air balloon safari over the Mara", "Bush dinner under the stars", "10-day photographic expedition", "Birdwatching across Kenya", "Cultural encounters & historic sites"],
   },
   {
@@ -131,6 +134,7 @@ const packageCategories = [
     tag: "Nature Escapes",
     color: "jungle-green",
     anchor: "#kenya-camping",
+    image: "/safari/aberdares.jpeg",
     highlights: ["Riverside & forest bush camps", "White-water rafting at Sagana", "Aberdares tea country cycling", "Maasai archery & village visits", "Bring your own food & drinks"],
   },
 ];
@@ -575,32 +579,38 @@ function PackagesSection() {
         >
           {packageCategories.map((cat, i) => (
             <motion.div key={i} variants={fadeInUp}>
-              <Card className="p-6 border-card-border h-full flex flex-col" data-testid={`card-package-cat-${i}`}>
-                <div className="mb-4">
-                  <span className={`inline-block text-xs font-bold px-2.5 py-1 rounded-md mb-3 ${cat.color === "jungle-green" ? "bg-jungle-green/10 text-jungle-green" : "bg-primary/10 text-primary"}`}>
-                    {cat.tag}
-                  </span>
-                  <h3 className="font-serif text-lg font-bold">{cat.name}</h3>
+              <Card className="p-0 border-card-border h-full flex flex-col overflow-hidden" data-testid={`card-package-cat-${i}`}>
+                <div className="relative h-48 overflow-hidden">
+                  <img src={cat.image} alt={cat.name} className="w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 </div>
-                <ul className="space-y-2.5 mb-6 flex-1">
-                  {cat.highlights.map((h, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm">
-                      <Star className={`w-3.5 h-3.5 shrink-0 mt-0.5 ${cat.color === "jungle-green" ? "text-jungle-green" : "text-amber-500"}`} />
-                      <span className="text-muted-foreground">{h}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex flex-col gap-2">
-                  <Link href={`/packages${cat.anchor}`}>
-                    <Button variant="outline" size="sm" className="w-full" data-testid={`button-view-cat-${i}`}>
-                      View Packages <ChevronRight className="w-3 h-3 ml-1" />
-                    </Button>
-                  </Link>
-                  <Link href="/book">
-                    <Button size="sm" className="w-full" data-testid={`button-book-cat-${i}`}>
-                      Request a Quote
-                    </Button>
-                  </Link>
+                <div className="p-6 flex flex-col h-full">
+                  <div className="mb-4">
+                    <span className={`inline-block text-xs font-bold px-2.5 py-1 rounded-md mb-3 ${cat.color === "jungle-green" ? "bg-jungle-green/10 text-jungle-green" : "bg-primary/10 text-primary"}`}>
+                      {cat.tag}
+                    </span>
+                    <h3 className="font-serif text-lg font-bold">{cat.name}</h3>
+                  </div>
+                  <ul className="space-y-2.5 mb-6 flex-1">
+                    {cat.highlights.map((h, j) => (
+                      <li key={j} className="flex items-start gap-2 text-sm">
+                        <Star className={`w-3.5 h-3.5 shrink-0 mt-0.5 ${cat.color === "jungle-green" ? "text-jungle-green" : "text-amber-500"}`} />
+                        <span className="text-muted-foreground">{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="flex flex-col gap-2">
+                    <Link href={`/packages${cat.anchor}`}>
+                      <Button variant="outline" size="sm" className="w-full" data-testid={`button-view-cat-${i}`}>
+                        View Packages <ChevronRight className="w-3 h-3 ml-1" />
+                      </Button>
+                    </Link>
+                    <Link href="/book">
+                      <Button size="sm" className="w-full" data-testid={`button-book-cat-${i}`}>
+                        Request a Quote
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
               </Card>
             </motion.div>
@@ -1225,12 +1235,12 @@ export default function Home() {
     <div className="min-h-screen">
       <Navbar />
       <HeroSection />
+      <PackagesSection />
+      <WhyUsSection />
+      <TestimonialsSection />
+      <GallerySection />
       <SafarisSection />
       <DestinationsSection />
-      <WhyUsSection />
-      <PackagesSection />
-      <GallerySection />
-      <TestimonialsSection />
       <BlogSection />
       <CTASection />
       <ContactSection />
