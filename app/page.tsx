@@ -1144,13 +1144,13 @@ function Footer() {
               Your gateway to Kenya&apos;s most incredible wildlife experiences. Expert-guided safaris since 2015.
             </p>
             <div className="flex gap-3">
-              <a href="#" className="w-9 h-9 bg-background/10 rounded-md flex items-center justify-center hover-elevate transition-colors" aria-label="Facebook" data-testid="link-social-facebook">
+              <a href="https://web.facebook.com/Pawsandtreks" className="w-9 h-9 bg-background/10 rounded-md flex items-center justify-center hover-elevate transition-colors" aria-label="Facebook" data-testid="link-social-facebook" target="_blank" rel="noopener noreferrer">
                 <Globe className="w-4 h-4" />
               </a>
-              <a href="#" className="w-9 h-9 bg-background/10 rounded-md flex items-center justify-center hover-elevate transition-colors" aria-label="Twitter" data-testid="link-social-twitter">
+              <a href="https://www.tiktok.com/@pawsandtreks" className="w-9 h-9 bg-background/10 rounded-md flex items-center justify-center hover-elevate transition-colors" aria-label="TikTok" data-testid="link-social-tiktok" target="_blank" rel="noopener noreferrer">
                 <Bird className="w-4 h-4" />
               </a>
-              <a href="#" className="w-9 h-9 bg-background/10 rounded-md flex items-center justify-center hover-elevate transition-colors" aria-label="Instagram" data-testid="link-social-instagram">
+              <a href="https://www.instagram.com/pawsandtreks/" className="w-9 h-9 bg-background/10 rounded-md flex items-center justify-center hover-elevate transition-colors" aria-label="Instagram" data-testid="link-social-instagram" target="_blank" rel="noopener noreferrer">
                 <Camera className="w-4 h-4" />
               </a>
             </div>
