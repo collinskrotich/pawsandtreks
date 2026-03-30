@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import Footer from "@/components/Footer";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -384,6 +385,33 @@ const privateSafaris: SafariPackage[] = [
     ],
     exclusions: ["Any other item not mentioned above"],
     highlights: ["Fully private 4×4", "Great Migration viewing", "Bird watching", "Optional balloon safari", "Optional Maasai village"],
+  },
+  {
+    id: "nairobi-np-1d",
+    title: "Nairobi National Park – Day Trip",
+    duration: "1 Day",
+    days: 1,
+    image: "/safari/safari-25.jpeg",
+    tag: "Day Trip",
+    overview:
+      "Experience the unique thrill of a wildlife safari just minutes from Kenya's capital city. Nairobi National Park is the only national park in the world within a capital city, home to lions, leopards, rhinos, buffaloes, giraffes, zebras and over 400 bird species — all set against the dramatic Nairobi skyline.",
+    itinerary: [
+      {
+        day: 1,
+        title: "Nairobi National Park Game Drive",
+        description:
+          "Early morning pick-up from your Nairobi hotel or residence. Enter Nairobi National Park for a guided game drive through open grass plains, scattered acacia bush, and steep rocky valleys. Spot the Big Four (lion, leopard, buffalo, rhino), hippos at the hippo pools, and diverse birdlife. Enjoy a packed lunch or bush picnic. Afternoon game drive before exiting the park. Drop-off at your hotel by late afternoon.",
+      },
+    ],
+    inclusions: [
+      "Park entrance fees",
+      "Transport in 4×4 Land Cruiser",
+      "Services of a professional driver/guide",
+      "Bottled drinking water",
+      "Pick-up and drop-off from Nairobi hotel",
+    ],
+    exclusions: ["Lunch (can be arranged on request)", "Any other item not mentioned above"],
+    highlights: ["Big Four sighting", "City skyline backdrop", "400+ bird species", "Hippo pools", "Close to Nairobi"],
   },
 ];
 
@@ -1180,9 +1208,7 @@ export default function Packages() {
         </div>
       </section>
 
-      <div className="bg-foreground text-background/60 text-center text-xs py-5" data-testid="footer-packages">
-        <p>&copy; {new Date().getFullYear()} Paws and Treks Tours and Travel. All rights reserved.</p>
-      </div>
+      <Footer />
     </div>
   );
 }

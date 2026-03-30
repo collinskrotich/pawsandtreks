@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -7,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { z } from "zod";
 import {
-  Menu, X, CalendarDays, Users, MessageCircle, Phone,
+  Menu, X, CalendarDays, Users, MessageCircle, Phone, Mail,
   CheckCircle2, ArrowRight, Minus, Plus
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
+import Footer from "@/components/Footer";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 24 },
@@ -97,6 +99,7 @@ function Navbar() {
 
 export default function Book() {
   const { toast } = useToast();
+  const router = useRouter();
 
   const form = useForm<BookingForm>({
     resolver: zodResolver(bookingSchema),
@@ -126,6 +129,7 @@ export default function Book() {
         description: "Thank you! Our team will contact you within 24 hours with pricing and availability.",
       });
       form.reset({ name: "", email: "", phone: "", safari: "", departureDate: "", returnDate: "", adults: 2, children: 0, message: "" });
+      setTimeout(() => router.push("/"), 1500);
     },
     onError: () => {
       toast({ title: "Error", description: "Something went wrong. Please try again or WhatsApp us directly.", variant: "destructive" });
@@ -220,6 +224,7 @@ export default function Book() {
                               <SelectItem value="ole-tepesi-lodge">Ole-Tepesi Lodge & Camp</SelectItem>
                               <SelectItem value="aberdares-tented-camp">Aberdares Tented Camp</SelectItem>
                               <SelectItem value="jangwani-sagana-camp">Jangwani Sagana Camp</SelectItem>
+                              <SelectItem value="nairobi-np-1d">Nairobi National Park Day Trip</SelectItem>
                               <SelectItem value="custom">Custom / Tailor-Made Safari</SelectItem>
                             </SelectContent>
                           </Select>
@@ -311,6 +316,19 @@ export default function Book() {
               </motion.div>
 
               <motion.div variants={fadeInUp}>
+                <Card className="border-card-border p-6" data-testid="card-booking-email">
+                  <h3 className="font-serif font-bold text-base mb-2">Email Us</h3>
+                  <p className="text-muted-foreground text-sm mb-3">Send us your inquiry directly.</p>
+                  <a href="mailto:bookings@pawsandtreks.com" className="flex items-center gap-2 text-primary font-semibold text-sm" data-testid="link-book-email-bookings">
+                    <Mail className="w-4 h-4" /> bookings@pawsandtreks.com
+                  </a>
+                  <a href="mailto:info@pawsandtreks.com" className="flex items-center gap-2 text-muted-foreground text-sm mt-1" data-testid="link-book-email-info">
+                    <Mail className="w-4 h-4" /> info@pawsandtreks.com
+                  </a>
+                </Card>
+              </motion.div>
+
+              <motion.div variants={fadeInUp}>
                 <Card className="border-card-border p-6" data-testid="card-booking-includes">
                   <h3 className="font-serif font-bold text-base mb-4">What Happens Next?</h3>
                   <ol className="space-y-3">
@@ -352,9 +370,7 @@ export default function Book() {
         </div>
       </div>
 
-      <div className="bg-foreground text-background/60 text-center text-xs py-5" data-testid="footer-book">
-        <p>&copy; {new Date().getFullYear()} Paws and Treks Tours and Travel. All rights reserved.</p>
-      </div>
+      <Footer />
     </div>
   );
 }

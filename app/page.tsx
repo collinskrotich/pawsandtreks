@@ -21,6 +21,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
+import Footer from "@/components/Footer";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -93,7 +94,7 @@ const destinations = [
   { name: "Tsavo East & West", image: "/images/tsavo.jpg", tag: "Vast Wilderness" },
   { name: "Lake Nakuru", image: "/images/lake_nakuru.jpg", tag: "Birdwatching" },
   { name: "Samburu", image: "/images/samburu.jpg", tag: "Unique Wildlife" },
-  { name: "Mount Kenya", image: "/images/mount_kenya.jpg", tag: "Adventure" },
+  { name: "Nairobi National Park", image: "/safari/safari-25.jpeg", tag: "Day Trip" },
 ];
 
 const whyUs = [
@@ -111,7 +112,7 @@ const packageCategories = [
     color: "primary",
     anchor: "#best-safari-deals",
     image: "/images/masai_mara.jpg",
-    highlights: ["3 & 4-day Masai Mara itineraries", "Big Five wildlife sightings", "Maasai village cultural visit", "Full board accommodation", "Airport transfers included"],
+    highlights: ["3 & 4-day Masai Mara itineraries", "Big Five wildlife sightings", "Maasai village cultural visit", "Full board accommodation", "Airport transfers included", "Nairobi National Park day trip"],
   },
   {
     name: "Top Private Safaris",
@@ -297,7 +298,7 @@ function HeroSection() {
     <section id="home" className="relative min-h-screen flex items-center" data-testid="section-hero">
       <div className="absolute inset-0">
         <img
-          src="/safari_hero.jpg"
+          src="/lions-hero.jpg"
           alt="African savannah at sunset"
           className="w-full h-full object-cover"
         />
@@ -320,16 +321,15 @@ function HeroSection() {
           </motion.p>
           <motion.h1
             variants={fadeInUp}
-            className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6"
+            className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 whitespace-nowrap"
           >
             Discover Kenya&apos;s Wild Beauty
           </motion.h1>
           <motion.p
             variants={fadeInUp}
-            className="text-lg sm:text-xl text-white/80 mb-8 leading-relaxed max-w-lg"
+            className="text-lg sm:text-xl text-white/80 mb-8 leading-relaxed"
           >
-            Embark on unforgettable safari adventures through Kenya&apos;s most stunning landscapes.<br className="hidden sm:block" />
-            From the Great Migration to the Big Five, experience Africa like never before.
+            Embark on unforgettable safari adventures through Kenya&apos;s most stunning landscapes. From the Great Migration to the Big Five, experience Africa like never before.
           </motion.p>
           <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
             <a href="#safaris">
@@ -478,7 +478,7 @@ function DestinationsSection() {
         >
           {destinations.map((dest, i) => (
             <motion.div key={i} variants={fadeInUp}>
-              <a href="#contact" className="block group" data-testid={`card-destination-${i}`}>
+              <Link href="/book" className="block group" data-testid={`card-destination-${i}`}>
                 <div className="relative overflow-hidden rounded-md aspect-[4/3]">
                   <img
                     src={dest.image}
@@ -496,7 +496,7 @@ function DestinationsSection() {
                     <ArrowRight className="w-4 h-4" />
                   </div>
                 </div>
-              </a>
+              </Link>
             </motion.div>
           ))}
         </motion.div>
@@ -1071,7 +1071,6 @@ function ContactSection() {
                 <div>
                   <h4 className="font-bold mb-1">Visit Our Office</h4>
                   <p className="text-muted-foreground text-sm">Westlands, Nairobi, Kenya</p>
-                  <p className="text-muted-foreground text-sm">P.O. Box 12345-00100</p>
                 </div>
               </div>
 
@@ -1092,8 +1091,8 @@ function ContactSection() {
                 </div>
                 <div>
                   <h4 className="font-bold mb-1">Email Us</h4>
-                  <a href="mailto:pawsandtreks@gmail.com" className="block text-sm text-primary font-medium" data-testid="link-email-primary">pawsandtreks@gmail.com</a>
-                  <a href="mailto:richtabi7777@gmail.com" className="block text-sm text-muted-foreground" data-testid="link-email-secondary">richtabi7777@gmail.com</a>
+                  <a href="mailto:bookings@pawsandtreks.com" className="block text-sm text-primary font-medium" data-testid="link-email-primary">bookings@pawsandtreks.com</a>
+                  <a href="mailto:info@pawsandtreks.com" className="block text-sm text-muted-foreground" data-testid="link-email-secondary">info@pawsandtreks.com</a>
                 </div>
               </div>
 
@@ -1128,121 +1127,17 @@ function ContactSection() {
   );
 }
 
-function Footer() {
-  const [email, setEmail] = useState("");
-
-  return (
-    <footer className="bg-foreground text-background" data-testid="footer">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <img src="/images/logo.png" alt="Paws & Treks" className="h-10 w-auto brightness-200" />
-              <span className="font-serif text-lg font-bold">Paws & Treks</span>
-            </div>
-            <p className="text-background/60 text-sm leading-relaxed mb-6">
-              Your gateway to Kenya&apos;s most incredible wildlife experiences. Expert-guided safaris since 2015.
-            </p>
-            <div className="flex gap-3">
-              <a href="https://web.facebook.com/Pawsandtreks" className="w-9 h-9 bg-background/10 rounded-md flex items-center justify-center hover-elevate transition-colors" aria-label="Facebook" data-testid="link-social-facebook" target="_blank" rel="noopener noreferrer">
-                <Globe className="w-4 h-4" />
-              </a>
-              <a href="https://www.tiktok.com/@pawsandtreks" className="w-9 h-9 bg-background/10 rounded-md flex items-center justify-center hover-elevate transition-colors" aria-label="TikTok" data-testid="link-social-tiktok" target="_blank" rel="noopener noreferrer">
-                <Bird className="w-4 h-4" />
-              </a>
-              <a href="https://www.instagram.com/pawsandtreks/" className="w-9 h-9 bg-background/10 rounded-md flex items-center justify-center hover-elevate transition-colors" aria-label="Instagram" data-testid="link-social-instagram" target="_blank" rel="noopener noreferrer">
-                <Camera className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
-
-          <div>
-            <h4 className="font-serif font-bold text-lg mb-4">Quick Links</h4>
-            <ul className="space-y-2.5">
-              {[
-                { label: "Home", href: "#home" },
-                { label: "Safaris", href: "#safaris" },
-                { label: "Destinations", href: "#destinations" },
-                { label: "Packages", href: "/packages" },
-                { label: "Gallery", href: "/gallery" },
-                { label: "Blog", href: "/blog" },
-                { label: "Contact", href: "#contact" },
-              ].map((link) => (
-                <li key={link.label}>
-                  {link.href.startsWith("/") ? (
-                    <Link href={link.href} className="text-background/60 text-sm transition-colors" data-testid={`link-footer-${link.label.toLowerCase()}`}>
-                      {link.label}
-                    </Link>
-                  ) : (
-                    <a href={link.href} className="text-background/60 text-sm transition-colors" data-testid={`link-footer-${link.label.toLowerCase()}`}>
-                      {link.label}
-                    </a>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-serif font-bold text-lg mb-4">Safari Destinations</h4>
-            <ul className="space-y-2.5">
-              {["Maasai Mara", "Amboseli", "Tsavo", "Lake Nakuru", "Samburu", "Mount Kenya"].map((dest) => (
-                <li key={dest}>
-                  <a href="#destinations" className="text-background/60 text-sm transition-colors" data-testid={`link-footer-dest-${dest.toLowerCase().replace(/\s/g, "-")}`}>
-                    {dest}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-serif font-bold text-lg mb-4">Newsletter</h4>
-            <p className="text-background/60 text-sm mb-4">
-              Get safari tips, travel guides, and exclusive offers delivered to your inbox.
-            </p>
-            <div className="flex gap-2">
-              <Input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Your email"
-                className="bg-background/10 border-background/20 text-background placeholder:text-background/40"
-                data-testid="input-newsletter-email"
-              />
-              <Button size="default" data-testid="button-newsletter-subscribe">
-                <Send className="w-4 h-4" />
-              </Button>
-            </div>
-          </div>
-        </div>
-
-        <div className="border-t border-background/10 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-background/40 text-sm" data-testid="text-copyright">
-            &copy; {new Date().getFullYear()} Paws and Treks Tours and Travel. All rights reserved.
-          </p>
-          <div className="flex gap-6 text-background/40 text-sm">
-            <Link href="/terms" className="transition-colors" data-testid="link-booking-terms">Booking Terms</Link>
-            <Link href="/terms#travel-info-section" className="transition-colors" data-testid="link-travel-info">Travel Information</Link>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
 export default function Home() {
   return (
     <div className="min-h-screen">
       <Navbar />
       <HeroSection />
       <PackagesSection />
+      <DestinationsSection />
       <WhyUsSection />
       <TestimonialsSection />
       <GallerySection />
-      <SafarisSection />
-      <DestinationsSection />
       <BlogSection />
-      <CTASection />
       <ContactSection />
       <Footer />
     </div>

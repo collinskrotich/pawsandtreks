@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import Footer from "@/components/Footer";
 import { Badge } from "@/components/ui/badge";
 
 const fadeInUp = {
@@ -415,9 +416,7 @@ export default function Blog() {
         </div>
       </section>
 
-      <div className="bg-foreground text-background/60 text-center text-xs py-5" data-testid="footer-blog">
-        <p>&copy; {new Date().getFullYear()} Paws and Treks Tours and Travel. All rights reserved.</p>
-      </div>
+      <Footer />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Menu, X, ArrowRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Footer from "@/components/Footer";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 24 },
@@ -282,9 +283,7 @@ export default function Gallery() {
         </div>
       </section>
 
-      <div className="bg-foreground text-background/60 text-center text-xs py-5" data-testid="footer-gallery">
-        <p>&copy; {new Date().getFullYear()} Paws and Treks Tours and Travel. All rights reserved.</p>
-      </div>
+      <Footer />
     </div>
   );
 }

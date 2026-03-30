@@ -10,6 +10,7 @@ import {
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import Footer from "@/components/Footer";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
@@ -548,9 +549,7 @@ export default function Terms() {
         </motion.div>
       </div>
 
-      <div className="bg-foreground text-background/60 text-center text-xs py-5" data-testid="footer-terms">
-        <p>&copy; {new Date().getFullYear()} Paws and Treks Tours and Travel. All rights reserved.</p>
-      </div>
+      <Footer />
     </div>
   );
 }
