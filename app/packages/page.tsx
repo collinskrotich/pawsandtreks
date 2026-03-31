@@ -1078,7 +1078,10 @@ function CategorySection({ id, icon, label, title, subtitle, packages: pkgs, bgC
 
 export default function Packages() {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // Only scroll to top if there's no hash in the URL
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
     document.title = "Safari Packages – Paws & Treks";
   }, []);
 
