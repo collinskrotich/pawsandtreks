@@ -11,6 +11,7 @@ A modern, premium website for "Paws & Treks", a Kenya-based tours and safari com
 - **Routing**: wouter
 - **State/Data**: TanStack React Query
 - **Forms**: react-hook-form + zod validation
+io
 
 ## Architecture
 - `client/src/pages/home.tsx` - Main landing page: Hero, Safaris, Destinations, Packages (4 categories), Gallery, Testimonials, Blog, CTA, Contact, Footer
