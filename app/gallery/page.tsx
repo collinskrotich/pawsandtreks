@@ -50,6 +50,11 @@ const allImages: GalleryImage[] = [
   // Jangwani-Sagana
   { src: "/safari/jangwani-sagana.jpeg", alt: "Jangwani Sagana scenic area", location: "Jangwani-Sagana" },
   { src: "/safari/jangwani-sagana-2.jpeg", alt: "Jangwani Sagana scenic area", location: "Jangwani-Sagana" },
+  { src: "/testimonials/jangwa.jpeg", alt: "Jangwani Sagana river adventure", location: "Jangwani-Sagana" },
+  { src: "/testimonials/jangwa-1.jpeg", alt: "Jangwani Sagana rafting experience", location: "Jangwani-Sagana" },
+  { src: "/testimonials/jangwa-2.jpeg", alt: "Jangwani Sagana outdoor activities", location: "Jangwani-Sagana" },
+  { src: "/testimonials/jangwa-3.jpeg", alt: "Jangwani Sagana nature scenery", location: "Jangwani-Sagana" },
+  { src: "/testimonials/jangwa-4.jpeg", alt: "Jangwani Sagana wildlife area", location: "Jangwani-Sagana" },
   // Mara
   { src: "/safari/mara.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
   { src: "/safari/mara-2.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
@@ -173,7 +178,7 @@ export default function Gallery() {
 
       <section className="relative pt-20" data-testid="section-gallery-hero">
         <div className="relative h-60 sm:h-72 overflow-hidden">
-          <img src="/images/gallery_leopard.jpg" alt="Safari gallery" className="w-full h-full object-cover" />
+          <img src="/safari/safari-10.jpeg" alt="Safari gallery" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/25" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
             <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="text-amber-400 font-medium tracking-widest uppercase text-sm mb-3">

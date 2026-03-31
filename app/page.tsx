@@ -89,12 +89,12 @@ const safariExperiences = [
 ];
 
 const destinations = [
-  { name: "Maasai Mara", image: "/images/masai_mara.jpg", tag: "Most Popular" },
+  { name: "Maasai Mara", image: "/images/wildebeast.jpg", tag: "Most Popular" },
   { name: "Amboseli", image: "/images/amboseli.jpg", tag: "Iconic Views" },
   { name: "Tsavo East & West", image: "/images/tsavo.jpg", tag: "Vast Wilderness" },
   { name: "Lake Nakuru", image: "/images/lake_nakuru.jpg", tag: "Birdwatching" },
-  { name: "Samburu", image: "/images/samburu.jpg", tag: "Unique Wildlife" },
-  { name: "Nairobi National Park", image: "/safari/safari-25.jpeg", tag: "Day Trip" },
+  { name: "Samburu", image: "/safari/safari-26.jpeg", tag: "Unique Wildlife" },
+  { name: "Nairobi National Park", image: "/safari/nairobi.jpeg", tag: "Day Trip" },
 ];
 
 const whyUs = [
@@ -111,7 +111,7 @@ const packageCategories = [
     tag: "Great Value",
     color: "primary",
     anchor: "#best-safari-deals",
-    image: "/images/masai_mara.jpg",
+    image: "/safari/nairobi.jpeg",
     highlights: ["3 & 4-day Masai Mara itineraries", "Big Five wildlife sightings", "Maasai village cultural visit", "Full board accommodation", "Airport transfers included", "Nairobi National Park day trip"],
   },
   {
@@ -119,7 +119,7 @@ const packageCategories = [
     tag: "Exclusive",
     color: "jungle-green",
     anchor: "#top-private-safaris",
-    image: "/safari/safari-25.jpeg",
+    image: "/safari/mara-5.jpeg",
     highlights: ["Private vehicle — just your group", "Flexible departure times", "Photographic & bird watching safaris", "Premium lodge stays", "Expert specialist guides"],
   },
   {
@@ -127,7 +127,7 @@ const packageCategories = [
     tag: "Thrilling",
     color: "primary",
     anchor: "#exciting-adventures",
-    image: "/images/gallery_balloon.jpg",
+    image: "/testimonials/jangwa-1.jpeg",
     highlights: ["Hot air balloon safari over the Mara", "Bush dinner under the stars", "10-day photographic expedition", "Birdwatching across Kenya", "Cultural encounters & historic sites"],
   },
   {
@@ -135,20 +135,20 @@ const packageCategories = [
     tag: "Nature Escapes",
     color: "jungle-green",
     anchor: "#kenya-camping",
-    image: "/safari/aberdares.jpeg",
+    image: "/safari/jangwani-sagana-2.jpeg",
     highlights: ["Riverside & forest bush camps", "White-water rafting at Sagana", "Aberdares tea country cycling", "Maasai archery & village visits", "Bring your own food & drinks"],
   },
 ];
 
 const galleryImages = [
-  { src: "/images/masai_mara.jpg", alt: "Lions in Masai Mara" },
-  { src: "/images/gallery_leopard.jpg", alt: "Leopard in the wild" },
-  { src: "/images/gallery_giraffe.jpg", alt: "Giraffe at sunset" },
-  { src: "/images/gallery_zebras.jpg", alt: "Zebra herd" },
-  { src: "/images/gallery_rhino.jpg", alt: "Rhinoceros" },
-  { src: "/images/gallery_balloon.jpg", alt: "Hot air balloon safari" },
-  { src: "/images/safari_vehicle.jpg", alt: "Safari vehicle" },
-  { src: "/images/gallery_lodge.jpg", alt: "Safari lodge" },
+  { src: "/safari/mara-3.jpeg", alt: "Masai Mara wildlife safari" },
+  { src: "/safari/safari-10.jpeg", alt: "Kenya safari adventure" },
+  { src: "/safari/amboseli.jpeg", alt: "Amboseli elephants with Kilimanjaro" },
+  { src: "/safari/nakuru.jpeg", alt: "Lake Nakuru flamingos" },
+  { src: "/safari/safari-26.jpeg", alt: "Samburu wildlife reserve" },
+  { src: "/safari/jangwani-sagana.jpeg", alt: "Jangwani Sagana river adventure" },
+  { src: "/safari/aberdares.jpeg", alt: "Aberdares forest landscape" },
+  { src: "/safari/mara-4.jpeg", alt: "Mara sunset safari drive" },
 ];
 
 const testimonials = [
@@ -176,7 +176,7 @@ const blogPosts = [
   {
     title: "Best Time to Visit Maasai Mara",
     excerpt: "Plan your safari around the Great Migration and optimal weather windows for an unforgettable experience.",
-    image: "/images/masai_mara.jpg",
+    image: "/images/amboseli.jpg",
     date: "Feb 15, 2026"
   },
   {
@@ -299,14 +299,16 @@ function HeroSection() {
       <div className="absolute inset-0">
         <img
           src="/lions-hero.jpg"
-          alt="African savannah at sunset"
+          alt="African savannah at sunset with lions and wildlife - Paws and Treks safari experience"
           className="w-full h-full object-cover"
+          loading="eager"
+          decoding="sync"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+      <div className="relative z-10 max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-24 md:py-28 lg:py-32">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -315,48 +317,48 @@ function HeroSection() {
         >
           <motion.p
             variants={fadeInUp}
-            className="text-amber-400 font-medium tracking-widest uppercase text-sm mb-4"
+            className="text-amber-400 font-medium tracking-widest uppercase text-xs sm:text-sm mb-3 sm:mb-4"
           >
             Unforgettable Safaris.
           </motion.p>
           <motion.h1
             variants={fadeInUp}
-            className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 whitespace-nowrap"
+            className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-4 sm:mb-6"
           >
             Discover Kenya&apos;s Wild Beauty
           </motion.h1>
           <motion.p
             variants={fadeInUp}
-            className="text-lg sm:text-xl text-white/80 mb-8 leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-white/80 mb-6 sm:mb-8 leading-relaxed"
           >
             Embark on unforgettable safari adventures through Kenya&apos;s most stunning landscapes. From the Great Migration to the Big Five, experience Africa like never before.
           </motion.p>
-          <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
+          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
             <a href="#safaris">
-              <Button size="lg" data-testid="button-explore-safaris">
+              <Button size="lg" data-testid="button-explore-safaris" className="w-full sm:w-auto">
                 Explore Safaris
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </a>
             <Link href="/book">
-              <Button size="lg" variant="outline" className="backdrop-blur-sm bg-white/10 text-white border-white/30" data-testid="button-plan-adventure">
+              <Button size="lg" variant="outline" className="w-full sm:w-auto backdrop-blur-sm bg-white/10 text-white border-white/30" data-testid="button-plan-adventure">
                 Plan Your Adventure
               </Button>
             </Link>
           </motion.div>
 
-          <motion.div variants={fadeInUp} className="flex flex-wrap gap-8 mt-12 pt-8 border-t border-white/20">
+          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row flex-wrap gap-6 sm:gap-8 mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-white/20">
             <div>
-              <p className="text-3xl font-bold text-white">500+</p>
-              <p className="text-white/60 text-sm">Happy Travelers</p>
+              <p className="text-2xl sm:text-3xl font-bold text-white">500+</p>
+              <p className="text-white/60 text-xs sm:text-sm">Happy Travelers</p>
             </div>
             <div>
-              <p className="text-3xl font-bold text-white">15+</p>
-              <p className="text-white/60 text-sm">Safari Routes</p>
+              <p className="text-2xl sm:text-3xl font-bold text-white">15+</p>
+              <p className="text-white/60 text-xs sm:text-sm">Safari Routes</p>
             </div>
             <div>
-              <p className="text-3xl font-bold text-white">10+</p>
-              <p className="text-white/60 text-sm">Years Experience</p>
+              <p className="text-2xl sm:text-3xl font-bold text-white">10+</p>
+              <p className="text-white/60 text-xs sm:text-sm">Years Experience</p>
             </div>
           </motion.div>
         </motion.div>
@@ -377,22 +379,22 @@ function HeroSection() {
 
 function SafarisSection() {
   return (
-    <section id="safaris" className="py-20 sm:py-28 bg-background" data-testid="section-safaris">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="safaris" className="py-12 sm:py-16 md:py-20 lg:py-28 bg-background" data-testid="section-safaris">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={stagger}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <motion.p variants={fadeInUp} className="text-primary font-medium tracking-widest uppercase text-sm mb-3">
+          <motion.p variants={fadeInUp} className="text-primary font-medium tracking-widest uppercase text-xs sm:text-sm mb-2 sm:mb-3">
             Our Experiences
           </motion.p>
-          <motion.h2 variants={fadeInUp} className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+          <motion.h2 variants={fadeInUp} className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">
             Featured Safari Experiences
           </motion.h2>
-          <motion.p variants={fadeInUp} className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <motion.p variants={fadeInUp} className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base md:text-lg">
             Choose from our carefully curated safari experiences, each designed to showcase Kenya&apos;s most breathtaking wildlife and landscapes.
           </motion.p>
         </motion.div>
@@ -402,37 +404,38 @@ function SafarisSection() {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={stagger}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6"
         >
           {safariExperiences.map((safari, i) => (
             <motion.div key={i} variants={fadeInUp}>
-              <Card className="group cursor-pointer border-card-border" data-testid={`card-safari-${i}`}>
-                <div className="relative overflow-hidden rounded-t-md">
+              <Card className="group cursor-pointer border-card-border overflow-hidden flex flex-col h-full" data-testid={`card-safari-${i}`}>
+                <div className="relative overflow-hidden h-48 sm:h-56">
                   <img
                     src={safari.image}
-                    alt={safari.title}
-                    className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+                    alt={`${safari.title} - ${safari.duration} in Kenya`}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
                   />
-                  <div className="absolute top-4 right-4 bg-jungle-green text-jungle-green-foreground text-xs font-bold px-3 py-1.5 rounded-md">
-                    Request a Quote
+                  <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-jungle-green text-jungle-green-foreground text-xs font-bold px-2.5 py-1 rounded-md">
+                    Request Quote
                   </div>
                 </div>
-                <div className="p-5">
-                  <h3 className="font-serif text-xl font-bold mb-2">{safari.title}</h3>
-                  <p className="text-muted-foreground text-sm mb-4 leading-relaxed">{safari.description}</p>
-                  <div className="flex items-center justify-between gap-4">
+                <div className="p-4 sm:p-5 flex flex-col flex-grow">
+                  <h3 className="font-serif text-lg sm:text-xl font-bold mb-2">{safari.title}</h3>
+                  <p className="text-muted-foreground text-sm mb-4 leading-relaxed flex-grow">{safari.description}</p>
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
                     <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
                       <Clock className="w-4 h-4" /> {safari.duration}
                     </span>
-                    <div className="flex items-center gap-2">
-                      <Link href="/packages">
-                        <Button variant="outline" size="sm" data-testid={`button-learn-more-${i}`}>
+                    <div className="flex items-center gap-2 w-full sm:w-auto">
+                      <Link href="/packages" className="flex-1 sm:flex-none">
+                        <Button variant="outline" size="sm" className="w-full sm:w-auto" data-testid={`button-learn-more-${i}`}>
                           Learn More <ChevronRight className="w-3 h-3 ml-1" />
                         </Button>
                       </Link>
-                      <Link href="/book">
-                        <Button size="sm" data-testid={`button-book-safari-${i}`}>
-                          Book Safari
+                      <Link href="/book" className="flex-1 sm:flex-none">
+                        <Button size="sm" className="w-full sm:w-auto" data-testid={`button-book-safari-${i}`}>
+                          Book
                         </Button>
                       </Link>
                     </div>
@@ -449,22 +452,22 @@ function SafarisSection() {
 
 function DestinationsSection() {
   return (
-    <section id="destinations" className="py-20 sm:py-28 bg-card" data-testid="section-destinations">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="destinations" className="py-12 sm:py-16 md:py-20 lg:py-28 bg-card" data-testid="section-destinations">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={stagger}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <motion.p variants={fadeInUp} className="text-primary font-medium tracking-widest uppercase text-sm mb-3">
+          <motion.p variants={fadeInUp} className="text-primary font-medium tracking-widest uppercase text-xs sm:text-sm mb-2 sm:mb-3">
             Where to Go
           </motion.p>
-          <motion.h2 variants={fadeInUp} className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+          <motion.h2 variants={fadeInUp} className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">
             Top Destinations
           </motion.h2>
-          <motion.p variants={fadeInUp} className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <motion.p variants={fadeInUp} className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base md:text-lg">
             Explore Kenya&apos;s most iconic wildlife destinations, each offering unique encounters and spectacular landscapes.
           </motion.p>
         </motion.div>
@@ -474,7 +477,7 @@ function DestinationsSection() {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={stagger}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"
         >
           {destinations.map((dest, i) => (
             <motion.div key={i} variants={fadeInUp}>
@@ -482,17 +485,18 @@ function DestinationsSection() {
                 <div className="relative overflow-hidden rounded-md aspect-[4/3]">
                   <img
                     src={dest.image}
-                    alt={dest.name}
+                    alt={`${dest.name} - ${dest.tag} in Kenya`}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 md:p-5">
                     <span className="inline-block text-amber-400 text-xs font-semibold tracking-wider uppercase mb-1">
                       {dest.tag}
                     </span>
-                    <h3 className="font-serif text-xl font-bold text-white">{dest.name}</h3>
+                    <h3 className="font-serif text-lg sm:text-xl font-bold text-white">{dest.name}</h3>
                   </div>
-                  <div className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-white/20 backdrop-blur-sm text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
                     <ArrowRight className="w-4 h-4" />
                   </div>
                 </div>
@@ -507,19 +511,19 @@ function DestinationsSection() {
 
 function WhyUsSection() {
   return (
-    <section id="about" className="py-20 sm:py-28 bg-background" data-testid="section-about">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="py-12 sm:py-16 md:py-20 lg:py-28 bg-background" data-testid="section-about">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={stagger}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <motion.p variants={fadeInUp} className="text-primary font-medium tracking-widest uppercase text-sm mb-3">
+          <motion.p variants={fadeInUp} className="text-primary font-medium tracking-widest uppercase text-xs sm:text-sm mb-2 sm:mb-3">
             Why Choose Us
           </motion.p>
-          <motion.h2 variants={fadeInUp} className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+          <motion.h2 variants={fadeInUp} className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">
             Why Travel With Paws & Treks
           </motion.h2>
         </motion.div>
@@ -529,16 +533,16 @@ function WhyUsSection() {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={stagger}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6"
         >
           {whyUs.map((item, i) => (
             <motion.div key={i} variants={fadeInUp}>
-              <Card className="p-6 text-center border-card-border h-full" data-testid={`card-why-${i}`}>
-                <div className="w-14 h-14 bg-primary/10 rounded-md flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="w-7 h-7 text-primary" />
+              <Card className="p-5 sm:p-6 text-center border-card-border h-full flex flex-col" data-testid={`card-why-${i}`}>
+                <div className="w-12 sm:w-14 h-12 sm:h-14 bg-primary/10 rounded-md flex items-center justify-center mx-auto mb-4">
+                  <item.icon className="w-6 sm:w-7 h-6 sm:h-7 text-primary" />
                 </div>
                 <h3 className="font-serif text-lg font-bold mb-2">{item.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+                <p className="text-muted-foreground text-sm leading-relaxed flex-grow">{item.desc}</p>
               </Card>
             </motion.div>
           ))}
@@ -550,22 +554,22 @@ function WhyUsSection() {
 
 function PackagesSection() {
   return (
-    <section id="packages" className="py-20 sm:py-28 bg-card" data-testid="section-packages">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="packages" className="py-12 sm:py-16 md:py-20 lg:py-28 bg-card" data-testid="section-packages">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={stagger}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <motion.p variants={fadeInUp} className="text-primary font-medium tracking-widest uppercase text-sm mb-3">
+          <motion.p variants={fadeInUp} className="text-primary font-medium tracking-widest uppercase text-xs sm:text-sm mb-2 sm:mb-3">
             Our Packages
           </motion.p>
-          <motion.h2 variants={fadeInUp} className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+          <motion.h2 variants={fadeInUp} className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">
             Safari Packages
           </motion.h2>
-          <motion.p variants={fadeInUp} className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <motion.p variants={fadeInUp} className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base md:text-lg">
             Choose from four distinct safari collections — each tailored to a different style of adventure. All packages include expert guides and personalised service.
           </motion.p>
         </motion.div>
@@ -575,13 +579,13 @@ function PackagesSection() {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={stagger}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5"
         >
           {packageCategories.map((cat, i) => (
             <motion.div key={i} variants={fadeInUp}>
               <Card className="p-0 border-card-border h-full flex flex-col overflow-hidden" data-testid={`card-package-cat-${i}`}>
-                <div className="relative h-48 overflow-hidden">
-                  <img src={cat.image} alt={cat.name} className="w-full h-full object-cover" />
+                <div className="relative h-52 sm:h-56 overflow-hidden bg-black/5">
+                  <img src={cat.image} alt={cat.name} className="w-full h-full object-cover object-center" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 </div>
                 <div className="p-6 flex flex-col h-full">
@@ -638,22 +642,22 @@ function PackagesSection() {
 
 function GallerySection() {
   return (
-    <section id="gallery" className="py-20 sm:py-28 bg-background" data-testid="section-gallery">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="gallery" className="py-12 sm:py-16 md:py-20 lg:py-28 bg-background" data-testid="section-gallery">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={stagger}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <motion.p variants={fadeInUp} className="text-primary font-medium tracking-widest uppercase text-sm mb-3">
+          <motion.p variants={fadeInUp} className="text-primary font-medium tracking-widest uppercase text-xs sm:text-sm mb-2 sm:mb-3">
             Safari Moments
           </motion.p>
-          <motion.h2 variants={fadeInUp} className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+          <motion.h2 variants={fadeInUp} className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">
             Gallery
           </motion.h2>
-          <motion.p variants={fadeInUp} className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <motion.p variants={fadeInUp} className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base md:text-lg">
             A glimpse into the extraordinary moments our travelers have captured on their safari adventures.
           </motion.p>
         </motion.div>
@@ -663,7 +667,7 @@ function GallerySection() {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={stagger}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3"
         >
           {galleryImages.map((img, i) => (
             <motion.div
@@ -678,11 +682,12 @@ function GallerySection() {
                 src={img.src}
                 alt={img.alt}
                 className={`w-full object-cover transition-transform duration-700 group-hover:scale-110 ${
-                  i === 0 || i === 5 ? "h-full min-h-[300px]" : "h-48 md:h-56"
+                  i === 0 || i === 5 ? "h-full min-h-[200px] sm:min-h-[300px]" : "h-32 sm:h-40 md:h-48 lg:h-56"
                 }`}
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center">
-                <Camera className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <Camera className="w-6 sm:w-8 h-6 sm:h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             </motion.div>
           ))}
@@ -711,19 +716,19 @@ function TestimonialsSection() {
   const [current, setCurrent] = useState(0);
 
   return (
-    <section className="py-20 sm:py-28 bg-card" data-testid="section-testimonials">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-28 bg-card" data-testid="section-testimonials">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={stagger}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <motion.p variants={fadeInUp} className="text-primary font-medium tracking-widest uppercase text-sm mb-3">
+          <motion.p variants={fadeInUp} className="text-primary font-medium tracking-widest uppercase text-xs sm:text-sm mb-2 sm:mb-3">
             Traveler Stories
           </motion.p>
-          <motion.h2 variants={fadeInUp} className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+          <motion.h2 variants={fadeInUp} className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">
             What Our Guests Say
           </motion.h2>
         </motion.div>
@@ -738,25 +743,26 @@ function TestimonialsSection() {
           >
             <div className="flex justify-center gap-1 mb-6">
               {[...Array(testimonials[current].rating)].map((_, i) => (
-                <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
+                <Star key={i} className="w-4 sm:w-5 h-4 sm:h-5 fill-amber-400 text-amber-400" />
               ))}
             </div>
-            <p className="font-serif text-xl sm:text-2xl italic mb-8 leading-relaxed" data-testid={`text-testimonial-${current}`}>
+            <p className="font-serif text-lg sm:text-xl md:text-2xl italic mb-6 sm:mb-8 leading-relaxed px-3 sm:px-0" data-testid={`text-testimonial-${current}`}>
               &ldquo;{testimonials[current].text}&rdquo;
             </p>
-            <p className="font-bold text-lg" data-testid={`text-testimonial-name-${current}`}>
+            <p className="font-bold text-base sm:text-lg" data-testid={`text-testimonial-name-${current}`}>
               {testimonials[current].name}
             </p>
-            <p className="text-muted-foreground text-sm flex items-center justify-center gap-1">
+            <p className="text-muted-foreground text-xs sm:text-sm flex items-center justify-center gap-1">
               <MapPin className="w-3 h-3" /> {testimonials[current].location}
             </p>
           </motion.div>
 
-          <div className="flex items-center justify-center gap-4 mt-10">
+          <div className="flex items-center justify-center gap-3 sm:gap-4 mt-8 sm:mt-10">
             <Button
               size="icon"
               variant="outline"
               onClick={() => setCurrent((c) => (c === 0 ? testimonials.length - 1 : c - 1))}
+              aria-label="Previous testimonial"
               data-testid="button-testimonial-prev"
             >
               <ChevronLeft className="w-4 h-4" />
@@ -778,6 +784,7 @@ function TestimonialsSection() {
               size="icon"
               variant="outline"
               onClick={() => setCurrent((c) => (c === testimonials.length - 1 ? 0 : c + 1))}
+              aria-label="Next testimonial"
               data-testid="button-testimonial-next"
             >
               <ChevronRight className="w-4 h-4" />
@@ -791,22 +798,22 @@ function TestimonialsSection() {
 
 function BlogSection() {
   return (
-    <section id="blog" className="py-20 sm:py-28 bg-background" data-testid="section-blog">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="blog" className="py-12 sm:py-16 md:py-20 lg:py-28 bg-background" data-testid="section-blog">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={stagger}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <motion.p variants={fadeInUp} className="text-primary font-medium tracking-widest uppercase text-sm mb-3">
+          <motion.p variants={fadeInUp} className="text-primary font-medium tracking-widest uppercase text-xs sm:text-sm mb-2 sm:mb-3">
             Travel Insights
           </motion.p>
-          <motion.h2 variants={fadeInUp} className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+          <motion.h2 variants={fadeInUp} className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">
             Blog & Travel Guide
           </motion.h2>
-          <motion.p variants={fadeInUp} className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <motion.p variants={fadeInUp} className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base md:text-lg">
             Expert tips, guides, and stories to help you plan the perfect safari.
           </motion.p>
         </motion.div>
@@ -816,7 +823,7 @@ function BlogSection() {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={stagger}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 md:gap-6"
         >
           {blogPosts.map((post, i) => (
             <motion.div key={i} variants={fadeInUp}>
@@ -848,16 +855,17 @@ function BlogSection() {
 
 function CTASection() {
   return (
-    <section className="relative py-24 sm:py-32" data-testid="section-cta">
+    <section className="relative py-16 sm:py-24 md:py-32" data-testid="section-cta">
       <div className="absolute inset-0">
         <img
           src="/images/gallery_balloon.jpg"
-          alt="Safari adventure"
+          alt="Hot air balloon safari adventure over Kenya landscape - Paws and Treks"
           className="w-full h-full object-cover"
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-black/60" />
       </div>
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 max-w-4xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 text-center">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -866,11 +874,11 @@ function CTASection() {
         >
           <motion.h2
             variants={fadeInUp}
-            className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6"
+            className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6"
           >
             Ready for the Adventure of a Lifetime?
           </motion.h2>
-          <motion.p variants={fadeInUp} className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
+          <motion.p variants={fadeInUp} className="text-white/80 text-sm sm:text-base md:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto">
             Let us craft the perfect safari experience for you. Contact our team today and start planning your dream African adventure.
           </motion.p>
           <motion.div variants={fadeInUp}>
@@ -926,34 +934,34 @@ function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 sm:py-28 bg-card" data-testid="section-contact">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-12 sm:py-16 md:py-20 lg:py-28 bg-card" data-testid="section-contact">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={stagger}
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
         >
-          <motion.p variants={fadeInUp} className="text-primary font-medium tracking-widest uppercase text-sm mb-3">
+          <motion.p variants={fadeInUp} className="text-primary font-medium tracking-widest uppercase text-xs sm:text-sm mb-2 sm:mb-3">
             Get In Touch
           </motion.p>
-          <motion.h2 variants={fadeInUp} className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+          <motion.h2 variants={fadeInUp} className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">
             Contact Us
           </motion.h2>
-          <motion.p variants={fadeInUp} className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <motion.p variants={fadeInUp} className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base md:text-lg">
             Have questions or ready to book? Reach out to our friendly team.
           </motion.p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 max-w-6xl mx-auto">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
           >
-            <Card className="p-6 sm:p-8 border-card-border">
+            <Card className="p-5 sm:p-6 md:p-8 border-card-border">
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -962,11 +970,11 @@ function ContactSection() {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Full Name</FormLabel>
+                          <FormLabel className="text-sm">Full Name</FormLabel>
                           <FormControl>
-                            <Input placeholder="Your name" {...field} data-testid="input-name" />
+                            <Input placeholder="Your name" {...field} data-testid="input-name" className="text-sm" />
                           </FormControl>
-                          <FormMessage />
+                          <FormMessage className="text-xs" />
                         </FormItem>
                       )}
                     />
@@ -975,11 +983,11 @@ function ContactSection() {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Email</FormLabel>
+                          <FormLabel className="text-sm">Email</FormLabel>
                           <FormControl>
-                            <Input placeholder="your@email.com" {...field} data-testid="input-email" />
+                            <Input placeholder="your@email.com" {...field} data-testid="input-email" className="text-sm" />
                           </FormControl>
-                          <FormMessage />
+                          <FormMessage className="text-xs" />
                         </FormItem>
                       )}
                     />
@@ -990,11 +998,11 @@ function ContactSection() {
                       name="phone"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Phone (Optional)</FormLabel>
+                          <FormLabel className="text-sm">Phone (Optional)</FormLabel>
                           <FormControl>
-                            <Input placeholder="+254-769-784-190" {...field} data-testid="input-phone" />
+                            <Input placeholder="+254-769-784-190" {...field} data-testid="input-phone" className="text-sm" />
                           </FormControl>
-                          <FormMessage />
+                          <FormMessage className="text-xs" />
                         </FormItem>
                       )}
                     />
@@ -1003,10 +1011,10 @@ function ContactSection() {
                       name="safari"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Interested Safari</FormLabel>
+                          <FormLabel className="text-sm">Interested Safari</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
-                              <SelectTrigger data-testid="select-safari">
+                              <SelectTrigger data-testid="select-safari" className="text-sm">
                                 <SelectValue placeholder="Select a safari" />
                               </SelectTrigger>
                             </FormControl>
@@ -1019,7 +1027,7 @@ function ContactSection() {
                               <SelectItem value="custom">Custom Safari</SelectItem>
                             </SelectContent>
                           </Select>
-                          <FormMessage />
+                          <FormMessage className="text-xs" />
                         </FormItem>
                       )}
                     />
@@ -1029,22 +1037,22 @@ function ContactSection() {
                     name="message"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Message</FormLabel>
+                        <FormLabel className="text-sm">Message</FormLabel>
                         <FormControl>
                           <Textarea
                             placeholder="Tell us about your dream safari..."
-                            className="min-h-[120px] resize-none"
+                            className="min-h-[100px] sm:min-h-[120px] resize-none text-sm"
                             {...field}
                             data-testid="input-message"
                           />
                         </FormControl>
-                        <FormMessage />
+                        <FormMessage className="text-xs" />
                       </FormItem>
                     )}
                   />
                   <Button
                     type="submit"
-                    className="w-full"
+                    className="w-full text-sm"
                     disabled={mutation.isPending}
                     data-testid="button-send-inquiry"
                   >
@@ -1061,54 +1069,54 @@ function ContactSection() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeInUp}
-            className="space-y-6"
+            className="space-y-4 sm:space-y-6"
           >
-            <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-md flex items-center justify-center shrink-0">
+            <div className="space-y-4 sm:space-y-6">
+              <div className="flex items-start gap-3 sm:gap-4">
+                <div className="w-10 sm:w-12 h-10 sm:h-12 bg-primary/10 rounded-md flex items-center justify-center shrink-0 mt-0.5">
                   <MapPin className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-bold mb-1">Visit Our Office</h4>
-                  <p className="text-muted-foreground text-sm">Westlands, Nairobi, Kenya</p>
+                  <h4 className="font-bold text-sm sm:text-base mb-1">Visit Our Office</h4>
+                  <p className="text-muted-foreground text-xs sm:text-sm">Westlands, Nairobi, Kenya</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-md flex items-center justify-center shrink-0">
+              <div className="flex items-start gap-3 sm:gap-4">
+                <div className="w-10 sm:w-12 h-10 sm:h-12 bg-primary/10 rounded-md flex items-center justify-center shrink-0 mt-0.5">
                   <Phone className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-bold mb-1">Call Us</h4>
-                  <a href="tel:+254769784190" className="block text-sm text-primary font-medium" data-testid="link-phone">+254-769-784-190</a>
-                  <p className="text-muted-foreground text-sm">Mon-Sat: 8am - 6pm EAT</p>
+                  <h4 className="font-bold text-sm sm:text-base mb-1">Call Us</h4>
+                  <a href="tel:+254769784190" className="block text-xs sm:text-sm text-primary font-medium" data-testid="link-phone">+254-769-784-190</a>
+                  <p className="text-muted-foreground text-xs sm:text-sm">Mon-Sat: 8am - 6pm EAT</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-md flex items-center justify-center shrink-0">
+              <div className="flex items-start gap-3 sm:gap-4">
+                <div className="w-10 sm:w-12 h-10 sm:h-12 bg-primary/10 rounded-md flex items-center justify-center shrink-0 mt-0.5">
                   <Mail className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-bold mb-1">Email Us</h4>
-                  <a href="mailto:bookings@pawsandtreks.com" className="block text-sm text-primary font-medium" data-testid="link-email-primary">bookings@pawsandtreks.com</a>
-                  <a href="mailto:info@pawsandtreks.com" className="block text-sm text-muted-foreground" data-testid="link-email-secondary">info@pawsandtreks.com</a>
+                  <h4 className="font-bold text-sm sm:text-base mb-1">Email Us</h4>
+                  <a href="mailto:bookings@pawsandtreks.com" className="block text-xs sm:text-sm text-primary font-medium" data-testid="link-email-primary">bookings@pawsandtreks.com</a>
+                  <a href="mailto:info@pawsandtreks.com" className="block text-xs sm:text-sm text-muted-foreground" data-testid="link-email-secondary">info@pawsandtreks.com</a>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-primary/10 rounded-md flex items-center justify-center shrink-0">
+              <div className="flex items-start gap-3 sm:gap-4">
+                <div className="w-10 sm:w-12 h-10 sm:h-12 bg-primary/10 rounded-md flex items-center justify-center shrink-0 mt-0.5">
                   <MessageCircle className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-bold mb-1">WhatsApp</h4>
-                  <a href="https://wa.me/254769784190" target="_blank" rel="noopener noreferrer" className="text-primary text-sm font-medium" data-testid="link-whatsapp">+254-769-784-190</a>
-                  <p className="text-muted-foreground text-sm">Quick responses, 24/7</p>
+                  <h4 className="font-bold text-sm sm:text-base mb-1">WhatsApp</h4>
+                  <a href="https://wa.me/254769784190" target="_blank" rel="noopener noreferrer" className="text-primary text-xs sm:text-sm font-medium" data-testid="link-whatsapp">+254-769-784-190</a>
+                  <p className="text-muted-foreground text-xs sm:text-sm">Quick responses, 24/7</p>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-md overflow-hidden mt-6 h-[200px] bg-muted">
+            <div className="rounded-md overflow-hidden mt-6 h-[200px] sm:h-[250px] bg-muted">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.8170944459847!2d36.81217771475401!3d-1.2694139990617982!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d22f835805%3A0x4b28e0f1de4d40!2sWestlands%2C%20Nairobi!5e0!3m2!1sen!2ske!4v1709900000000!5m2!1sen!2ske"
                 width="100%"
@@ -1117,7 +1125,7 @@ function ContactSection() {
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Paws & Treks Office Location"
+                title="Paws & Treks Office Location - Westlands, Nairobi"
               />
             </div>
           </motion.div>
@@ -1129,7 +1137,7 @@ function ContactSection() {
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <main className="min-h-screen">
       <Navbar />
       <HeroSection />
       <PackagesSection />
@@ -1140,6 +1148,6 @@ export default function Home() {
       <BlogSection />
       <ContactSection />
       <Footer />
-    </div>
+    </main>
   );
 }
