@@ -221,7 +221,7 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-4 h-16 sm:h-20">
           <a href="#home" className="flex items-center gap-2 shrink-0" data-testid="link-home-logo">
-            <img src="/images/logo.png" alt="Paws & Treks" className="h-10 sm:h-12 w-auto" />
+            <img src="/images/logo.png" alt="Paws & Treks" className="h-10 sm:h-12 md:h-15 lg:h-12 w-auto" />
             <div className="hidden sm:block">
               <span className={`font-serif text-lg font-bold ${scrolled ? "text-foreground" : "text-white"}`}>
                 Paws & Treks
@@ -334,12 +334,12 @@ function HeroSection() {
             Embark on unforgettable safari adventures through Kenya&apos;s most stunning landscapes. From the Great Migration to the Big Five, experience Africa like never before.
           </motion.p>
           <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
-            <a href="#safaris">
+            <Link href="/packages">
               <Button size="lg" data-testid="button-explore-safaris" className="w-full sm:w-auto">
                 Explore Safaris
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
-            </a>
+            </Link>
             <Link href="/book">
               <Button size="lg" variant="outline" className="w-full sm:w-auto backdrop-blur-sm bg-white/10 text-white border-white/30" data-testid="button-plan-adventure">
                 Plan Your Adventure

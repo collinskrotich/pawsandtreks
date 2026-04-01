@@ -65,7 +65,7 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-4 h-16 sm:h-20">
           <Link href="/" className="flex items-center gap-2 shrink-0" data-testid="link-logo-book">
-            <img src="/images/logo.png" alt="Paws & Treks" className="h-10 sm:h-12 w-auto" />
+            <img src="/images/logo.png" alt="Paws & Treks" className="h-10 sm:h-12 md:h-15 lg:h-12 w-auto" />
             <span className="hidden sm:block font-serif text-lg font-bold text-foreground">Paws & Treks</span>
           </Link>
           <div className="hidden lg:flex items-center gap-1">
@@ -252,9 +252,9 @@ export default function Book() {
 
                     <div>
                       <FormLabel className="flex items-center gap-1.5 mb-3"><Users className="w-3.5 h-3.5" /> Group Size</FormLabel>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div className="flex items-center gap-3">
-                          <span className="text-sm text-muted-foreground w-16">Adults</span>
+                          <span className="text-sm text-muted-foreground sm:w-16">Adults</span>
                           <div className="flex items-center border rounded-md">
                             <button type="button" className="p-2 hover-elevate" onClick={() => form.setValue("adults", Math.max(1, adults - 1))} data-testid="button-adults-minus"><Minus className="w-3.5 h-3.5" /></button>
                             <span className="px-4 py-1.5 text-sm font-semibold min-w-[2.5rem] text-center" data-testid="text-adults-count">{adults}</span>
@@ -262,7 +262,7 @@ export default function Book() {
                           </div>
                         </div>
                         <div className="flex items-center gap-3">
-                          <span className="text-sm text-muted-foreground w-16">Children</span>
+                          <span className="text-sm text-muted-foreground sm:w-16">Children</span>
                           <div className="flex items-center border rounded-md">
                             <button type="button" className="p-2 hover-elevate" onClick={() => form.setValue("children", Math.max(0, children - 1))} data-testid="button-children-minus"><Minus className="w-3.5 h-3.5" /></button>
                             <span className="px-4 py-1.5 text-sm font-semibold min-w-[2.5rem] text-center" data-testid="text-children-count">{children}</span>
