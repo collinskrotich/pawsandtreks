@@ -10,6 +10,15 @@ class MemStorage {
     this.bookings = new Map();
   }
 
+  private generateBookingId(): string {
+    // Format: PAWS + 6 random digits + 1 random letter
+    const randomDigits = Math.floor(Math.random() * 1000000)
+      .toString()
+      .padStart(6, "0");
+    const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+    return `PAWS${randomDigits}${randomLetter}`;
+  }
+
   async createInquiry(insertInquiry: InsertInquiry): Promise<Inquiry> {
     const id = randomUUID();
     const inquiry: Inquiry = { ...insertInquiry, id, createdAt: new Date() };
@@ -22,7 +31,7 @@ class MemStorage {
   }
 
   async createBooking(insertBooking: InsertBooking): Promise<Booking> {
-    const id = randomUUID();
+    const id = this.generateBookingId();
     const booking: Booking = { ...insertBooking, id, createdAt: new Date() };
     this.bookings.set(id, booking);
     return booking;
