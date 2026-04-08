@@ -553,15 +553,34 @@ function WhyUsSection() {
 }
 
 function PackagesSection() {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const total = packageCategories.length;
+
+  useEffect(() => {
+    if (paused) return;
+    const timer = setInterval(() => {
+      setActive(prev => (prev + 1) % total);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [paused, total]);
+
+  const prev = () => setActive(p => (p - 1 + total) % total);
+  const next = () => setActive(p => (p + 1) % total);
+
+  const cat = packageCategories[active];
+
   return (
-    <section id="packages" className="py-12 sm:py-16 md:py-20 lg:py-28 bg-card" data-testid="section-packages">
+    <section id="packages" className="py-12 sm:py-16 md:py-20 lg:py-28 bg-card overflow-hidden" data-testid="section-packages">
+
+      {/* Section header */}
       <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={stagger}
-          className="text-center mb-12 sm:mb-16"
+          className="text-center mb-10 sm:mb-14"
         >
           <motion.p variants={fadeInUp} className="text-primary font-medium tracking-widest uppercase text-xs sm:text-sm mb-2 sm:mb-3">
             Our Packages
@@ -573,54 +592,151 @@ function PackagesSection() {
             Choose from four distinct safari collections — each tailored to a different style of adventure. All packages include expert guides and personalised service.
           </motion.p>
         </motion.div>
+      </div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={stagger}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5"
+      {/* Single large card carousel */}
+      <div className="max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <div
+          className="relative rounded-2xl overflow-hidden shadow-2xl bg-background border border-card-border"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          data-testid={`card-package-cat-${active}`}
         >
-          {packageCategories.map((cat, i) => (
-            <motion.div key={i} variants={fadeInUp}>
-              <Card className="p-0 border-card-border h-full flex flex-col overflow-hidden" data-testid={`card-package-cat-${i}`}>
-                <div className="relative h-52 sm:h-56 overflow-hidden bg-black/5">
-                  <img src={cat.image} alt={cat.name} className="w-full h-full object-cover object-center" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                </div>
-                <div className="p-6 flex flex-col h-full">
-                  <div className="mb-4">
-                    <span className={`inline-block text-xs font-bold px-2.5 py-1 rounded-md mb-3 ${cat.color === "jungle-green" ? "bg-jungle-green/10 text-jungle-green" : "bg-primary/10 text-primary"}`}>
-                      {cat.tag}
-                    </span>
-                    <h3 className="font-serif text-lg font-bold">{cat.name}</h3>
-                  </div>
-                  <ul className="space-y-2.5 mb-6 flex-1">
-                    {cat.highlights.map((h, j) => (
-                      <li key={j} className="flex items-start gap-2 text-sm">
-                        <Star className={`w-3.5 h-3.5 shrink-0 mt-0.5 ${cat.color === "jungle-green" ? "text-jungle-green" : "text-amber-500"}`} />
-                        <span className="text-muted-foreground">{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="flex flex-col gap-2">
-                    <Link href={`/packages${cat.anchor}`}>
-                      <Button variant="outline" size="sm" className="w-full" data-testid={`button-view-cat-${i}`}>
-                        View Packages <ChevronRight className="w-3 h-3 ml-1" />
-                      </Button>
-                    </Link>
-                    <Link href="/book">
-                      <Button size="sm" className="w-full" data-testid={`button-book-cat-${i}`}>
-                        Request a Quote
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div>
+          {/* Slide track — slides left on index change */}
+          <div
+            className="flex transition-transform duration-700 ease-in-out"
+            style={{ transform: `translateX(-${active * 100}%)` }}
+          >
+            {packageCategories.map((c, i) => (
+              <div key={i} className="w-full shrink-0 flex flex-col md:flex-row h-auto md:h-[412px]">
 
+                {/* ── Left: full-bleed image ── */}
+                <div className="relative w-full md:w-3/5 h-44 sm:h-52 md:h-full overflow-hidden">
+                  <img
+                    src={c.image}
+                    alt={c.name}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-black/20 md:to-black/40" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent md:hidden" />
+
+                  {/* Tag badge */}
+                  <div className="absolute top-4 left-4">
+                    <span className={`text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm shadow ${
+                      c.color === "jungle-green"
+                        ? "bg-jungle-green text-white"
+                        : "bg-amber-500 text-white"
+                    }`}>
+                      {c.tag}
+                    </span>
+                  </div>
+
+                  {/* Title overlay — mobile only */}
+                  <div className="absolute bottom-0 left-0 right-0 p-3 md:hidden">
+                    <h3 className="font-serif text-lg font-bold text-white drop-shadow-lg">{c.name}</h3>
+                  </div>
+                </div>
+
+                {/* ── Right: details panel ── */}
+                <div className="w-full md:w-2/5 flex flex-col justify-between p-3 sm:p-4 bg-background overflow-hidden">
+                  {/* Title — desktop only */}
+                  <div>
+                    <h3 className="hidden md:block font-serif text-base font-bold mb-0.5 leading-snug">{c.name}</h3>
+                    <div className={`hidden md:inline-block text-xs font-semibold px-2 py-0.5 rounded-full mb-2 ${
+                      c.color === "jungle-green"
+                        ? "bg-jungle-green/10 text-jungle-green"
+                        : "bg-amber-500/10 text-amber-600"
+                    }`}>{c.tag}</div>
+
+                    <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1.5">What&apos;s included</p>
+                    <ul className="space-y-1 mb-3">
+                      {c.highlights.map((h, j) => (
+                        <li key={j} className="flex items-start gap-2 text-xs">
+                          <Star className={`w-3 h-3 shrink-0 mt-0.5 ${
+                            c.color === "jungle-green" ? "text-jungle-green" : "text-amber-500"
+                          }`} />
+                          <span className="text-foreground/80 leading-snug">{h}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Divider + CTAs */}
+                  <div>
+                    <div className="border-t border-border mb-3" />
+                    <div className="flex flex-col sm:flex-row gap-2">
+                      <Link href={`/packages${c.anchor}`} className="flex-1" data-testid={`button-view-cat-${i}`}>
+                        <Button variant="outline" size="sm" className="w-full">
+                          View Packages <ChevronRight className="w-3 h-3 ml-1" />
+                        </Button>
+                      </Link>
+                      <Link href="/book" className="flex-1" data-testid={`button-book-cat-${i}`}>
+                        <Button size="sm" className="w-full">
+                          Request a Quote
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Prev / Next arrows */}
+          <button
+            onClick={prev}
+            aria-label="Previous package"
+            className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white flex items-center justify-center transition-colors"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+          <button
+            onClick={next}
+            aria-label="Next package"
+            className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white flex items-center justify-center transition-colors"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+
+          {/* Auto-progress bar */}
+          {!paused && (
+            <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-black/10">
+              <div
+                key={active}
+                className="h-full bg-primary origin-left"
+                style={{ animation: "pkg-progress 5s linear forwards" }}
+              />
+            </div>
+          )}
+          <style>{`
+            @keyframes pkg-progress {
+              from { width: 0%; }
+              to   { width: 100%; }
+            }
+          `}</style>
+        </div>
+
+        {/* Dot indicators */}
+        <div className="flex items-center justify-center gap-2.5 mt-6">
+          {packageCategories.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActive(i)}
+              aria-label={`Go to package ${i + 1}`}
+              className={`transition-all duration-300 rounded-full ${
+                i === active
+                  ? "w-6 h-2.5 bg-primary"
+                  : "w-2.5 h-2.5 bg-muted-foreground/30 hover:bg-muted-foreground/60"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Bottom CTA */}
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <motion.div
           initial="hidden"
           whileInView="visible"
