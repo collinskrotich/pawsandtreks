@@ -1,52 +1,34 @@
 import { NextResponse } from "next/server";
 import { timingSafeEqual } from "crypto";
 
-// ─── Basic Auth ────────────────────────────────────────────────────────────────
+// ─── Bearer Token Auth ─────────────────────────────────────────────────────────
 
 function unauthorized() {
   return new NextResponse("Unauthorized", {
     status: 401,
-    headers: { "WWW-Authenticate": 'Basic realm="Paws & Treks API"' },
+    headers: { "WWW-Authenticate": 'Bearer realm="Paws & Treks API"' },
   });
 }
 
-function verifyBasicAuth(authHeader: string | null): boolean {
-  if (!authHeader?.startsWith("Basic ")) return false;
+function verifyBearerToken(authHeader: string | null): boolean {
+  if (!authHeader?.startsWith("Bearer ")) return false;
 
-  const expectedUser = process.env.API_USERNAME;
-  const expectedPass = process.env.API_PASSWORD;
-
-  if (!expectedUser || !expectedPass) {
-    // Credentials not configured — deny all access
+  const expectedToken = process.env.API_BEARER_TOKEN;
+  if (!expectedToken) {
+    // Token not configured — deny all access
     return false;
   }
 
-  let decoded: string;
-  try {
-    decoded = Buffer.from(authHeader.slice(6), "base64").toString("utf-8");
-  } catch {
-    return false;
-  }
-
-  const colonIndex = decoded.indexOf(":");
-  if (colonIndex === -1) return false;
-
-  const suppliedUser = decoded.slice(0, colonIndex);
-  const suppliedPass = decoded.slice(colonIndex + 1);
+  const suppliedToken = authHeader.slice(7);
 
   // Constant-time comparison to prevent timing attacks
   try {
-    const userMatch = timingSafeEqual(
-      Buffer.from(suppliedUser),
-      Buffer.from(expectedUser)
+    return timingSafeEqual(
+      Buffer.from(suppliedToken),
+      Buffer.from(expectedToken)
     );
-    const passMatch = timingSafeEqual(
-      Buffer.from(suppliedPass),
-      Buffer.from(expectedPass)
-    );
-    return userMatch && passMatch;
   } catch {
-    // Buffers of different lengths throw — credentials don't match
+    // Buffers of different lengths throw — token doesn't match
     return false;
   }
 }
@@ -777,7 +759,7 @@ const kenyaCamping: SafariPackage[] = [
 // ─── Route Handler ─────────────────────────────────────────────────────────────
 
 export async function GET(request: Request) {
-  if (!verifyBasicAuth(request.headers.get("authorization"))) {
+  if (!verifyBearerToken(request.headers.get("authorization"))) {
     return unauthorized();
   }
 
