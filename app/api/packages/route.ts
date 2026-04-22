@@ -1,26 +1,57 @@
-"use client";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
-import {
-  ChevronDown, ChevronUp, Clock, CheckCircle2, XCircle,
-  MapPin, ArrowRight, Menu, X, CalendarDays,
-  Star, Binoculars, Phone, MessageCircle, Camera, Wind,
-  Shield, Bird, Sunset
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import Footer from "@/components/Footer";
+import { NextResponse } from "next/server";
+import { timingSafeEqual } from "crypto";
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-};
+// ─── Basic Auth ────────────────────────────────────────────────────────────────
 
-const stagger = {
-  visible: { transition: { staggerChildren: 0.1 } }
-};
+function unauthorized() {
+  return new NextResponse("Unauthorized", {
+    status: 401,
+    headers: { "WWW-Authenticate": 'Basic realm="Paws & Treks API"' },
+  });
+}
+
+function verifyBasicAuth(authHeader: string | null): boolean {
+  if (!authHeader?.startsWith("Basic ")) return false;
+
+  const expectedUser = process.env.API_USERNAME;
+  const expectedPass = process.env.API_PASSWORD;
+
+  if (!expectedUser || !expectedPass) {
+    // Credentials not configured — deny all access
+    return false;
+  }
+
+  let decoded: string;
+  try {
+    decoded = Buffer.from(authHeader.slice(6), "base64").toString("utf-8");
+  } catch {
+    return false;
+  }
+
+  const colonIndex = decoded.indexOf(":");
+  if (colonIndex === -1) return false;
+
+  const suppliedUser = decoded.slice(0, colonIndex);
+  const suppliedPass = decoded.slice(colonIndex + 1);
+
+  // Constant-time comparison to prevent timing attacks
+  try {
+    const userMatch = timingSafeEqual(
+      Buffer.from(suppliedUser),
+      Buffer.from(expectedUser)
+    );
+    const passMatch = timingSafeEqual(
+      Buffer.from(suppliedPass),
+      Buffer.from(expectedPass)
+    );
+    return userMatch && passMatch;
+  } catch {
+    // Buffers of different lengths throw — credentials don't match
+    return false;
+  }
+}
+
+// ─── Types ────────────────────────────────────────────────────────────────────
 
 interface DayItinerary {
   day: number | string;
@@ -41,6 +72,8 @@ interface SafariPackage {
   exclusions: string[];
   highlights: string[];
 }
+
+// ─── Package Data ──────────────────────────────────────────────────────────────
 
 const bestSafariDeals: SafariPackage[] = [
   {
@@ -392,7 +425,7 @@ const privateSafaris: SafariPackage[] = [
     title: "Nairobi National Park – Day Trip",
     duration: "1 Day",
     days: 1,
-    image: "/safari/safari-25.jpeg",
+    image: "/safari/nairobi.jpeg",
     tag: "Day Trip",
     overview:
       "Experience the unique thrill of a wildlife safari just minutes from Kenya's capital city. Nairobi National Park is the only national park in the world within a capital city, home to lions, leopards, rhinos, buffaloes, giraffes, zebras and over 400 bird species — all set against the dramatic Nairobi skyline.",
@@ -741,599 +774,70 @@ const kenyaCamping: SafariPackage[] = [
   },
 ];
 
-const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "Safaris", href: "/#safaris" },
-  { label: "Destinations", href: "/#destinations" },
-  { label: "Packages", href: "/packages" },
-  { label: "Gallery", href: "/#gallery" },
-  { label: "About", href: "/#about" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/#contact" },
-];
+// ─── Route Handler ─────────────────────────────────────────────────────────────
 
-function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+export async function GET(request: Request) {
+  if (!verifyBasicAuth(request.headers.get("authorization"))) {
+    return unauthorized();
+  }
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const response = {
+    meta: {
+      title: "Paws & Treks – Safari Packages",
+      description:
+        "Complete catalogue of safari packages offered by Paws & Treks, a Kenya-based tour operator.",
+      contact: {
+        phone: "+254-769-784-190",
+        whatsapp: "https://wa.me/254769784190",
+        email: "pawsandtreks@gmail.com",
+      },
+      totalPackages:
+        bestSafariDeals.length +
+        privateSafaris.length +
+        excitingAdventures.length +
+        kenyaCamping.length,
+      generatedAt: new Date().toISOString(),
+    },
+    categories: [
+      {
+        id: "best-safari-deals",
+        label: "Best Safari Deals",
+        description:
+          "Affordable group safari adventures starting daily from Nairobi — perfect for first-time visitors and budget-conscious travelers.",
+        packageCount: bestSafariDeals.length,
+        packages: bestSafariDeals,
+      },
+      {
+        id: "top-private-safaris",
+        label: "Top Private Safaris",
+        description:
+          "Fully private 4×4 Land Cruiser safaris tailored entirely to your group — your vehicle, your pace, your experience.",
+        packageCount: privateSafaris.length,
+        packages: privateSafaris,
+      },
+      {
+        id: "exciting-adventures",
+        label: "Exciting Adventures",
+        description:
+          "Beyond the classic game drive — specialist safari experiences for photography enthusiasts, balloon seekers, and dedicated bird watchers.",
+        packageCount: excitingAdventures.length,
+        packages: excitingAdventures,
+      },
+      {
+        id: "kenya-camping",
+        label: "Kenya Camping",
+        description:
+          "Escape the city and reconnect with nature — forest camps, riverside retreats, and highland hideaways within easy reach of Nairobi.",
+        packageCount: kenyaCamping.length,
+        packages: kenyaCamping,
+      },
+    ],
+  };
 
-  return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-background/95 backdrop-blur-md border-b shadow-sm" : "bg-background/95 backdrop-blur-md border-b"
-      }`}
-      data-testid="navbar-packages"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-4 h-16 sm:h-20">
-          <Link href="/" className="flex items-center gap-2 shrink-0" data-testid="link-logo-packages">
-            <img src="/images/logo.png" alt="Paws & Treks" className="h-10 sm:h-12 w-auto" />
-            <span className="hidden sm:block font-serif text-lg font-bold text-foreground">Paws & Treks</span>
-          </Link>
-
-          <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className={`px-3 py-2 text-sm font-medium rounded-md transition-colors hover-elevate ${
-                  link.label === "Packages" ? "text-primary font-semibold" : "text-foreground/70"
-                }`}
-                data-testid={`link-nav-pkg-${link.label.toLowerCase()}`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-3">
-            <Link href="/book">
-              <Button size="sm" data-testid="button-book-now-packages">Request a Quote</Button>
-            </Link>
-            <button
-              className="lg:hidden p-2 rounded-md text-foreground"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-expanded={isOpen}
-              aria-label="Toggle navigation menu"
-              data-testid="button-mobile-menu-packages"
-            >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="lg:hidden bg-background/98 backdrop-blur-md border-b"
-        >
-          <div className="px-4 py-4 space-y-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="block px-4 py-3 text-sm font-medium text-foreground/80 rounded-md hover-elevate"
-                onClick={() => setIsOpen(false)}
-                data-testid={`link-mobile-pkg-${link.label.toLowerCase()}`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </motion.div>
-      )}
-    </nav>
-  );
-}
-
-function NairobiFeaturedDestination() {
-  return (
-    <section className="relative bg-background" data-testid="section-nairobi-featured">
-      {/* Top label strip */}
-      <div className="bg-primary py-2.5 px-4 text-center">
-        <p className="text-primary-foreground text-xs font-semibold tracking-[0.2em] uppercase">
-          ★ Featured Destination — Kenya's Hidden Gem
-        </p>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
-          {/* Images block */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="relative"
-          >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
-              <img
-                src="/safari/nairobi.jpeg"
-                alt="Nairobi National Park"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-              <div className="absolute bottom-5 left-5">
-                <span className="inline-flex items-center gap-1.5 bg-amber-500 text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide shadow-lg">
-                  <MapPin className="w-3 h-3" /> Nairobi, Kenya
-                </span>
-              </div>
-            </div>
-
-            {/* Two supporting images */}
-            <div className="grid grid-cols-2 gap-3 mt-3">
-              <div className="rounded-xl overflow-hidden aspect-video shadow-md">
-                <img src="/safari/nairobi-2.jpeg" alt="Nairobi National Park wildlife" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-              </div>
-              <div className="rounded-xl overflow-hidden aspect-video shadow-md">
-                <img src="/safari/nairobi-3.jpeg" alt="Nairobi National Park skyline" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Content block */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="flex flex-col gap-6"
-          >
-            <div>
-              <p className="text-primary font-semibold tracking-widest uppercase text-xs mb-3 flex items-center gap-2">
-                <Sunset className="w-4 h-4" /> Day Trip from Nairobi
-              </p>
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4">
-                Nairobi<br />
-                <span className="text-primary">National Park</span>
-              </h2>
-              <p className="text-muted-foreground text-base leading-relaxed">
-                The only national park in the world inside a capital city. Just 7 km from Nairobi's CBD, you can be on a proper safari — watching lions and rhinos roam open savannah — with the city skyline as your backdrop. No passport required.
-              </p>
-            </div>
-
-            {/* Stats row */}
-            <div className="grid grid-cols-3 gap-4 py-5 border-y border-border">
-              <div className="text-center">
-                <p className="font-serif text-2xl font-bold text-primary">117</p>
-                <p className="text-xs text-muted-foreground mt-0.5">km² of wilderness</p>
-              </div>
-              <div className="text-center border-x border-border">
-                <p className="font-serif text-2xl font-bold text-primary">400+</p>
-                <p className="text-xs text-muted-foreground mt-0.5">bird species</p>
-              </div>
-              <div className="text-center">
-                <p className="font-serif text-2xl font-bold text-primary">Big 4</p>
-                <p className="text-xs text-muted-foreground mt-0.5">lion · leopard · rhino · buffalo</p>
-              </div>
-            </div>
-
-            {/* Highlights */}
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {[
-                { icon: <Shield className="w-4 h-4 text-amber-500" />, text: "Home to endangered black rhino" },
-                { icon: <Bird className="w-4 h-4 text-amber-500" />, text: "Over 400 recorded bird species" },
-                { icon: <Camera className="w-4 h-4 text-amber-500" />, text: "City skyline safari photography" },
-                { icon: <MapPin className="w-4 h-4 text-amber-500" />, text: "7 km from Nairobi city centre" },
-                { icon: <Star className="w-4 h-4 text-amber-500" />, text: "Hippo pools & scenic viewpoints" },
-                { icon: <CalendarDays className="w-4 h-4 text-amber-500" />, text: "Available as a full-day trip" },
-              ].map(({ icon, text }, i) => (
-                <li key={i} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                  <span className="shrink-0 mt-0.5">{icon}</span>
-                  {text}
-                </li>
-              ))}
-            </ul>
-
-            {/* CTAs */}
-            <div className="flex flex-wrap gap-3 pt-1">
-              <a href="#nairobi-np-1d">
-                <Button size="lg" data-testid="button-nairobi-view-package">
-                  View Day Trip Package <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              </a>
-              <a href="https://wa.me/254769784190" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="outline" data-testid="button-nairobi-whatsapp">
-                  <MessageCircle className="w-4 h-4 mr-2" /> Enquire on WhatsApp
-                </Button>
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function PackageCard({ pkg }: { pkg: SafariPackage }) {
-  const [expanded, setExpanded] = useState(false);
-  const [activeTab, setActiveTab] = useState<"itinerary" | "inclusions">("itinerary");
-
-  return (
-    <motion.div variants={fadeInUp} id={pkg.id}>
-      <Card className="border-card-border overflow-visible" data-testid={`card-package-${pkg.id}`}>
-        <div className="grid grid-cols-1 lg:grid-cols-5">
-          <div className="lg:col-span-2 relative">
-            <div className="relative h-56 lg:h-full min-h-[280px] overflow-hidden rounded-t-lg lg:rounded-l-lg lg:rounded-tr-none">
-              <img src={pkg.image} alt={pkg.title} className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <div className="absolute top-4 left-4">
-                <Badge data-testid={`badge-tag-${pkg.id}`}>{pkg.tag}</Badge>
-              </div>
-              <div className="absolute bottom-4 left-4 lg:hidden">
-                <h2 className="font-serif text-xl font-bold text-white">{pkg.title}</h2>
-              </div>
-            </div>
-          </div>
-
-          <div className="lg:col-span-3 p-6 sm:p-8 flex flex-col gap-5">
-            <div>
-              <h2 className="hidden lg:block font-serif text-2xl font-bold mb-2" data-testid={`text-package-title-${pkg.id}`}>
-                {pkg.title}
-              </h2>
-              <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-3">
-                <span className="flex items-center gap-1.5">
-                  <Clock className="w-4 h-4 text-primary" />
-                  {pkg.duration}
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <CalendarDays className="w-4 h-4 text-primary" />
-                  {pkg.days} {pkg.days === 1 ? "Day" : "Days"}
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Binoculars className="w-4 h-4 text-primary" />
-                  Game Drives Included
-                </span>
-              </div>
-              <p className="text-sm text-muted-foreground leading-relaxed">{pkg.overview}</p>
-            </div>
-
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              {pkg.highlights.map((h, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm" data-testid={`highlight-${pkg.id}-${i}`}>
-                  <Star className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
-                  <span className="text-muted-foreground">{h}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="flex flex-wrap items-center gap-3 pt-1">
-              <button
-                className="flex items-center gap-2 text-sm font-semibold text-primary"
-                onClick={() => setExpanded(!expanded)}
-                data-testid={`button-expand-${pkg.id}`}
-              >
-                {expanded ? <>Hide Details <ChevronUp className="w-4 h-4" /></> : <>View Full Itinerary <ChevronDown className="w-4 h-4" /></>}
-              </button>
-              <div className="ml-auto flex gap-2">
-                <a href="https://wa.me/254769784190" target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" size="sm" data-testid={`button-whatsapp-${pkg.id}`}>
-                    <MessageCircle className="w-4 h-4 mr-1" /> WhatsApp
-                  </Button>
-                </a>
-                <Link href="/book">
-                  <Button size="sm" data-testid={`button-book-${pkg.id}`}>
-                    Book Safari <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <AnimatePresence>
-          {expanded && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.35 }}
-              className="border-t border-card-border overflow-hidden"
-            >
-              <div className="p-6 sm:p-8">
-                <div className="flex gap-1 mb-6 bg-muted p-1 rounded-md w-fit">
-                  <button
-                    className={`px-4 py-1.5 rounded text-sm font-medium transition-colors ${activeTab === "itinerary" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground"}`}
-                    onClick={() => setActiveTab("itinerary")}
-                    data-testid={`tab-itinerary-${pkg.id}`}
-                  >
-                    Day-by-Day Itinerary
-                  </button>
-                  <button
-                    className={`px-4 py-1.5 rounded text-sm font-medium transition-colors ${activeTab === "inclusions" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground"}`}
-                    onClick={() => setActiveTab("inclusions")}
-                    data-testid={`tab-inclusions-${pkg.id}`}
-                  >
-                    Inclusions & Exclusions
-                  </button>
-                </div>
-
-                <AnimatePresence mode="wait">
-                  {activeTab === "itinerary" && (
-                    <motion.div
-                      key="itinerary"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <div className="relative">
-                        <div className="absolute left-5 top-0 bottom-0 w-px bg-border hidden sm:block" />
-                        <div className="space-y-6">
-                          {pkg.itinerary.map((day, i) => (
-                            <div key={i} className="sm:pl-16 relative" data-testid={`day-${pkg.id}-${i + 1}`}>
-                              <div className="hidden sm:flex absolute left-0 top-0 w-10 h-10 rounded-full bg-primary text-primary-foreground items-center justify-center text-xs font-bold shrink-0 text-center leading-tight">
-                                {typeof day.day === "number" ? day.day : "★"}
-                              </div>
-                              <div className="sm:hidden flex items-center gap-2 mb-2">
-                                <div className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-xs font-bold shrink-0">
-                                  {typeof day.day === "number" ? day.day : "★"}
-                                </div>
-                                <h4 className="font-serif font-bold text-base">{day.title}</h4>
-                              </div>
-                              <div className="hidden sm:block">
-                                <h4 className="font-serif font-bold text-base mb-1">{day.title}</h4>
-                              </div>
-                              <p className="text-sm text-muted-foreground leading-relaxed mt-1">{day.description}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {activeTab === "inclusions" && (
-                    <motion.div
-                      key="inclusions"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                        <div>
-                          <h4 className="font-serif font-bold text-base mb-4 flex items-center gap-2 text-green-700 dark:text-green-400">
-                            <CheckCircle2 className="w-5 h-5" /> What's Included
-                          </h4>
-                          <ul className="space-y-3">
-                            {pkg.inclusions.map((item, i) => (
-                              <li key={i} className="flex items-start gap-3 text-sm" data-testid={`inclusion-${pkg.id}-${i}`}>
-                                <CheckCircle2 className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
-                                <span>{item}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                        <div>
-                          <h4 className="font-serif font-bold text-base mb-4 flex items-center gap-2 text-destructive">
-                            <XCircle className="w-5 h-5" /> Not Included
-                          </h4>
-                          <ul className="space-y-3">
-                            {pkg.exclusions.map((item, i) => (
-                              <li key={i} className="flex items-start gap-3 text-sm">
-                                <XCircle className="w-4 h-4 text-destructive shrink-0 mt-0.5" />
-                                <span>{item}</span>
-                              </li>
-                            ))}
-                          </ul>
-                          <div className="mt-8 p-4 bg-primary/5 rounded-md border border-primary/10">
-                            <p className="text-sm font-semibold mb-2">Ready to book?</p>
-                            <p className="text-xs text-muted-foreground mb-3">Contact us for pricing and availability.</p>
-                            <div className="flex flex-col gap-2">
-                              <a href="tel:+254769784190" className="flex items-center gap-2 text-xs text-primary font-medium" data-testid={`link-phone-${pkg.id}`}>
-                                <Phone className="w-3.5 h-3.5" /> +254-769-784-190
-                              </a>
-                              <a href="mailto:pawsandtreks@gmail.com" className="flex items-center gap-2 text-xs text-primary font-medium" data-testid={`link-email-${pkg.id}`}>
-                                <MapPin className="w-3.5 h-3.5" /> pawsandtreks@gmail.com
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </Card>
-    </motion.div>
-  );
-}
-
-interface CategorySectionProps {
-  id: string;
-  icon: React.ReactNode;
-  label: string;
-  title: string;
-  subtitle: string;
-  packages: SafariPackage[];
-  bgClass: string;
-}
-
-function CategorySection({ id, icon, label, title, subtitle, packages: pkgs, bgClass }: CategorySectionProps) {
-  return (
-    <section id={id} className={`py-16 sm:py-20 ${bgClass}`} data-testid={`section-${id}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={stagger}
-          className="mb-12"
-        >
-          <motion.div variants={fadeInUp} className="flex items-center gap-3 mb-3">
-            <div className="w-10 h-10 bg-primary/10 rounded-md flex items-center justify-center text-primary">
-              {icon}
-            </div>
-            <p className="text-primary font-medium tracking-widest uppercase text-sm">{label}</p>
-          </motion.div>
-          <motion.h2 variants={fadeInUp} className="font-serif text-3xl sm:text-4xl font-bold mb-3">{title}</motion.h2>
-          <motion.p variants={fadeInUp} className="text-muted-foreground max-w-2xl text-base">{subtitle}</motion.p>
-        </motion.div>
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={stagger}
-          className="space-y-8"
-        >
-          {pkgs.map((pkg) => (
-            <PackageCard key={pkg.id} pkg={pkg} />
-          ))}
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-export default function Packages() {
-  useEffect(() => {
-    // Only scroll to top if there's no hash in the URL
-    if (!window.location.hash) {
-      window.scrollTo(0, 0);
-    }
-    document.title = "Safari Packages – Paws & Treks";
-  }, []);
-
-  return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-
-      {/* Hero */}
-      <section className="relative pt-20" data-testid="section-packages-hero">
-        <div className="relative h-64 sm:h-80 overflow-hidden">
-          <img src="/images/safari_vehicle.jpg" alt="Safari packages" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/30" />
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-            <motion.p
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-              className="text-amber-400 font-medium tracking-widest uppercase text-sm mb-3"
-            >
-              Choose Your Adventure
-            </motion.p>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
-              className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
-              data-testid="heading-packages-page"
-            >
-              Safari Packages
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-white/80 max-w-xl text-sm sm:text-base"
-            >
-              From budget camping to luxury private safaris and specialist adventures — there's a perfect package for every traveler.
-            </motion.p>
-          </div>
-        </div>
-      </section>
-
-      <NairobiFeaturedDestination />
-
-      {/* Category quick nav */}
-      <section className="bg-card border-b sticky top-16 sm:top-20 z-40" data-testid="section-category-nav">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex gap-1 overflow-x-auto py-3 scrollbar-hide">
-            {[
-              { id: "best-safari-deals", label: "Best Safari Deals" },
-              { id: "top-private-safaris", label: "Top Private Safaris" },
-              { id: "exciting-adventures", label: "Exciting Adventures" },
-              { id: "kenya-camping", label: "Kenya Camping" },
-            ].map((cat) => (
-              <a
-                key={cat.id}
-                href={`#${cat.id}`}
-                className="shrink-0 px-4 py-2 rounded-md text-sm font-medium text-foreground/70 hover-elevate transition-colors"
-                data-testid={`link-cat-${cat.id}`}
-              >
-                {cat.label}
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <CategorySection
-        id="best-safari-deals"
-        icon={<Star className="w-5 h-5" />}
-        label="Budget-Friendly"
-        title="Best Safari Deals"
-        subtitle="Affordable group safari adventures starting daily from Nairobi — perfect for first-time visitors and budget-conscious travelers who want to experience Kenya's finest wildlife."
-        packages={bestSafariDeals}
-        bgClass="bg-background"
-      />
-
-      <CategorySection
-        id="top-private-safaris"
-        icon={<Binoculars className="w-5 h-5" />}
-        label="Exclusive Experiences"
-        title="Top Private Safaris"
-        subtitle="Fully private 4×4 Land Cruiser safaris tailored entirely to your group — your vehicle, your pace, your experience. Ideal for families, couples, and groups seeking a personalised adventure."
-        packages={privateSafaris}
-        bgClass="bg-card"
-      />
-
-      <CategorySection
-        id="exciting-adventures"
-        icon={<Camera className="w-5 h-5" />}
-        label="Specialist Experiences"
-        title="Exciting Adventures"
-        subtitle="Beyond the classic game drive — specialist safari experiences for photography enthusiasts, balloon flight seekers, and dedicated bird watchers."
-        packages={excitingAdventures}
-        bgClass="bg-background"
-      />
-
-      <CategorySection
-        id="kenya-camping"
-        icon={<Wind className="w-5 h-5" />}
-        label="Nature & Camping"
-        title="Kenya Camping"
-        subtitle="Escape the city and reconnect with nature — forest camps, riverside retreats, and highland hideaways within easy reach of Nairobi. Perfect for weekend getaways."
-        packages={kenyaCamping}
-        bgClass="bg-card"
-      />
-
-      {/* Bottom CTA */}
-      <section className="relative py-20" data-testid="section-packages-cta">
-        <div className="absolute inset-0">
-          <img src="/images/amboseli.jpg" alt="Plan your safari" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-black/60" />
-        </div>
-        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
-            <motion.h2 variants={fadeInUp} className="font-serif text-3xl sm:text-4xl font-bold text-white mb-4">
-              Can't Find the Right Package?
-            </motion.h2>
-            <motion.p variants={fadeInUp} className="text-white/80 mb-6">
-              We create tailor-made safaris to fit your schedule, group size, and budget. Get in touch and we'll design your perfect safari.
-            </motion.p>
-            <motion.div variants={fadeInUp} className="flex flex-wrap justify-center gap-4">
-              <Link href="/#contact">
-                <Button size="lg" data-testid="button-cta-contact">
-                  Get in Touch <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              </Link>
-              <a href="https://wa.me/254769784190" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="outline" className="backdrop-blur-sm bg-white/10 text-white border-white/30" data-testid="button-cta-whatsapp">
-                  <MessageCircle className="w-4 h-4 mr-2" /> Chat on WhatsApp
-                </Button>
-              </a>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      <Footer />
-    </div>
-  );
+  return NextResponse.json(response, {
+    status: 200,
+    headers: {
+      "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
+    },
+  });
 }
