@@ -5,8 +5,7 @@ import Link from "next/link";
 import {
   ChevronDown, ChevronUp, Clock, CheckCircle2, XCircle,
   MapPin, ArrowRight, Menu, X, CalendarDays,
-  Star, Binoculars, Phone, MessageCircle, Camera, Wind,
-  Shield, Bird, Sunset
+  Star, Binoculars, Phone, MessageCircle, Camera, Wind
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -88,7 +87,7 @@ const bestSafariDeals: SafariPackage[] = [
     title: "4-Days Masai Mara / Lake Nakuru Camping Safari",
     duration: "4 Days / 3 Nights",
     days: 4,
-    image: "/images/lake_nakuru.jpg",
+    image: "/images/lake_nakuru.jpg", 
     tag: "Popular",
     overview:
       "Discover the Masai Mara National Reserve and Lake Nakuru National Park on a 4-day budget safari featuring daily game drives, abundant wildlife, and the chance to witness the Big Five along with iconic sights as the Great Mara Migration. Explore Lake Nakuru's rich habitats — home to flamingos, endangered rhinos, Rothschild giraffes and diverse birdlife.",
@@ -186,7 +185,7 @@ const bestSafariDeals: SafariPackage[] = [
     title: "7-Days Masai Mara / Lake Nakuru / Amboseli Camping",
     duration: "7 Days / 6 Nights",
     days: 7,
-    image: "/images/gallery_balloon.jpg",
+    image: "/gallery_rhino.jpg",
     tag: "Epic Journey",
     overview:
       "Embark on an epic budget adventure through Kenya's top wildlife reserves, beginning with the stunning Great Rift Valley, continuing to the Masai Mara in search of the Big Five, and lastly, Amboseli National Park at the foot of Mount Kilimanjaro — offering breathtaking mountain views and sightings of large elephant herds.",
@@ -253,7 +252,7 @@ const privateSafaris: SafariPackage[] = [
     title: "3-Days Masai Mara 4×4 Private Camping / Lodge Safari",
     duration: "3 Days / 2 Nights",
     days: 3,
-    image: "/images/safari_vehicle.jpg",
+    image: "images/wildebeast.jpg",
     tag: "Private Safari",
     overview:
       "A fully private 3-day safari to Masai Mara National Reserve in a dedicated 4×4 Land Cruiser. Enjoy personalised game drives, the chance to see the Big Five, and the flexibility to customise your experience including optional cultural visits to the Maasai village.",
@@ -293,7 +292,7 @@ const privateSafaris: SafariPackage[] = [
     title: "5-Days Nakuru / Naivasha / Masai Mara Private 4×4 Safari",
     duration: "5 Days / 4 Nights",
     days: 5,
-    image: "/images/lake_nakuru.jpg",
+    image: "/safari/nakuru-3.jpeg",
     tag: "Luxury Private",
     overview:
       "Absolute luxury adventure to Kenya's best game reserve Masai Mara National Reserve, down the Great Rift Valley to Lake Nakuru National Park — home to the rare white rhino species and bird paradise with the famous flamingos. Move next to neighbouring Lake Naivasha for a boat ride, hippo viewing, and a visit to Hell's Gate National Park and Crescent Island.",
@@ -346,7 +345,7 @@ const privateSafaris: SafariPackage[] = [
     title: "4-Days Masai Mara & Nakuru 4×4 Private Camping Safari",
     duration: "4 Days / 3 Nights",
     days: 4,
-    image: "/images/samburu.jpg",
+    image: "/safari/hippo-family-water.jpg",
     tag: "Private Safari",
     overview:
       "Discover the Masai Mara National Reserve and Lake Nakuru on a fully private 4×4 Land Cruiser Camping Safari. See the park's stunning Great Migration, enjoy bird watching, and take an optional visit to the Maasai village or a balloon safari.",
@@ -392,7 +391,7 @@ const privateSafaris: SafariPackage[] = [
     title: "Nairobi National Park – Day Trip",
     duration: "1 Day",
     days: 1,
-    image: "/safari/safari-25.jpeg",
+    image: "/safari/nairobi-national.webp",
     tag: "Day Trip",
     overview:
       "Experience the unique thrill of a wildlife safari just minutes from Kenya's capital city. Nairobi National Park is the only national park in the world within a capital city, home to lions, leopards, rhinos, buffaloes, giraffes, zebras and over 400 bird species — all set against the dramatic Nairobi skyline.",
@@ -529,7 +528,7 @@ const excitingAdventures: SafariPackage[] = [
     title: "Bird Watching Safari – Customisable to Preference",
     duration: "10 Days / 9 Nights",
     days: 10,
-    image: "/images/lake_nakuru.jpg",
+    image: "/safari/bird-watching.jpg",
     tag: "Birdwatching",
     overview:
       "A specialist bird watching safari through Kenya's most diverse avian habitats — Meru National Park, Samburu National Reserve, Lake Nakuru, Lake Baringo, and Lake Naivasha. Kenya is home to over 1,100 bird species, and this itinerary has been crafted to maximise sightings of the rarest and most spectacular. Fully customisable to your preferences.",
@@ -614,7 +613,7 @@ const kenyaCamping: SafariPackage[] = [
     title: "The All Natural Gatamaiyu Bush Camp",
     duration: "1–2 Days",
     days: 1,
-    image: "/images/mount_kenya.jpg",
+    image: "/safari/gatamaiyu-2.jpeg",
     tag: "Nature Escape",
     overview:
       "Nature lovers meet raw experience. For nature lovers, this is the closest you could be. Camp in the heart of Gatamaiyu forest, explore the falls, discover your own nature trail, enjoy bird photography, and experience the unforgettable thrill of true bush camping.",
@@ -678,7 +677,7 @@ const kenyaCamping: SafariPackage[] = [
     title: "The Aberdares Tented Bush Camp",
     duration: "2 Days / 1 Night",
     days: 2,
-    image: "/images/mount_kenya.jpg",
+    image: "/safari/safari-21.jpeg",
     tag: "Highland Camp",
     overview:
       "Camp at the foothills of the great Aberdares — a highland escape offering a rich blend of activities from tea factory visits and fly fishing to cycling tours and boat rides, all set within one of Kenya's most spectacular mountain ranges.",
@@ -711,7 +710,7 @@ const kenyaCamping: SafariPackage[] = [
     title: "Jangwani Sagana Lodge and Tented Camp",
     duration: "2 Days / 1 Night",
     days: 2,
-    image: "/images/amboseli.jpg",
+    image: "/testimonials/jangwa-2.jpeg",
     tag: "River Adventure",
     overview:
       "Head to Sagana in Nyeri County for a riverside adventure combining white-water rafting, photography, sightseeing, and a cosy overnight camp stay with music and storytelling around the bonfire.",
@@ -830,125 +829,6 @@ function Navbar() {
         </motion.div>
       )}
     </nav>
-  );
-}
-
-function NairobiFeaturedDestination() {
-  return (
-    <section className="relative bg-background" data-testid="section-nairobi-featured">
-      {/* Top label strip */}
-      <div className="bg-primary py-2.5 px-4 text-center">
-        <p className="text-primary-foreground text-xs font-semibold tracking-[0.2em] uppercase">
-          ★ Featured Destination — Kenya's Hidden Gem
-        </p>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
-          {/* Images block */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="relative"
-          >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
-              <img
-                src="/safari/nairobi.jpeg"
-                alt="Nairobi National Park"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-              <div className="absolute bottom-5 left-5">
-                <span className="inline-flex items-center gap-1.5 bg-amber-500 text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide shadow-lg">
-                  <MapPin className="w-3 h-3" /> Nairobi, Kenya
-                </span>
-              </div>
-            </div>
-
-            {/* Two supporting images */}
-            <div className="grid grid-cols-2 gap-3 mt-3">
-              <div className="rounded-xl overflow-hidden aspect-video shadow-md">
-                <img src="/safari/nairobi-2.jpeg" alt="Nairobi National Park wildlife" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-              </div>
-              <div className="rounded-xl overflow-hidden aspect-video shadow-md">
-                <img src="/safari/nairobi-3.jpeg" alt="Nairobi National Park skyline" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Content block */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="flex flex-col gap-6"
-          >
-            <div>
-              <p className="text-primary font-semibold tracking-widest uppercase text-xs mb-3 flex items-center gap-2">
-                <Sunset className="w-4 h-4" /> Day Trip from Nairobi
-              </p>
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4">
-                Nairobi<br />
-                <span className="text-primary">National Park</span>
-              </h2>
-              <p className="text-muted-foreground text-base leading-relaxed">
-                The only national park in the world inside a capital city. Just 7 km from Nairobi's CBD, you can be on a proper safari — watching lions and rhinos roam open savannah — with the city skyline as your backdrop. No passport required.
-              </p>
-            </div>
-
-            {/* Stats row */}
-            <div className="grid grid-cols-3 gap-4 py-5 border-y border-border">
-              <div className="text-center">
-                <p className="font-serif text-2xl font-bold text-primary">117</p>
-                <p className="text-xs text-muted-foreground mt-0.5">km² of wilderness</p>
-              </div>
-              <div className="text-center border-x border-border">
-                <p className="font-serif text-2xl font-bold text-primary">400+</p>
-                <p className="text-xs text-muted-foreground mt-0.5">bird species</p>
-              </div>
-              <div className="text-center">
-                <p className="font-serif text-2xl font-bold text-primary">Big 4</p>
-                <p className="text-xs text-muted-foreground mt-0.5">lion · leopard · rhino · buffalo</p>
-              </div>
-            </div>
-
-            {/* Highlights */}
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {[
-                { icon: <Shield className="w-4 h-4 text-amber-500" />, text: "Home to endangered black rhino" },
-                { icon: <Bird className="w-4 h-4 text-amber-500" />, text: "Over 400 recorded bird species" },
-                { icon: <Camera className="w-4 h-4 text-amber-500" />, text: "City skyline safari photography" },
-                { icon: <MapPin className="w-4 h-4 text-amber-500" />, text: "7 km from Nairobi city centre" },
-                { icon: <Star className="w-4 h-4 text-amber-500" />, text: "Hippo pools & scenic viewpoints" },
-                { icon: <CalendarDays className="w-4 h-4 text-amber-500" />, text: "Available as a full-day trip" },
-              ].map(({ icon, text }, i) => (
-                <li key={i} className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                  <span className="shrink-0 mt-0.5">{icon}</span>
-                  {text}
-                </li>
-              ))}
-            </ul>
-
-            {/* CTAs */}
-            <div className="flex flex-wrap gap-3 pt-1">
-              <a href="#nairobi-np-1d">
-                <Button size="lg" data-testid="button-nairobi-view-package">
-                  View Day Trip Package <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              </a>
-              <a href="https://wa.me/254769784190" target="_blank" rel="noopener noreferrer">
-                <Button size="lg" variant="outline" data-testid="button-nairobi-whatsapp">
-                  <MessageCircle className="w-4 h-4 mr-2" /> Enquire on WhatsApp
-                </Button>
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
   );
 }
 
@@ -1237,8 +1117,6 @@ export default function Packages() {
           </div>
         </div>
       </section>
-
-      <NairobiFeaturedDestination />
 
       {/* Category quick nav */}
       <section className="bg-card border-b sticky top-16 sm:top-20 z-40" data-testid="section-category-nav">

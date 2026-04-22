@@ -111,7 +111,7 @@ const packageCategories = [
     tag: "Great Value",
     color: "primary",
     anchor: "#best-safari-deals",
-    image: "/safari/nairobi.jpeg",
+    image: "/safari/mara.jpeg",
     highlights: ["3 & 4-day Masai Mara itineraries", "Big Five wildlife sightings", "Maasai village cultural visit", "Full board accommodation", "Airport transfers included", "Nairobi National Park day trip"],
   },
   {
@@ -127,7 +127,7 @@ const packageCategories = [
     tag: "Thrilling",
     color: "primary",
     anchor: "#exciting-adventures",
-    image: "/testimonials/jangwa-1.jpeg",
+    image: "/images/gallery_balloon.jpg",
     highlights: ["Hot air balloon safari over the Mara", "Bush dinner under the stars", "10-day photographic expedition", "Birdwatching across Kenya", "Cultural encounters & historic sites"],
   },
   {
@@ -552,28 +552,204 @@ function WhyUsSection() {
   );
 }
 
-function PackagesSection() {
-  const [active, setActive] = useState(0);
+function NairobiFeaturedSection() {
+  const images = [
+    { src: "/safari/nairobi.jpeg", alt: "Nairobi National Park – open savannah game drive" },
+    { src: "/safari/nairobi-2.jpeg", alt: "Nairobi National Park – wildlife with city skyline" },
+    { src: "/safari/nairobi-3.jpeg", alt: "Nairobi National Park – scenic landscape" },
+  ];
+
+  const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
-  const total = packageCategories.length;
 
   useEffect(() => {
     if (paused) return;
-    const timer = setInterval(() => {
-      setActive(prev => (prev + 1) % total);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [paused, total]);
+    const t = setInterval(() => setCurrent(p => (p + 1) % images.length), 4000);
+    return () => clearInterval(t);
+  }, [paused, images.length]);
 
-  const prev = () => setActive(p => (p - 1 + total) % total);
-  const next = () => setActive(p => (p + 1) % total);
-
-  const cat = packageCategories[active];
+  const prev = () => setCurrent(p => (p - 1 + images.length) % images.length);
+  const next = () => setCurrent(p => (p + 1) % images.length);
 
   return (
-    <section id="packages" className="py-12 sm:py-16 md:py-20 lg:py-28 bg-card overflow-hidden" data-testid="section-packages">
+    <section className="py-12 sm:py-16 md:py-20 lg:py-28 bg-card overflow-hidden" data-testid="section-nairobi-featured">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={stagger}
+          className="text-center mb-10 sm:mb-14"
+        >
+          <motion.p variants={fadeInUp} className="text-primary font-medium tracking-widest uppercase text-xs sm:text-sm mb-2 sm:mb-3">
+            Featured Destination
+          </motion.p>
+          <motion.h2 variants={fadeInUp} className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">
+            Nairobi National Park
+          </motion.h2>
+          <motion.p variants={fadeInUp} className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base md:text-lg">
+            The only national park in the world inside a capital city — just 7 km from Nairobi&apos;s CBD.
+          </motion.p>
+        </motion.div>
 
-      {/* Section header */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-14 items-center">
+          {/* ── Image slider ── */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+          >
+            <div
+              className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] cursor-grab active:cursor-grabbing"
+              onMouseEnter={() => setPaused(true)}
+              onMouseLeave={() => setPaused(false)}
+              data-testid="nairobi-slider"
+            >
+              {/* Slide track */}
+              <div
+                className="flex h-full transition-transform duration-700 ease-in-out"
+                style={{ transform: `translateX(-${current * 100}%)` }}
+              >
+                {images.map((img, i) => (
+                  <div key={i} className="w-full h-full shrink-0">
+                    <img
+                      src={img.src}
+                      alt={img.alt}
+                      className="w-full h-full object-cover"
+                      loading={i === 0 ? "eager" : "lazy"}
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+
+              {/* Location badge */}
+              <div className="absolute bottom-5 left-5">
+                <span className="inline-flex items-center gap-1.5 bg-amber-500 text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wide shadow-lg">
+                  <MapPin className="w-3 h-3" /> Nairobi, Kenya
+                </span>
+              </div>
+
+              {/* Counter */}
+              <div className="absolute top-4 right-4 bg-black/40 backdrop-blur-sm text-white text-xs font-medium px-2.5 py-1 rounded-full">
+                {current + 1} / {images.length}
+              </div>
+
+              {/* Prev / Next */}
+              <button
+                onClick={prev}
+                aria-label="Previous image"
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white flex items-center justify-center transition-colors"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={next}
+                aria-label="Next image"
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white flex items-center justify-center transition-colors"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Dot indicators */}
+            <div className="flex items-center justify-center gap-2.5 mt-4">
+              {images.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrent(i)}
+                  aria-label={`Go to image ${i + 1}`}
+                  className={`transition-all duration-300 rounded-full ${
+                    i === current
+                      ? "w-6 h-2.5 bg-primary"
+                      : "w-2.5 h-2.5 bg-muted-foreground/30 hover:bg-muted-foreground/60"
+                  }`}
+                />
+              ))}
+            </div>
+          </motion.div>
+
+          {/* ── Content ── */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="flex flex-col gap-6"
+          >
+            <div>
+              <p className="text-primary font-semibold tracking-widest uppercase text-xs mb-3">
+                Day Trip from Nairobi
+              </p>
+              <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold leading-tight mb-4">
+                Safari Minutes from<br />
+                <span className="text-primary">the City Centre</span>
+              </h3>
+              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+                Watch lions and rhinos roam open savannah with the Nairobi skyline as your backdrop. 
+                No long drives — this incredible park is right on the city&apos;s doorstep. Perfect for a full-day adventure.
+              </p>
+            </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-4 py-5 border-y border-border">
+              <div className="text-center">
+                <p className="font-serif text-2xl font-bold text-primary">117</p>
+                <p className="text-xs text-muted-foreground mt-0.5">km² wilderness</p>
+              </div>
+              <div className="text-center border-x border-border">
+                <p className="font-serif text-2xl font-bold text-primary">400+</p>
+                <p className="text-xs text-muted-foreground mt-0.5">bird species</p>
+              </div>
+              <div className="text-center">
+                <p className="font-serif text-2xl font-bold text-primary">Big 4</p>
+                <p className="text-xs text-muted-foreground mt-0.5">lion · leopard · rhino · buffalo</p>
+              </div>
+            </div>
+
+            {/* Highlights */}
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {[
+                "Home to endangered black rhino",
+                "Over 400 recorded bird species",
+                "City skyline safari photography",
+                "7 km from Nairobi city centre",
+                "Hippo pools & scenic viewpoints",
+                "Available as a full-day trip",
+              ].map((text, i) => (
+                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground" data-testid={`nairobi-highlight-${i}`}>
+                  <Star className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
+                  {text}
+                </li>
+              ))}
+            </ul>
+
+            {/* CTAs */}
+            <div className="flex flex-wrap gap-3 pt-1">
+              <Link href="/packages#nairobi-np-1d">
+                <Button size="lg" data-testid="button-nairobi-day-trip">
+                  View Day Trip Package <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+              </Link>
+              <a href="https://wa.me/254769784190" target="_blank" rel="noopener noreferrer">
+                <Button size="lg" variant="outline" data-testid="button-nairobi-whatsapp">
+                  <MessageCircle className="w-4 h-4 mr-2" /> Enquire on WhatsApp
+                </Button>
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PackagesSection() {
+  return (
+    <section id="packages" className="py-12 sm:py-16 md:py-20 lg:py-28 bg-background" data-testid="section-packages">
       <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <motion.div
           initial="hidden"
@@ -592,151 +768,72 @@ function PackagesSection() {
             Choose from four distinct safari collections — each tailored to a different style of adventure. All packages include expert guides and personalised service.
           </motion.p>
         </motion.div>
-      </div>
 
-      {/* Single large card carousel */}
-      <div className="max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-        <div
-          className="relative rounded-2xl overflow-hidden shadow-2xl bg-background border border-card-border"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-          data-testid={`card-package-cat-${active}`}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={stagger}
+          className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6"
         >
-          {/* Slide track — slides left on index change */}
-          <div
-            className="flex transition-transform duration-700 ease-in-out"
-            style={{ transform: `translateX(-${active * 100}%)` }}
-          >
-            {packageCategories.map((c, i) => (
-              <div key={i} className="w-full shrink-0 flex flex-col md:flex-row h-auto md:h-[412px]">
-
-                {/* ── Left: full-bleed image ── */}
-                <div className="relative w-full md:w-3/5 h-44 sm:h-52 md:h-full overflow-hidden">
+          {packageCategories.map((cat, i) => (
+            <motion.div key={i} variants={fadeInUp}>
+              <Card className="overflow-hidden border-card-border group" data-testid={`card-package-cat-${i}`}>
+                <div className="relative h-48 sm:h-56 overflow-hidden">
                   <img
-                    src={c.image}
-                    alt={c.name}
-                    className="w-full h-full object-cover"
+                    src={cat.image}
+                    alt={cat.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-black/20 md:to-black/40" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent md:hidden" />
-
-                  {/* Tag badge */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
                   <div className="absolute top-4 left-4">
-                    <span className={`text-xs font-bold px-3 py-1.5 rounded-full backdrop-blur-sm shadow ${
-                      c.color === "jungle-green"
+                    <span className={`text-xs font-bold px-3 py-1.5 rounded-full shadow ${
+                      cat.color === "jungle-green"
                         ? "bg-jungle-green text-white"
                         : "bg-amber-500 text-white"
                     }`}>
-                      {c.tag}
+                      {cat.tag}
                     </span>
                   </div>
-
-                  {/* Title overlay — mobile only */}
-                  <div className="absolute bottom-0 left-0 right-0 p-3 md:hidden">
-                    <h3 className="font-serif text-lg font-bold text-white drop-shadow-lg">{c.name}</h3>
+                  <div className="absolute bottom-4 left-4">
+                    <h3 className="font-serif text-xl font-bold text-white drop-shadow-lg">{cat.name}</h3>
                   </div>
                 </div>
 
-                {/* ── Right: details panel ── */}
-                <div className="w-full md:w-2/5 flex flex-col justify-between p-3 sm:p-4 bg-background overflow-hidden">
-                  {/* Title — desktop only */}
-                  <div>
-                    <h3 className="hidden md:block font-serif text-base font-bold mb-0.5 leading-snug">{c.name}</h3>
-                    <div className={`hidden md:inline-block text-xs font-semibold px-2 py-0.5 rounded-full mb-2 ${
-                      c.color === "jungle-green"
-                        ? "bg-jungle-green/10 text-jungle-green"
-                        : "bg-amber-500/10 text-amber-600"
-                    }`}>{c.tag}</div>
+                <div className="p-5">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2.5">
+                    What&apos;s included
+                  </p>
+                  <ul className="space-y-1.5 mb-5">
+                    {cat.highlights.map((h, j) => (
+                      <li key={j} className="flex items-start gap-2 text-sm">
+                        <Star className={`w-3.5 h-3.5 shrink-0 mt-0.5 ${
+                          cat.color === "jungle-green" ? "text-jungle-green" : "text-amber-500"
+                        }`} />
+                        <span className="text-muted-foreground leading-snug">{h}</span>
+                      </li>
+                    ))}
+                  </ul>
 
-                    <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1.5">What&apos;s included</p>
-                    <ul className="space-y-1 mb-3">
-                      {c.highlights.map((h, j) => (
-                        <li key={j} className="flex items-start gap-2 text-xs">
-                          <Star className={`w-3 h-3 shrink-0 mt-0.5 ${
-                            c.color === "jungle-green" ? "text-jungle-green" : "text-amber-500"
-                          }`} />
-                          <span className="text-foreground/80 leading-snug">{h}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Divider + CTAs */}
-                  <div>
-                    <div className="border-t border-border mb-3" />
-                    <div className="flex flex-col sm:flex-row gap-2">
-                      <Link href={`/packages${c.anchor}`} className="flex-1" data-testid={`button-view-cat-${i}`}>
-                        <Button variant="outline" size="sm" className="w-full">
-                          View Packages <ChevronRight className="w-3 h-3 ml-1" />
-                        </Button>
-                      </Link>
-                      <Link href="/book" className="flex-1" data-testid={`button-book-cat-${i}`}>
-                        <Button size="sm" className="w-full">
-                          Request a Quote
-                        </Button>
-                      </Link>
-                    </div>
+                  <div className="flex gap-2 border-t border-border pt-4">
+                    <Link href={`/packages${cat.anchor}`} className="flex-1" data-testid={`button-view-cat-${i}`}>
+                      <Button variant="outline" size="sm" className="w-full">
+                        View Packages <ChevronRight className="w-3 h-3 ml-1" />
+                      </Button>
+                    </Link>
+                    <Link href="/book" className="flex-1" data-testid={`button-book-cat-${i}`}>
+                      <Button size="sm" className="w-full">
+                        Request a Quote
+                      </Button>
+                    </Link>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Prev / Next arrows */}
-          <button
-            onClick={prev}
-            aria-label="Previous package"
-            className="absolute left-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white flex items-center justify-center transition-colors"
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
-            onClick={next}
-            aria-label="Next package"
-            className="absolute right-3 top-1/2 -translate-y-1/2 z-10 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white flex items-center justify-center transition-colors"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
-
-          {/* Auto-progress bar */}
-          {!paused && (
-            <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-black/10">
-              <div
-                key={active}
-                className="h-full bg-primary origin-left"
-                style={{ animation: "pkg-progress 5s linear forwards" }}
-              />
-            </div>
-          )}
-          <style>{`
-            @keyframes pkg-progress {
-              from { width: 0%; }
-              to   { width: 100%; }
-            }
-          `}</style>
-        </div>
-
-        {/* Dot indicators */}
-        <div className="flex items-center justify-center gap-2.5 mt-6">
-          {packageCategories.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setActive(i)}
-              aria-label={`Go to package ${i + 1}`}
-              className={`transition-all duration-300 rounded-full ${
-                i === active
-                  ? "w-6 h-2.5 bg-primary"
-                  : "w-2.5 h-2.5 bg-muted-foreground/30 hover:bg-muted-foreground/60"
-              }`}
-            />
+              </Card>
+            </motion.div>
           ))}
-        </div>
-      </div>
+        </motion.div>
 
-      {/* Bottom CTA */}
-      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -1256,6 +1353,7 @@ export default function Home() {
     <main className="min-h-screen">
       <Navbar />
       <HeroSection />
+      <NairobiFeaturedSection />
       <PackagesSection />
       <DestinationsSection />
       <WhyUsSection />
