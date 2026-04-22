@@ -1,37 +1,4 @@
 import { NextResponse } from "next/server";
-import { timingSafeEqual } from "crypto";
-
-// ─── Bearer Token Auth ─────────────────────────────────────────────────────────
-
-function unauthorized() {
-  return new NextResponse("Unauthorized", {
-    status: 401,
-    headers: { "WWW-Authenticate": 'Bearer realm="Paws & Treks API"' },
-  });
-}
-
-function verifyBearerToken(authHeader: string | null): boolean {
-  if (!authHeader?.startsWith("Bearer ")) return false;
-
-  const expectedToken = process.env.API_BEARER_TOKEN;
-  if (!expectedToken) {
-    // Token not configured — deny all access
-    return false;
-  }
-
-  const suppliedToken = authHeader.slice(7);
-
-  // Constant-time comparison to prevent timing attacks
-  try {
-    return timingSafeEqual(
-      Buffer.from(suppliedToken),
-      Buffer.from(expectedToken)
-    );
-  } catch {
-    // Buffers of different lengths throw — token doesn't match
-    return false;
-  }
-}
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -758,10 +725,7 @@ const kenyaCamping: SafariPackage[] = [
 
 // ─── Route Handler ─────────────────────────────────────────────────────────────
 
-export async function GET(request: Request) {
-  if (!verifyBearerToken(request.headers.get("authorization"))) {
-    return unauthorized();
-  }
+export async function GET() {
 
   const response = {
     meta: {
