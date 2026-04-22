@@ -554,6 +554,7 @@ function WhyUsSection() {
 
 function NairobiFeaturedSection() {
   const images = [
+    { src: "/safari/nairobi-national.webp", alt: "Nairobi National Park – wildlife with city skyline" },
     { src: "/safari/nairobi.jpeg", alt: "Nairobi National Park – open savannah game drive" },
     { src: "/safari/nairobi-2.jpeg", alt: "Nairobi National Park – wildlife with city skyline" },
     { src: "/safari/nairobi-3.jpeg", alt: "Nairobi National Park – scenic landscape" },
