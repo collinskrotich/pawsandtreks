@@ -31,6 +31,7 @@ interface SafariPackage {
   duration: string;
   days: number;
   image: string;
+  imageClass?: string;
   tag: string;
   overview: string;
   itinerary: DayItinerary[];
@@ -812,8 +813,8 @@ function PackageCard({ pkg }: { pkg: SafariPackage }) {
       <Card className="border-card-border overflow-visible" data-testid={`card-package-${pkg.id}`}>
         <div className="grid grid-cols-1 lg:grid-cols-5">
           <div className="lg:col-span-2 relative">
-            <div className="relative h-56 lg:h-full min-h-[280px] overflow-hidden rounded-t-lg lg:rounded-l-lg lg:rounded-tr-none">
-              <img src={pkg.image} alt={pkg.title} className="w-full h-full object-cover" />
+            <div className="relative h-56 lg:h-full min-h-[280px] lg:min-h-[340px] overflow-hidden rounded-t-lg lg:rounded-l-lg lg:rounded-tr-none bg-black/5">
+              <img src={pkg.image} alt={pkg.title} className={`w-full h-full object-contain object-center lg:object-cover ${pkg.imageClass ?? "lg:object-[center_35%]"}`} />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute top-4 left-4">
                 <Badge data-testid={`badge-tag-${pkg.id}`}>{pkg.tag}</Badge>
@@ -1114,7 +1115,7 @@ export default function Packages() {
         icon={<Star className="w-5 h-5" />}
         label="Budget-Friendly"
         title="Best Safari Deals"
-        subtitle="Affordable group safari adventures starting daily from Nairobi — perfect for first-time visitors and budget-conscious travelers who want to experience Kenya's finest wildlife."
+        subtitle="What's included: 4x4 Land Cruiser safaris with Masai Mara, Nakuru, Naivasha, Amboseli, and Nairobi itineraries."
         packages={bestSafariDeals}
         bgClass="bg-background"
       />
@@ -1124,7 +1125,7 @@ export default function Packages() {
         icon={<Binoculars className="w-5 h-5" />}
         label="Exclusive Experiences"
         title="Top Private Safaris"
-        subtitle="Fully private 4×4 Land Cruiser safaris tailored entirely to your group — your vehicle, your pace, your experience. Ideal for families, couples, and groups seeking a personalised adventure."
+        subtitle="Top private safaris include private 4x4 Land Cruiser experiences with Masai Mara, Nakuru, Naivasha, and Amboseli itineraries."
         packages={privateSafaris}
         bgClass="bg-card"
       />
@@ -1144,7 +1145,7 @@ export default function Packages() {
         icon={<Wind className="w-5 h-5" />}
         label="Nature & Camping"
         title="Kenya Camping"
-        subtitle="Escape the city and reconnect with nature — forest camps, riverside retreats, and highland hideaways within easy reach of Nairobi. Perfect for weekend getaways."
+        subtitle="Kenya camping includes Aberdares tea country, cycling lodge and camping, Oletepesi lodge and camping, Natural Gatamaiyu bush camp, trekking, and fishing."
         packages={kenyaCamping}
         bgClass="bg-card"
       />

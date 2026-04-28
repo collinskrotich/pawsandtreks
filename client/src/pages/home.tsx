@@ -100,14 +100,14 @@ const packageCategories = [
     tag: "Great Value",
     color: "primary",
     anchor: "#best-safari-deals",
-    highlights: ["3 & 4-day Masai Mara itineraries", "Big Five wildlife sightings", "Maasai village cultural visit", "Full board accommodation", "Airport transfers included"],
+    highlights: ["4x4 Land Cruiser safaris", "Masai Mara itineraries", "Nakuru itineraries", "Naivasha itineraries", "Amboseli itineraries", "Nairobi itineraries"],
   },
   {
     name: "Top Private Safaris",
     tag: "Exclusive",
     color: "jungle-green",
     anchor: "#top-private-safaris",
-    highlights: ["Private vehicle — just your group", "Flexible departure times", "Photographic & bird watching safaris", "Premium lodge stays", "Expert specialist guides"],
+    highlights: ["Private 4x4 Land Cruiser", "Masai Mara itineraries", "Nakuru itineraries", "Naivasha itineraries", "Amboseli itineraries"],
   },
   {
     name: "Exciting Adventures",
@@ -121,7 +121,7 @@ const packageCategories = [
     tag: "Nature Escapes",
     color: "jungle-green",
     anchor: "#kenya-camping",
-    highlights: ["Riverside & forest bush camps", "White-water rafting at Sagana", "Aberdares tea country cycling", "Maasai archery & village visits", "Bring your own food & drinks"],
+    highlights: ["Aberdares tea country", "Cycling lodge and camping", "Oletepesi lodge and camping", "Natural Gatamaiyu bush camp", "Trekking", "Fishing"],
   },
 ];
 

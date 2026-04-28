@@ -111,8 +111,9 @@ const packageCategories = [
     tag: "Great Value",
     color: "primary",
     anchor: "#best-safari-deals",
-    image: "/safari/mara.jpeg",
-    highlights: ["3 & 4-day Masai Mara itineraries", "Big Five wildlife sightings", "Maasai village cultural visit", "Full board accommodation", "Airport transfers included", "Nairobi National Park day trip"],
+    image: "/big-lion.jpg",
+    imageClass: "lg:object-[center_30%]",
+    highlights: ["4x4 Land Cruiser safaris", "Masai Mara itineraries", "Nakuru itineraries", "Naivasha itineraries", "Amboseli itineraries", "Nairobi itineraries"],
   },
   {
     name: "Top Private Safaris",
@@ -120,7 +121,8 @@ const packageCategories = [
     color: "jungle-green",
     anchor: "#top-private-safaris",
     image: "/safari/mara-5.jpeg",
-    highlights: ["Private vehicle — just your group", "Flexible departure times", "Photographic & bird watching safaris", "Premium lodge stays", "Expert specialist guides"],
+    imageClass: "lg:object-[center_22%]",
+    highlights: ["Private 4x4 Land Cruiser", "Masai Mara itineraries", "Nakuru itineraries", "Naivasha itineraries", "Amboseli itineraries"],
   },
   {
     name: "Exciting Adventures",
@@ -128,6 +130,7 @@ const packageCategories = [
     color: "primary",
     anchor: "#exciting-adventures",
     image: "/images/gallery_balloon.jpg",
+    imageClass: "lg:object-[center_45%]",
     highlights: ["Hot air balloon safari over the Mara", "Bush dinner under the stars", "10-day photographic expedition", "Birdwatching across Kenya", "Cultural encounters & historic sites"],
   },
   {
@@ -136,7 +139,8 @@ const packageCategories = [
     color: "jungle-green",
     anchor: "#kenya-camping",
     image: "/safari/jangwani-sagana-2.jpeg",
-    highlights: ["Riverside & forest bush camps", "White-water rafting at Sagana", "Aberdares tea country cycling", "Maasai archery & village visits", "Bring your own food & drinks"],
+    imageClass: "lg:object-[center_55%]",
+    highlights: ["Aberdares tea country", "Cycling lodge and camping", "Oletepesi lodge and camping", "Natural Gatamaiyu bush camp", "Trekking", "Fishing"],
   },
 ];
 
@@ -780,11 +784,11 @@ function PackagesSection() {
           {packageCategories.map((cat, i) => (
             <motion.div key={i} variants={fadeInUp}>
               <Card className="overflow-hidden border-card-border group" data-testid={`card-package-cat-${i}`}>
-                <div className="relative h-48 sm:h-56 overflow-hidden">
+                <div className="relative h-56 sm:h-64 md:h-72 overflow-hidden bg-stone-100">
                   <img
                     src={cat.image}
                     alt={cat.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className={`w-full h-full object-contain object-center lg:object-cover ${cat.imageClass} transition-transform duration-500 group-hover:scale-105`}
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent" />
