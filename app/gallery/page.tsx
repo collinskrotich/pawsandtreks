@@ -19,24 +19,36 @@ interface GalleryImage {
 }
 
 const allImages: GalleryImage[] = [
+  // Masai Mara
   { src: "/images/gallery_leopard.jpg", alt: "Leopard resting on a tree", location: "Masai Mara" },
   { src: "/images/gallery_giraffe.jpg", alt: "Giraffe at sunset", location: "Masai Mara" },
   { src: "/images/gallery_zebras.jpg", alt: "Zebra herd on the plains", location: "Masai Mara" },
-  { src: "/images/gallery_rhino.jpg", alt: "White rhinoceros grazing", location: "Lake Nakuru" },
   { src: "/images/gallery_balloon.jpg", alt: "Hot air balloon safari over the Mara", location: "Masai Mara" },
-  { src: "/images/safari_vehicle.jpg", alt: "4x4 safari vehicle on a game drive", location: "Amboseli" },
-  { src: "/images/gallery_lodge.jpg", alt: "Safari lodge at dusk", location: "More Photos" },
   { src: "/images/masai_mara.jpg", alt: "Masai Mara savannah", location: "Masai Mara" },
-  { src: "/images/amboseli.jpg", alt: "Amboseli National Park with Kilimanjaro", location: "Amboseli" },
-  { src: "/images/mount_kenya.jpg", alt: "Mount Kenya peaks", location: "Mount Kenya" },
+  { src: "/safari/mara.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
+  { src: "/safari/mara-2.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
+  { src: "/safari/mara-3.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
+  { src: "/safari/mara-4.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
+  { src: "/safari/mara-5.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
+  { src: "/safari/mara-6.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
+  { src: "/safari/mara-7.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
+  { src: "/safari/mara-8.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
+  { src: "/safari/mara-9.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
+  { src: "/safari/mara-10.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
+  { src: "/safari/mara-11.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
+  { src: "/safari/mara-12.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
+  // Lake Nakuru
+  { src: "/images/gallery_rhino.jpg", alt: "White rhinoceros grazing", location: "Lake Nakuru" },
   { src: "/images/lake_nakuru.jpg", alt: "Lake Nakuru with flamingoes", location: "Lake Nakuru" },
-  { src: "/images/tsavo.jpg", alt: "Tsavo wilderness landscape", location: "Tsavo" },
-  { src: "/images/samburu.jpg", alt: "Samburu National Reserve", location: "Samburu" },
-  // Gatamaiyu
-  { src: "/safari/gatamaiyu.jpeg", alt: "Gatamaiyu safari experience", location: "Gatamaiyu" },
-  { src: "/safari/gatamaiyu-2.jpeg", alt: "Gatamaiyu safari experience", location: "Gatamaiyu" },
-  { src: "/safari/gatamaiyu-3.jpeg", alt: "Gatamaiyu safari experience", location: "Gatamaiyu" },
-  { src: "/safari/gatamaiyu-4.jpeg", alt: "Gatamaiyu safari experience", location: "Gatamaiyu" },
+  { src: "/safari/nakuru.jpeg", alt: "Lake Nakuru area", location: "Lake Nakuru" },
+  { src: "/safari/nakuru-2.jpeg", alt: "Lake Nakuru area", location: "Lake Nakuru" },
+  { src: "/safari/nakuru-3.jpeg", alt: "Lake Nakuru area", location: "Lake Nakuru" },
+  { src: "/safari/bird-watching.jpg", alt: "Bird watching at Lake Nakuru", location: "Lake Nakuru" },
+  // Amboseli
+  { src: "/images/safari_vehicle.jpg", alt: "4x4 safari vehicle on a game drive", location: "Amboseli" },
+  { src: "/images/amboseli.jpg", alt: "Amboseli National Park with Kilimanjaro", location: "Amboseli" },
+  { src: "/safari/amboseli.jpeg", alt: "Amboseli national park", location: "Amboseli" },
+  { src: "/safari/amboseli-2.jpeg", alt: "Amboseli national park", location: "Amboseli" },
   // Aberdares
   { src: "/safari/aberdares.jpeg", alt: "Aberdares forest area", location: "Aberdares" },
   { src: "/safari/aberdares-2.jpeg", alt: "Aberdares forest area", location: "Aberdares" },
@@ -45,8 +57,28 @@ const allImages: GalleryImage[] = [
   { src: "/safari/aberdares-5.jpeg", alt: "Aberdares forest area", location: "Aberdares" },
   { src: "/safari/aberdares-6.jpeg", alt: "Aberdares forest area", location: "Aberdares" },
   { src: "/safari/aberdares-7.jpeg", alt: "Aberdares forest area", location: "Aberdares" },
-  // Amboseli
-  { src: "/safari/amboseli.jpeg", alt: "Amboseli national park", location: "Amboseli" },
+  { src: "/safari/aberdares-8.jpeg", alt: "Aberdares forest area", location: "Aberdares" },
+  { src: "/safari/aberdares-9.jpeg", alt: "Aberdares forest area", location: "Aberdares" },
+  { src: "/safari/aberdares-10.jpeg", alt: "Aberdares forest area", location: "Aberdares" },
+  { src: "/safari/aberdares-11.jpeg", alt: "Aberdares forest area", location: "Aberdares" },
+  { src: "/safari/aberdares-12.jpeg", alt: "Aberdares forest area", location: "Aberdares" },
+  { src: "/safari/aberdares-13.jpeg", alt: "Aberdares forest area", location: "Aberdares" },
+  { src: "/safari/aberdares-14.jpeg", alt: "Aberdares forest area", location: "Aberdares" },
+  // Gatamaiyu
+  { src: "/safari/gatamaiyu.jpeg", alt: "Gatamaiyu bush camp safari", location: "Gatamaiyu" },
+  { src: "/safari/gatamaiyu-2.jpeg", alt: "Gatamaiyu bush camp safari", location: "Gatamaiyu" },
+  { src: "/safari/gatamaiyu-3.jpeg", alt: "Gatamaiyu bush camp safari", location: "Gatamaiyu" },
+  { src: "/safari/gatamaiyu-4.jpeg", alt: "Gatamaiyu bush camp safari", location: "Gatamaiyu" },
+  // Nairobi
+  { src: "/safari/nairobi.jpeg", alt: "Nairobi national park", location: "Nairobi" },
+  { src: "/safari/nairobi-2.jpeg", alt: "Nairobi national park", location: "Nairobi" },
+  { src: "/safari/nairobi-3.jpeg", alt: "Nairobi national park", location: "Nairobi" },
+  { src: "/safari/nairobi-4.jpeg", alt: "Nairobi national park", location: "Nairobi" },
+  { src: "/safari/nairobi-5.jpeg", alt: "Nairobi national park", location: "Nairobi" },
+  { src: "/safari/nairobi-6.jpeg", alt: "Nairobi national park", location: "Nairobi" },
+  // Naivasha
+  { src: "/safari/naivasha.jpeg", alt: "Lake Naivasha scenery", location: "Naivasha" },
+  { src: "/safari/hippo-family-water.jpg", alt: "Hippo family at Lake Naivasha", location: "Naivasha" },
   // Jangwani-Sagana
   { src: "/safari/jangwani-sagana.jpeg", alt: "Jangwani Sagana scenic area", location: "Jangwani-Sagana" },
   { src: "/safari/jangwani-sagana-2.jpeg", alt: "Jangwani Sagana scenic area", location: "Jangwani-Sagana" },
@@ -55,48 +87,17 @@ const allImages: GalleryImage[] = [
   { src: "/testimonials/jangwa-2.jpeg", alt: "Jangwani Sagana outdoor activities", location: "Jangwani-Sagana" },
   { src: "/testimonials/jangwa-3.jpeg", alt: "Jangwani Sagana nature scenery", location: "Jangwani-Sagana" },
   { src: "/testimonials/jangwa-4.jpeg", alt: "Jangwani Sagana wildlife area", location: "Jangwani-Sagana" },
-  // Mara
-  { src: "/safari/mara.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
-  { src: "/safari/mara-2.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
-  { src: "/safari/mara-3.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
-  { src: "/safari/mara-4.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
-  { src: "/safari/mara-5.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
-  // Nairobi
-  { src: "/safari/nairobi.jpeg", alt: "Nairobi national park", location: "Nairobi" },
-  { src: "/safari/nairobi-2.jpeg", alt: "Nairobi national park", location: "Nairobi" },
-  { src: "/safari/nairobi-3.jpeg", alt: "Nairobi national park", location: "Nairobi" },
-  // Nakuru
-  { src: "/safari/nakuru.jpeg", alt: "Lake Nakuru area", location: "Lake Nakuru" },
-  { src: "/safari/nakuru-2.jpeg", alt: "Lake Nakuru area", location: "Lake Nakuru" },
-  { src: "/safari/nakuru-3.jpeg", alt: "Lake Nakuru area", location: "Lake Nakuru" },
   // The Stone House
   { src: "/safari/the-stone-house.jpeg", alt: "The Stone House accommodation", location: "The Stone House" },
   { src: "/safari/the-stone-house-2.jpeg", alt: "The Stone House accommodation", location: "The Stone House" },
   { src: "/safari/the-stone-house-3.jpeg", alt: "The Stone House accommodation", location: "The Stone House" },
-  // More Photos
-  { src: "/safari/safari.jpeg", alt: "Safari experience", location: "More Photos" },
-  { src: "/safari/safari-2.jpeg", alt: "Safari experience", location: "More Photos" },
-  { src: "/safari/safari-3.jpeg", alt: "Safari experience", location: "More Photos" },
-  { src: "/safari/safari-4.jpeg", alt: "Safari experience", location: "More Photos" },
-  { src: "/safari/safari-5.jpeg", alt: "Safari experience", location: "More Photos" },
-  { src: "/safari/safari-6.jpeg", alt: "Safari experience", location: "More Photos" },
-  { src: "/safari/safari-7.jpeg", alt: "Safari experience", location: "More Photos" },
-  { src: "/safari/safari-8.jpeg", alt: "Safari experience", location: "More Photos" },
-  { src: "/safari/safari-9.jpeg", alt: "Safari experience", location: "More Photos" },
-  { src: "/safari/safari-10.jpeg", alt: "Safari experience", location: "More Photos" },
-  { src: "/safari/safari-11.jpeg", alt: "Safari experience", location: "More Photos" },
-  { src: "/safari/safari-12.jpeg", alt: "Safari experience", location: "More Photos" },
-  { src: "/safari/safari-13.jpeg", alt: "Safari experience", location: "More Photos" },
-  { src: "/safari/safari-17.jpeg", alt: "Safari experience", location: "More Photos" },
-  { src: "/safari/safari-18.jpeg", alt: "Safari experience", location: "More Photos" },
-  { src: "/safari/safari-19.jpeg", alt: "Safari experience", location: "More Photos" },
-  { src: "/safari/safari-21.jpeg", alt: "Safari experience", location: "More Photos" },
-  { src: "/safari/safari-24.jpeg", alt: "Safari experience", location: "More Photos" },
-  { src: "/safari/safari-25.jpeg", alt: "Safari experience", location: "More Photos" },
-  { src: "/safari/safari-26.jpeg", alt: "Safari experience", location: "More Photos" },
+  // Tsavo
+  { src: "/images/tsavo.jpg", alt: "Tsavo wilderness landscape", location: "Tsavo" },
+  // Samburu
+  { src: "/images/samburu.jpg", alt: "Samburu National Reserve", location: "Samburu" },
 ];
 
-const categories = ["All", "Masai Mara", "Lake Nakuru", "Amboseli", "Tsavo", "Samburu", "Mount Kenya", "Gatamaiyu", "Aberdares", "Jangwani-Sagana", "Nairobi", "The Stone House", "More Photos"];
+const categories = ["All", "Masai Mara", "Lake Nakuru", "Amboseli", "Aberdares", "Gatamaiyu", "Nairobi", "Naivasha", "Jangwani-Sagana", "The Stone House", "Tsavo", "Samburu"];
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -178,7 +179,7 @@ export default function Gallery() {
 
       <section className="relative pt-20" data-testid="section-gallery-hero">
         <div className="relative h-60 sm:h-72 overflow-hidden">
-          <img src="/safari/safari-10.jpeg" alt="Safari gallery" className="w-full h-full object-cover" />
+          <img src="/safari/mara.jpeg" alt="Safari gallery" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/25" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
             <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="text-amber-400 font-medium tracking-widest uppercase text-sm mb-3">

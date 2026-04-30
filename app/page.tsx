@@ -93,7 +93,7 @@ const destinations = [
   { name: "Amboseli", image: "/images/amboseli.jpg", tag: "Iconic Views" },
   { name: "Tsavo East & West", image: "/images/tsavo.jpg", tag: "Vast Wilderness" },
   { name: "Lake Nakuru", image: "/images/lake_nakuru.jpg", tag: "Birdwatching" },
-  { name: "Samburu", image: "/safari/safari-26.jpeg", tag: "Unique Wildlife" },
+  { name: "Samburu", image: "/safari/gatamaiyu.jpeg", tag: "Unique Wildlife" },
   { name: "Nairobi National Park", image: "/safari/nairobi.jpeg", tag: "Day Trip" },
   { name: "Nairobi City Culture Tour", image: "/nairobi-culture-tour.jpg", tag: "Culture" },
   { name: "Naivasha", image: "/naivasha.jpg", tag: "Lakes & Relaxation" },
@@ -148,10 +148,10 @@ const packageCategories = [
 
 const galleryImages = [
   { src: "/safari/mara-3.jpeg", alt: "Masai Mara wildlife safari" },
-  { src: "/safari/safari-10.jpeg", alt: "Kenya safari adventure" },
+  { src: "/safari/nairobi.jpeg", alt: "Nairobi National Park safari" },
   { src: "/safari/amboseli.jpeg", alt: "Amboseli elephants with Kilimanjaro" },
   { src: "/safari/nakuru.jpeg", alt: "Lake Nakuru flamingos" },
-  { src: "/safari/safari-26.jpeg", alt: "Samburu wildlife reserve" },
+  { src: "/safari/gatamaiyu.jpeg", alt: "Gatamaiyu wildlife reserve" },
   { src: "/safari/jangwani-sagana.jpeg", alt: "Jangwani Sagana river adventure" },
   { src: "/safari/aberdares.jpeg", alt: "Aberdares forest landscape" },
   { src: "/safari/mara-4.jpeg", alt: "Mara sunset safari drive" },
