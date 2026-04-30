@@ -95,6 +95,8 @@ const destinations = [
   { name: "Lake Nakuru", image: "/images/lake_nakuru.jpg", tag: "Birdwatching" },
   { name: "Samburu", image: "/safari/safari-26.jpeg", tag: "Unique Wildlife" },
   { name: "Nairobi National Park", image: "/safari/nairobi.jpeg", tag: "Day Trip" },
+  { name: "Nairobi City Culture Tour", image: "/nairobi-culture-tour.jpg", tag: "Culture" },
+  { name: "Naivasha", image: "/naivasha.jpg", tag: "Lakes & Relaxation" },
 ];
 
 const whyUs = [
@@ -140,7 +142,7 @@ const packageCategories = [
     anchor: "#kenya-camping",
     image: "/safari/jangwani-sagana-2.jpeg",
     imageClass: "lg:object-[center_55%]",
-    highlights: ["Aberdares tea country", "Cycling lodge and camping", "Oletepesi lodge and camping", "Natural Gatamaiyu bush camp", "Trekking", "Fishing"],
+    highlights: ["Aberdares tea country", "Cycling lodge and camping", "The Stone House Oletepesi lodge and camping", "Natural Gatamaiyu bush camp", "Trekking", "Fishing", "Jangwani Sagana river rafting"],
   },
 ];
 
@@ -236,14 +238,37 @@ function Navbar() {
           <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => {
               const isInternal = link.href.startsWith("/");
+              const isHash = link.href.startsWith("#");
               const className = `px-3 py-2 text-sm font-medium rounded-md transition-colors hover-elevate ${
                 scrolled ? "text-foreground/70" : "text-white/80"
               }`;
-              return isInternal ? (
-                <Link key={link.label} href={link.href} className={className} data-testid={`link-nav-${link.label.toLowerCase()}`}>
-                  {link.label}
-                </Link>
-              ) : (
+              if (isInternal) {
+                return (
+                  <Link key={link.label} href={link.href} className={className} data-testid={`link-nav-${link.label.toLowerCase()}`}>
+                    {link.label}
+                  </Link>
+                );
+              }
+              if (isHash) {
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className={className}
+                    data-testid={`link-nav-${link.label.toLowerCase()}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const element = document.querySelector(link.href);
+                      if (element) {
+                        element.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }}
+                  >
+                    {link.label}
+                  </a>
+                );
+              }
+              return (
                 <a key={link.label} href={link.href} className={className} data-testid={`link-nav-${link.label.toLowerCase()}`}>
                   {link.label}
                 </a>
@@ -279,12 +304,36 @@ function Navbar() {
           <div className="px-4 py-4 space-y-1">
             {navLinks.map((link) => {
               const isInternal = link.href.startsWith("/");
+              const isHash = link.href.startsWith("#");
               const className = "block px-4 py-3 text-sm font-medium text-foreground/80 rounded-md hover-elevate";
-              return isInternal ? (
-                <Link key={link.label} href={link.href} className={className} onClick={() => setIsOpen(false)} data-testid={`link-mobile-${link.label.toLowerCase()}`}>
-                  {link.label}
-                </Link>
-              ) : (
+              if (isInternal) {
+                return (
+                  <Link key={link.label} href={link.href} className={className} onClick={() => setIsOpen(false)} data-testid={`link-mobile-${link.label.toLowerCase()}`}>
+                    {link.label}
+                  </Link>
+                );
+              }
+              if (isHash) {
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className={className}
+                    data-testid={`link-mobile-${link.label.toLowerCase()}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const element = document.querySelector(link.href);
+                      if (element) {
+                        element.scrollIntoView({ behavior: "smooth" });
+                      }
+                      setIsOpen(false);
+                    }}
+                  >
+                    {link.label}
+                  </a>
+                );
+              }
+              return (
                 <a key={link.label} href={link.href} className={className} onClick={() => setIsOpen(false)} data-testid={`link-mobile-${link.label.toLowerCase()}`}>
                   {link.label}
                 </a>
@@ -1355,13 +1404,14 @@ function ContactSection() {
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen scroll-smooth" style={{ scrollPaddingTop: "6rem" }}>
       <Navbar />
       <HeroSection />
-      <NairobiFeaturedSection />
-      <PackagesSection />
+      <SafarisSection />
       <DestinationsSection />
       <WhyUsSection />
+      <NairobiFeaturedSection />
+      <PackagesSection />
       <TestimonialsSection />
       <GallerySection />
       <BlogSection />

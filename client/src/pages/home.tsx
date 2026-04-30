@@ -84,6 +84,8 @@ const destinations = [
   { name: "Lake Nakuru", image: "/images/lake_nakuru.jpg", tag: "Birdwatching" },
   { name: "Samburu", image: "/images/samburu.jpg", tag: "Unique Wildlife" },
   { name: "Mount Kenya", image: "/images/mount_kenya.jpg", tag: "Adventure" },
+  { name: "Nairobi City Culture Tour", image: "/nairobi-culture-tour.jpg", tag: "Culture" },
+  { name: "Naivasha", image: "/naivasha.jpg", tag: "Lakes & Relaxation" },
 ];
 
 const whyUs = [
@@ -215,20 +217,43 @@ function Navbar() {
           </a>
 
           <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className={`px-3 py-2 text-sm font-medium rounded-md transition-colors hover-elevate ${
-                  scrolled
-                    ? "text-foreground/70"
-                    : "text-white/80"
-                }`}
-                data-testid={`link-nav-${link.label.toLowerCase()}`}
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isHash = link.href.startsWith("#");
+              const className = `px-3 py-2 text-sm font-medium rounded-md transition-colors hover-elevate ${
+                scrolled
+                  ? "text-foreground/70"
+                  : "text-white/80"
+              }`;
+              if (isHash) {
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className={className}
+                    data-testid={`link-nav-${link.label.toLowerCase()}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const element = document.querySelector(link.href);
+                      if (element) {
+                        element.scrollIntoView({ behavior: "smooth" });
+                      }
+                    }}
+                  >
+                    {link.label}
+                  </a>
+                );
+              }
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className={className}
+                  data-testid={`link-nav-${link.label.toLowerCase()}`}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
           </div>
 
           <div className="flex items-center gap-3">
@@ -257,17 +282,40 @@ function Navbar() {
           className="lg:hidden bg-background/98 backdrop-blur-md border-b"
         >
           <div className="px-4 py-4 space-y-1">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="block px-4 py-3 text-sm font-medium text-foreground/80 rounded-md hover-elevate"
-                onClick={() => setIsOpen(false)}
-                data-testid={`link-mobile-${link.label.toLowerCase()}`}
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isHash = link.href.startsWith("#");
+              if (isHash) {
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="block px-4 py-3 text-sm font-medium text-foreground/80 rounded-md hover-elevate"
+                    data-testid={`link-mobile-${link.label.toLowerCase()}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const element = document.querySelector(link.href);
+                      if (element) {
+                        element.scrollIntoView({ behavior: "smooth" });
+                      }
+                      setIsOpen(false);
+                    }}
+                  >
+                    {link.label}
+                  </a>
+                );
+              }
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="block px-4 py-3 text-sm font-medium text-foreground/80 rounded-md hover-elevate"
+                  onClick={() => setIsOpen(false)}
+                  data-testid={`link-mobile-${link.label.toLowerCase()}`}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
           </div>
         </motion.div>
       )}
@@ -1207,7 +1255,7 @@ function Footer() {
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen scroll-smooth" style={{ scrollPaddingTop: "6rem" }}>
       <Navbar />
       <HeroSection />
       <SafarisSection />
