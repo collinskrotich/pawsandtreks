@@ -678,7 +678,7 @@ const kenyaCamping: SafariPackage[] = [
     title: "The Aberdares Tented Bush Camp",
     duration: "2 Days / 1 Night",
     days: 2,
-    image: "/safari/safari-21.jpeg",
+    image: "/safari/aberdares-6.jpeg",
     tag: "Highland Camp",
     overview:
       "Camp at the foothills of the great Aberdares — a highland escape offering a rich blend of activities from tea factory visits and fly fishing to cycling tours and boat rides, all set within one of Kenya's most spectacular mountain ranges.",

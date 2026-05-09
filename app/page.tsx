@@ -36,9 +36,9 @@ const navLinks = [
   { label: "Home", href: "#home" },
   { label: "Safaris", href: "#safaris" },
   { label: "Destinations", href: "#destinations" },
+  { label: "About", href: "#about" },
   { label: "Packages", href: "/packages" },
   { label: "Gallery", href: "/gallery" },
-  { label: "About", href: "#about" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "#contact" },
 ];
@@ -81,7 +81,7 @@ const safariExperiences = [
   },
   {
     title: "Nairobi National Park Tour",
-    image: "/safari/safari-25.jpeg",
+    image: "/safari/nairobi-3.jpeg",
     duration: "1 Day",
     price: "$200",
     description: "Experience Kenya's wildlife close to the city with lions, giraffes, zebras, and rhinos in their natural habitat."
@@ -93,10 +93,11 @@ const destinations = [
   { name: "Amboseli", image: "/images/amboseli.jpg", tag: "Iconic Views" },
   { name: "Tsavo East & West", image: "/images/tsavo.jpg", tag: "Vast Wilderness" },
   { name: "Lake Nakuru", image: "/images/lake_nakuru.jpg", tag: "Birdwatching" },
-  { name: "Samburu", image: "/safari/gatamaiyu.jpeg", tag: "Unique Wildlife" },
+  { name: "Aberdares", image: "/safari/gatamaiyu.jpeg", tag: "Green Plantations" },
   { name: "Nairobi National Park", image: "/safari/nairobi.jpeg", tag: "Day Trip" },
   { name: "Nairobi City Culture Tour", image: "/nairobi-culture-tour.jpg", tag: "Culture" },
   { name: "Naivasha", image: "/naivasha.jpg", tag: "Lakes & Relaxation" },
+  { name: "Kenyan Coast", image: "/kenyan-coast.jpg", tag: "Coastal Tours" },
 ];
 
 const whyUs = [
@@ -1407,10 +1408,10 @@ export default function Home() {
     <main className="min-h-screen scroll-smooth" style={{ scrollPaddingTop: "6rem" }}>
       <Navbar />
       <HeroSection />
+      <NairobiFeaturedSection />
       <SafarisSection />
       <DestinationsSection />
       <WhyUsSection />
-      <NairobiFeaturedSection />
       <PackagesSection />
       <TestimonialsSection />
       <GallerySection />
