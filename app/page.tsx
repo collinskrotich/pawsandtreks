@@ -106,6 +106,7 @@ const whyUs = [
   { icon: TreePine, title: "Eco Tourism", desc: "We practice responsible tourism that protects wildlife and supports local communities." },
   { icon: Tent, title: "Luxury & Budget Options", desc: "From luxury lodges to comfortable camps, we have options for every budget." },
   { icon: Shield, title: "24/7 Guest Support", desc: "Round-the-clock support throughout your safari for complete peace of mind." },
+  { icon: Bird, title: "Authentic Wildlife Encounters", desc: "Small groups and off-the-beaten-path routes mean closer, more intimate encounters with Kenya's incredible wildlife." },
 ];
 
 const packageCategories = [
