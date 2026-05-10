@@ -541,7 +541,7 @@ function DestinationsSection() {
                   <img
                     src={dest.image}
                     alt={`${dest.name} - ${dest.tag} in Kenya`}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
@@ -1410,10 +1410,10 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <NairobiFeaturedSection />
+      <PackagesSection />
       <SafarisSection />
       <DestinationsSection />
       <WhyUsSection />
-      <PackagesSection />
       <TestimonialsSection />
       <GallerySection />
       <BlogSection />
