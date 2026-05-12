@@ -37,6 +37,7 @@ const allImages: GalleryImage[] = [
   { src: "/safari/mara-10.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
   { src: "/safari/mara-11.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
   { src: "/safari/mara-12.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
+  { src: "/new-images/Mara.jpeg", alt: "Mara wildlife safari", location: "Masai Mara" },
   // Lake Nakuru
   { src: "/images/gallery_rhino.jpg", alt: "White rhinoceros grazing", location: "Lake Nakuru" },
   { src: "/images/lake_nakuru.jpg", alt: "Lake Nakuru with flamingoes", location: "Lake Nakuru" },
@@ -49,6 +50,7 @@ const allImages: GalleryImage[] = [
   { src: "/images/amboseli.jpg", alt: "Amboseli National Park with Kilimanjaro", location: "Amboseli" },
   { src: "/safari/amboseli.jpeg", alt: "Amboseli national park", location: "Amboseli" },
   { src: "/safari/amboseli-2.jpeg", alt: "Amboseli national park", location: "Amboseli" },
+  { src: "/new-images/Amboseli.jpeg", alt: "Amboseli national park", location: "Amboseli" },
   // Aberdares
   { src: "/safari/aberdares.jpeg", alt: "Aberdares forest area", location: "Aberdares" },
   { src: "/safari/aberdares-2.jpeg", alt: "Aberdares forest area", location: "Aberdares" },
@@ -64,6 +66,7 @@ const allImages: GalleryImage[] = [
   { src: "/safari/aberdares-12.jpeg", alt: "Aberdares forest area", location: "Aberdares" },
   { src: "/safari/aberdares-13.jpeg", alt: "Aberdares forest area", location: "Aberdares" },
   { src: "/safari/aberdares-14.jpeg", alt: "Aberdares forest area", location: "Aberdares" },
+  { src: "/new-images/Aberdares.jpeg", alt: "Aberdares forest area", location: "Aberdares" },
   // Gatamaiyu
   { src: "/safari/gatamaiyu.jpeg", alt: "Gatamaiyu bush camp safari", location: "Gatamaiyu" },
   { src: "/safari/gatamaiyu-2.jpeg", alt: "Gatamaiyu bush camp safari", location: "Gatamaiyu" },
@@ -76,6 +79,7 @@ const allImages: GalleryImage[] = [
   { src: "/safari/nairobi-4.jpeg", alt: "Nairobi national park", location: "Nairobi" },
   { src: "/safari/nairobi-5.jpeg", alt: "Nairobi national park", location: "Nairobi" },
   { src: "/safari/nairobi-6.jpeg", alt: "Nairobi national park", location: "Nairobi" },
+  { src: "/new-images/Nairobi.jpeg", alt: "Nairobi national park", location: "Nairobi" },
   // Naivasha
   { src: "/safari/naivasha.jpeg", alt: "Lake Naivasha scenery", location: "Naivasha" },
   { src: "/safari/hippo-family-water.jpg", alt: "Hippo family at Lake Naivasha", location: "Naivasha" },
@@ -87,6 +91,10 @@ const allImages: GalleryImage[] = [
   { src: "/testimonials/jangwa-2.jpeg", alt: "Jangwani Sagana outdoor activities", location: "Jangwani-Sagana" },
   { src: "/testimonials/jangwa-3.jpeg", alt: "Jangwani Sagana nature scenery", location: "Jangwani-Sagana" },
   { src: "/testimonials/jangwa-4.jpeg", alt: "Jangwani Sagana wildlife area", location: "Jangwani-Sagana" },
+  { src: "/new-images/Jangwani.jpeg", alt: "Jangwani Sagana scenic area", location: "Jangwani-Sagana" },
+  { src: "/new-images/Jangwani-2.jpeg", alt: "Jangwani Sagana scenic area", location: "Jangwani-Sagana" },
+  { src: "/new-images/Jangwani-3.jpeg", alt: "Jangwani Sagana scenic area", location: "Jangwani-Sagana" },
+  { src: "/new-images/Jangwani-4.jpeg", alt: "Jangwani Sagana scenic area", location: "Jangwani-Sagana" },
   // The Stone House
   { src: "/safari/the-stone-house.jpeg", alt: "The Stone House accommodation", location: "The Stone House" },
   { src: "/safari/the-stone-house-2.jpeg", alt: "The Stone House accommodation", location: "The Stone House" },
