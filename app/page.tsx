@@ -1378,9 +1378,11 @@ function ContactSection() {
                   <MessageCircle className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm sm:text-base mb-1">WhatsApp</h4>
-                  <a href="https://wa.me/254769784190" target="_blank" rel="noopener noreferrer" className="text-primary text-xs sm:text-sm font-medium" data-testid="link-whatsapp">+254-769-784-190</a>
-                  <p className="text-muted-foreground text-xs sm:text-sm">Quick responses, 24/7</p>
+                  <h4 className="font-bold text-sm sm:text-base mb-1">Join Our Communities</h4>
+                  <div className="space-y-1">
+                    <a href="https://whatsapp.com/channel/0029Vb8HVMJ2v1IomDoRAe0l" target="_blank" rel="noopener noreferrer" className="block text-xs sm:text-sm text-primary font-medium hover:underline">WhatsApp Channel</a>
+                    <a href="https://www.facebook.com/share/1E3X3tqTHW/" target="_blank" rel="noopener noreferrer" className="block text-xs sm:text-sm text-primary font-medium hover:underline">Facebook Community</a>
+                  </div>
                 </div>
               </div>
             </div>
