@@ -167,6 +167,7 @@ function Navbar() {
 export default function Gallery() {
   const [activeTab, setActiveTab] = useState("All");
   const [lightbox, setLightbox] = useState<GalleryImage | null>(null);
+  const [images, setImages] = useState<GalleryImage[]>([]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -179,7 +180,49 @@ export default function Gallery() {
     return () => window.removeEventListener("keydown", handleKey);
   }, []);
 
-  const filtered = activeTab === "All" ? allImages : allImages.filter((img) => img.location === activeTab);
+  useEffect(() => {
+    const loadPublishedImages = async () => {
+      try {
+        const res = await fetch("/api/gallery?published=true", { cache: "no-store" });
+        if (!res.ok) {
+          setImages([]);
+          return;
+        }
+
+        const data = await res.json();
+        if (!Array.isArray(data)) {
+          setImages([]);
+          return;
+        }
+
+        const mapped: GalleryImage[] = data.map((row: { url: string; alt: string; location: string }) => ({
+          src: row.url,
+          alt: row.alt,
+          location: row.location,
+        }));
+
+        setImages(mapped);
+      } catch {
+        setImages([]);
+      }
+    };
+
+    loadPublishedImages();
+  }, []);
+
+  const resolvedCategories = [
+    "All",
+    ...Array.from(new Set(images.map((img) => img.location))).sort((a, b) => a.localeCompare(b)),
+  ];
+
+  const filtered = activeTab === "All" ? images : images.filter((img) => img.location === activeTab);
+
+  useEffect(() => {
+    if (activeTab === "All") return;
+    if (!resolvedCategories.includes(activeTab)) {
+      setActiveTab("All");
+    }
+  }, [activeTab, resolvedCategories]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -206,7 +249,7 @@ export default function Gallery() {
       <div className="bg-card border-b sticky top-16 sm:top-20 z-40" data-testid="section-gallery-tabs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex gap-1 overflow-x-auto py-3 scrollbar-hide">
-            {categories.map((cat) => (
+            {resolvedCategories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveTab(cat)}

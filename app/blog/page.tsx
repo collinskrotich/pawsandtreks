@@ -313,9 +313,66 @@ function BlogPostCard({ post }: { post: BlogPost }) {
 }
 
 export default function Blog() {
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = "Blog & Travel Guide – Paws & Treks";
+  }, []);
+
+  useEffect(() => {
+    const loadPublishedBlogs = async () => {
+      try {
+        const res = await fetch("/api/blogs?published=true", { cache: "no-store" });
+        if (!res.ok) {
+          setPosts([]);
+          return;
+        }
+
+        const data = await res.json();
+        if (!Array.isArray(data)) {
+          setPosts([]);
+          return;
+        }
+
+        const mapped: BlogPost[] = data.map((row: {
+          id: string;
+          slug: string;
+          title: string;
+          excerpt: string;
+          content: string[];
+          cover_image_url: string | null;
+          category: string;
+          author: string;
+          read_time: string | null;
+          published_at: string | null;
+          created_at: string;
+        }) => {
+          const publishedDate = row.published_at ?? row.created_at;
+          return {
+            id: row.slug || row.id,
+            title: row.title,
+            excerpt: row.excerpt,
+            content: Array.isArray(row.content) ? row.content : [],
+            image: row.cover_image_url || "/images/masai_mara.jpg",
+            date: new Date(publishedDate).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            }),
+            readTime: row.read_time || "5 min read",
+            category: row.category,
+            author: row.author || "Paws & Treks Team",
+          };
+        });
+
+        setPosts(mapped);
+      } catch {
+        setPosts([]);
+      }
+    };
+
+    loadPublishedBlogs();
   }, []);
 
   return (
@@ -380,7 +437,7 @@ export default function Blog() {
           variants={stagger}
           className="space-y-8"
         >
-          {blogPosts.map((post) => (
+          {posts.map((post) => (
             <BlogPostCard key={post.id} post={post} />
           ))}
         </motion.div>
